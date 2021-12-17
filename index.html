@@ -13,6 +13,16 @@
       <h1>Watchopedia</h1>
       <!-- Add in search section for genre, actor, ratings and favorites tabs-->
       <nav></nav>
+      <!-- SEARCH BOX START -->
+      <form>
+        <label>Search by movie, television show, or actor</label>
+        <input list="watch" name="watch" placeholder="Tom Hanks" />
+        <!-- Dynamically populate the datalist options with APIs-->
+        <datalist id="watch">
+          <option></option>
+        </datalist>
+      </form>
+      <!-- SEARCH BOX END -->
     </header>
 
     <!-- Add in hero -->

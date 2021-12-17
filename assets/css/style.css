@@ -1,0 +1,11 @@
+/* GENERAL STYLES */
+/* Margin and padding are included in element's width and height */
+* {
+    box-sizing: border-box;
+}
+
+/* ELEMENT SELECTORS */
+/* Put label on top of input */
+input, label {
+    display: block;
+}
