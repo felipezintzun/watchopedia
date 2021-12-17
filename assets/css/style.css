@@ -6,6 +6,6 @@
 
 /* ELEMENT SELECTORS */
 /* Put label on top of input */
-input, label {
-    display: block;
+h1 {
+    display: inline;
 }
