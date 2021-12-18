@@ -77,13 +77,13 @@ a:focus {
 }
 
 /* FOOTER STYLE START */
-.footer {
+footer {
   position: absolute;
   text-align: right;
-  padding: 5px;
-  bottom: 0;
   width: 100%;
   height: 90px;
+  bottom: 0;
+  padding: 20px;
   background: var(--bg-black);
   color: var(--primary-white);
 }
