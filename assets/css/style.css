@@ -3,11 +3,12 @@
 :root {
   --border-black: #131111;
   --bg-black: #000000;
-  --bg-white: #f1f1f1;
+  --bg-white: rgb(255, 255, 255, 0.8);
   --bg-show: #7a7a7a;
   --bg-nav: #222;
   --primary-white: #f1f1f1;
   --primary-red: #ff0066;
+  --primary-black: #000000;
 }
 
 /* Margin and padding are included in element's width and height */
@@ -24,9 +25,10 @@ header {
 }
 
 .header-title {
-  font-size: 32px;
   font-weight: bolder;
-  text-align: center;
+  border-radius: 1rem;
+  background-color: var(--bg-white);
+  color: var(--primary-black);
 }
 
 /* Nav Bar*/
@@ -41,6 +43,16 @@ a {
 }
 
 /* Form */
+.search-form {
+  width: 30%;
+  font-weight: 500;
+  font-style: italic;
+  text-align: left;
+  border-radius: 1rem;
+  background-color: var(--bg-white);
+  color: var(--primary-black);
+}
+
 form label {
   font-weight: bold;
 }
