@@ -5,23 +5,25 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Watchopedia</title>
-    <link href="assets/css/style.css" rel="stylesheet" />
     <!-- Bulma CSS -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css">
-
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css"
+    />
+    <!-- CSS Stylesheet -->
+    <link href="assets/css/style.css" rel="stylesheet" />
   </head>
 
-  <body class="mx-4 my-2">
+  <body>
     <header>
       <!-- Add in hero / Judy Martinez-->
       <div class="hero">
         <section
-          
-  
+          class="is-flex is-justify-content-space-between align-items-center"
         >
+          <h1 class="header-title">Watchopedia</h1>
           <!-- Add in search section to look up a specific actor / Nicholas Nolen-Michael Means6 -->
           <nav>
-            <h1 class="header-title p-2 logo">Watchopedia</h1>
             <ul class="menu">
               <li class="item"><a href="#">Movies</a></li>
               <li class="item"><a href="#">TVShows</a></li>
@@ -30,9 +32,9 @@
           </nav>
           <!-- SEARCH BOX START -->
           <form class="p-2">
-            <label for="search"
-              >Search by movie, television show, or actor</label
-            >
+            <label for="search">
+              Search by movie, television show, or actor
+            </label>
             <br />
             <input
               id="search"
@@ -56,29 +58,21 @@
       <!-- MOVIE SECTION STARTS -->
       <section id="movie-section" class="movie">
         <div class="flex-row">
-        <h2 class="section-title">
-            Movies
-        </h2>
+          <h2 class="section-title">Movies</h2>
         </div>
         <div class="flex-row">
-             <p>
-               Movie Recommendations Go Here
-            </p>
+          <p>Movie Recommendations Go Here</p>
         </div>
-        </section>
+      </section>
       <!-- SHOW SECTION STARTS -->
       <section id="show-section" class="show">
         <div class="flex-row">
-        <h2 class="section-title">
-            Shows
-        </h2>
+          <h2 class="section-title">Shows</h2>
         </div>
         <div class="flex-row">
-             <p>
-               Show Recommendations Go Here
-            </p>
+          <p>Show Recommendations Go Here</p>
         </div>
-        </section>
+      </section>
 
       <!-- Add in footer -->
 
