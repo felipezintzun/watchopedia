@@ -8,20 +8,69 @@
     <link href="assets/css/style.css" rel="stylesheet" />
   </head>
 
-  <body>
+  <body class="mx-4 my-2">
     <header>
-      <h1>Watchopedia</h1>
-      <!-- Add in search section for genre, actor, ratings and favorites tabs-->
-      <nav></nav>
+      <!-- Add in hero / Judy Martinez-->
+      <div class="hero">
+        <section
+          class="
+            is-flex is-justify-content-space-between is-align-items-flex-start
+          "
+        >
+          <h1 class="header-title p-2">Watchopedia</h1>
+          <!-- Add in search section to look up a specific actor / Nicholas Nolen-Michael Means6 -->
+          <nav></nav>
+          <!-- SEARCH BOX START -->
+          <form class="p-2">
+            <label for="search"
+              >Search by movie, television show, or actor</label
+            >
+            <br />
+            <input
+              id="search"
+              list="watch"
+              name="watch"
+              placeholder="Tom Hanks"
+              autocomplete="on"
+              autofocus
+            />
+            <!-- Dynamically populate the datalist options with APIs-->
+            <datalist id="watch">
+              <option value="test"></option>
+            </datalist>
+          </form>
+          <!-- SEARCH BOX END -->
+        </section>
+      </div>
     </header>
 
-    <!-- Add in hero -->
-    <section class="hero">
-      <div></div>
-    </section>
     <main>
-      <!-- favorites section -->
-      <section></section>
+      <!-- MOVIE SECTION STARTS -->
+      <section id="movie-section" class="movie">
+        <div class="flex-row">
+        <h2 class="section-title">
+            Movies
+        </h2>
+        </div>
+        <div class="flex-row">
+             <p>
+               Movie Recommendations Go Here
+            </p>
+        </div>
+        </section>
+      <!-- SHOW SECTION STARTS -->
+      <section id="show-section" class="show">
+        <div class="flex-row">
+        <h2 class="section-title">
+            Shows
+        </h2>
+        </div>
+        <div class="flex-row">
+             <p>
+               Show Recommendations Go Here
+            </p>
+        </div>
+        </section>
 
       <!-- Add in footer -->
 
@@ -29,6 +78,8 @@
         <h2>Made by Watchopedia.</h2>
         <div>&copy; 2021 Watchopedia, Inc.</div>
       </footer>
+      <!-- Add in footer / Judy Martinez-->
+      <footer></footer>
     </main>
     <script src="assets/js/script.js"></script>
   </body>
