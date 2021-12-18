@@ -1,7 +1,10 @@
 // GLOBAL VARIABLES
-// Declare button and input variables
-var buttonEL = document.getElementById('searchBtn');
+// Declare input variable
 var inputEl = document.getElementById('search');
+// Declare error messages container
+var errorEl = document.getElementById('error');
+// Declare button
+var buttonEL = document.getElementById('searchBtn');
 
 // API CALLS START
 //IMBD API
@@ -12,37 +15,73 @@ var getNameSearch = function (name) {
     .then(function (response) {
       if (response.ok) {
         response.json().then(function (name) {
-          displayIssues(name);
+          showActorOption(name);
         });
       } else {
-        document.location.replace('./index.html');
+        invalidInput();
       }
     })
     .catch(function (error) {
-      alert('Unable to find name');
+      connectIssue();
     });
 };
 
-//Trakt API
-// var getNameSearch = function (id) {
-//   var apiUrl = 'https://api.trakt.tv/people/' + id;
+// Trakt API
+var getRatingsSearch = function (id) {
+  var apiUrl = 'https://api.trakt.tv/people/' + id;
 
-//   fetch(apiUrl)
-//     .then(function (response) {
-//       if (response.ok) {
-//         response.json().then(function (id) {
-//           displayIssues(id);
-//         });
-//       } else {
-//         document.location.replace('./index.html');
-//       }
-//     })
-//     .catch(function (error) {
-//       alert('Unable to find name');
-//     });
-// };
+  fetch(apiUrl)
+    .then(function (response) {
+      if (response.ok) {
+        response.json().then(function (id) {
+          displayIssues(id);
+        });
+      } else {
+        invalidInput();
+      }
+    })
+    .catch(function (error) {
+      connectIssue();
+    });
+};
 // API CALLS END
 
+// ERROR MESSAGES
+// Function for invalid or improper inputs
+var invalidInput = function () {
+  errorEl.textContent = 'Actor not found.';
+  errorEl.style.color = 'red';
+};
+
+// Function if you are unable to connect
+var connectIssue = function () {
+  errorEl.textContent = 'Unable to connect.';
+  errorEl.style.color = 'red';
+};
+
+// POPULATING ELEMENTS
+// Function to populate the datalist
+var showActorOption = function (name) {
+  console.log(name);
+  // For loop to show all matching actor names
+  for (var i = 0; i < 5; i++) {
+    // define the actors array
+    var actors = name.results;
+    // define 5 individual actor names
+    var actor = actors[i].title;
+    // if an actor matches the input
+    if (actor == inputEl.value) {
+      // create the option element
+      var actorOption = document.createElement('option');
+      console.log(actorOption);
+      // Add the actor
+      actorOption.innerHTML = actor;
+      inputEl.append(actorOption);
+    } else {
+      invalidInput();
+    }
+  }
+};
 // EVENT LISTENERS
 // button to capture name type into input, set to name vaiable and then running the getNameSearch() function
 buttonEL.addEventListener('click', function (event) {

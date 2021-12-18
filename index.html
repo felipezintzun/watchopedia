@@ -33,29 +33,29 @@
           <!-- NAV BAR END -->
           <!-- SEARCH BOX START -->
           <div class="search-form m-2 p-4 is-size-6">
-          <form>
-            <label for="search">
-              Search by movie, television show, or actor
-            </label>
-            <br />
-            <input
-              id="search"
-              list="watch"
-              name="watch"
-              placeholder="Tom Hanks"
-              autocomplete="on"
-              autofocus
-            />
-            <!-- Dynamically populate the datalist options with APIs-->
-            <datalist id="watch">
-              <option value="test"></option>
-            </datalist>
-            <div class="search-button">
-              <button id="searchBtn">
-                <h2>SEARCH</h2>
-              </button>
-            </div>
-          </form>
+            <form id="actor-form">
+              <label for="search">
+                Search by movie, television show, or actor
+              </label>
+              <br />
+              <input
+                id="search"
+                list="watch"
+                name="watch"
+                placeholder="Tom Hanks"
+                autocomplete="on"
+                autofocus
+              />
+              <!-- Dynamically populate the datalist options with APIs-->
+              <datalist id="watch"> </datalist>
+              <div class="search-button">
+                <button id="searchBtn">
+                  <h2>SEARCH</h2>
+                </button>
+              </div>
+              <!-- Place for error messages -->
+              <div id="error"></div>
+            </form>
           </div>
           <!-- SEARCH BOX END -->
         </section>
