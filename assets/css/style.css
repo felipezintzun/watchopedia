@@ -90,7 +90,7 @@ header {
     padding: 15px 5px;
   }
 
-  .footer {
+  footer {
     position:absolute;
     bottom:0;
     width:100%;
@@ -99,6 +99,4 @@ header {
     color: var(--primary-white);
     text-align: right;
     padding: 5px;
-    width: 100%;
-    
   }
