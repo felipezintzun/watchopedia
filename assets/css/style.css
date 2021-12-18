@@ -29,6 +29,11 @@ form label {
 
 /* Hero Style Start */
 .hero {
-  background-image: url("../images/under-construction.jpg");
+  background-image: url("../images/receiver-pile.jpg");
+  background-size: contain;
+  background-position: center;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
 }
 /* Hero Style End */
