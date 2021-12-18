@@ -98,5 +98,5 @@ header {
     background: var(--bg-black);
     color: var(--primary-white);
     text-align: right;
-    padding: 5px;
+    padding: 20px;
   }
