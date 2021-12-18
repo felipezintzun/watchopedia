@@ -8,10 +8,6 @@ var getNameSearch = function (name) {
       response.json().then(function (name) {
         displayIssues(name);
 
-        // Since GitHub only returns 30 results at a time, we check to see if there's more than 30 by looking for a next page URL in the response headers.
-        if (response.headers.get('Link')) {
-          displayWarning(name);
-        }
       });
     } else {
       document.location.replace('./index.html');
@@ -30,14 +26,12 @@ var getNameSearch = function (id) {
       if (response.ok) {
         response.json().then(function (id) {
           displayIssues(id);
-  
-          // Since GitHub only returns 30 results at a time, we check to see if there's more than 30 by looking for a next page URL in the response headers.
-          if (response.headers.get('Link')) {
-            displayWarning(id);
-          }
         });
       } else {
         document.location.replace('./index.html');
       }
-    });
+    })
+    .catch(function(error){
+        alert('Unable to find name');
+    })
   };
