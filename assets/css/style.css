@@ -1,0 +1,28 @@
+/* GENERAL STYLES */
+/* Colors */
+:root {
+  --border-black: #131111;
+  --bg-white: #f1f1f1;
+}
+/* Margin and padding are included in element's width and height */
+* {
+  box-sizing: border-box;
+}
+
+/* ELEMENT SELECTORS */
+form {
+  border: 1px solid var(--border-black);
+  background-color: var(--bg-white);
+}
+
+form label {
+  font-weight: bold;
+}
+/* SPECIFIC CLASSES */
+/* Put label on top of input */
+.header-title {
+  font-size: 32px;
+  font-weight: bolder;
+  border: 2px solid var(--border-black);
+  background-color: var(--bg-white);
+}

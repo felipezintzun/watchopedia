@@ -11,19 +11,42 @@
 
   </head>
 
-  <body>
+  <body class="mx-4 my-2">
     <header>
-        <!-- Add in hero / Judy Martinez-->
+      <!-- Add in hero / Judy Martinez-->
       <div class="hero">
-      
-      <h1>Watchopedia</h1>
-      <!-- Add in search section to look up a specific actor / Nicholas Nolen-Michael Means6 -->
-      <nav></nav>
-      <!--Add input form / Chris Ramirez-->
-    </div>
+        <section
+          class="
+            is-flex is-justify-content-space-between is-align-items-flex-start
+          "
+        >
+          <h1 class="header-title p-2">Watchopedia</h1>
+          <!-- Add in search section to look up a specific actor / Nicholas Nolen-Michael Means6 -->
+          <nav></nav>
+          <!-- SEARCH BOX START -->
+          <form class="p-2">
+            <label for="search"
+              >Search by movie, television show, or actor</label
+            >
+            <br />
+            <input
+              id="search"
+              list="watch"
+              name="watch"
+              placeholder="Tom Hanks"
+              autocomplete="on"
+              autofocus
+            />
+            <!-- Dynamically populate the datalist options with APIs-->
+            <datalist id="watch">
+              <option value="test"></option>
+            </datalist>
+          </form>
+          <!-- SEARCH BOX END -->
+        </section>
+      </div>
     </header>
 
-  
     <main>
       <!-- Movies / Felipe Mendoza -->
       <section></section>
