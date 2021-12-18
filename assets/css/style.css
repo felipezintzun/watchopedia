@@ -26,3 +26,9 @@ form label {
   border: 2px solid var(--border-black);
   background-color: var(--bg-white);
 }
+
+/* Hero Style Start */
+.hero {
+  background-image: url("../images/under-construction.jpg");
+}
+/* Hero Style End */
