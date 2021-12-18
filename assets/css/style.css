@@ -1,15 +1,3 @@
-footer {
-    position:absolute;
-    bottom:0;
-    width:100%;
-    height:90px;  
-    background: black;
-    color: white;
-    text-align: right;
-    padding: 5px;
-    width: 100%;
-    
-  }
 /* GENERAL STYLES */
 /* Colors */
 :root {
@@ -22,10 +10,6 @@ footer {
 }
 
 /* ELEMENT SELECTORS */
-form {
-  border: 1px solid var(--border-black);
-  background-color: var(--bg-white);
-}
 
 form label {
   font-weight: bold;
@@ -35,13 +19,11 @@ form label {
 .header-title {
   font-size: 32px;
   font-weight: bolder;
-  border: 2px solid var(--border-black);
-  background-color: var(--bg-white);
   text-align: center;
 }
 
 /* Hero Style Start */
-.hero {
+header {
   background-image: url("../images/receiver-pile.jpg");
   background-size: contain;
   background-position: center;
@@ -50,11 +32,12 @@ form label {
   align-items: flex-start;
 }
 /* Hero Style End */
+
 /*NAV BAR STYLING - CHRIS RAMIREZ*/
 
   /* Basic styling */
   nav {
-    background: #222;
+    background-image: url("..../images/receiver-pile.jpg");
     padding: 0 15px;
   }
   
@@ -99,4 +82,17 @@ form label {
   .menu li a {
     display: block;
     padding: 15px 5px;
+  }
+
+  .footer {
+    position:absolute;
+    bottom:0;
+    width:100%;
+    height:90px;  
+    background: black;
+    color: white;
+    text-align: right;
+    padding: 5px;
+    width: 100%;
+    
   }
