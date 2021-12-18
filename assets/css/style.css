@@ -6,5 +6,7 @@ footer {
   background: black;
   color: white;
   text-align: right;
+  padding: 5px;
+  width: 100%;
   
 }
