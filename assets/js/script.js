@@ -1,14 +1,18 @@
-var button = document.getElementById('submitButton');
+var buttonEl = document.getElementById('submitBtn');
 var searchInputEl = document.getElementById('search');
 
 //IMBD API
-var searchForActor = function (actorName) {
-  var apiUrl = 'https://imdb-api.com/en/API/SearchName/k_1t9p2l2d/' + actorName;
+function searchForActor (actorName) {
+  console.log(actorName);
+  // format the imdb api
+  var apiUrl = 'https://imdb-api.com/en/API/SearchAll/k_1t9p2l2d/' + actorName;
 
+  // make a request to the url
   fetch(apiUrl).then(function (response) {
     if (response.ok) {
-      response.json().then(function (actorName) {
-        displayIssues(actorName);
+      response.json().then(function (data) {
+        console.log(data);
+        displayName(data);
       });
     } 
   })
@@ -17,7 +21,6 @@ var searchForActor = function (actorName) {
             alert('Unable to find name');
         })
 };
-
 //Trakt API**Felipe
 var getNameSearch = function (id) {
     var traktApi = 'https://api.trakt.tv/people/' + id;
@@ -35,3 +38,14 @@ var getNameSearch = function (id) {
         alert('Unable to find name');
     })
   };
+
+    //button submission function
+    var searchForActor = function(actorName){
+      console.log(actorName);
+    };
+      //get value from searchInputEl
+    buttonEl.addEventListener('submit', function(event){
+      var actorName = searchInputEl.value.trim();
+      searchForActor(actorName);
+      })
+    
