@@ -1,3 +1,15 @@
+footer {
+    position:absolute;
+    bottom:0;
+    width:100%;
+    height:90px;  
+    background: black;
+    color: white;
+    text-align: right;
+    padding: 5px;
+    width: 100%;
+    
+  }
 /* GENERAL STYLES */
 /* Colors */
 :root {
@@ -42,6 +54,10 @@ form label {
     cursor:pointer;
   }
 
+/* SHOW SECTION STYLES START */
+.show {
+  background: #7a7a7a;
+}
   a:hover, 
   a:focus {
   color: #ff0066;
