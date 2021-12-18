@@ -49,12 +49,13 @@ form label {
  
   .logo {
     font-size: 20px;
-    padding: 7.5px 10px 7.5px 0;
+    padding: 7.5px 0px 7.5px 0;
+    text-align: center;
     flex: 1;
     order: 0;
   }
   .item {
-    padding: 10px;
+    padding: 10px 15px 5px 15px;
     width: 100%;
     text-align: center;
     width: auto;
@@ -66,6 +67,7 @@ form label {
     flex-wrap: wrap;
     align-items: center;
     justify-content: center;
+    padding: 5px;
     background: none;
   }
   .menu li a {
