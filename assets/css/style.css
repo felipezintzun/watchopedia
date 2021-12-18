@@ -26,3 +26,13 @@ form label {
   border: 2px solid var(--border-black);
   background-color: var(--bg-white);
 }
+
+/* MOVIE SECTION STYLES START */
+.movie {
+  background: #d3d3d3;
+}
+
+/* SHOW SECTION STYLES START */
+.show {
+  background: #7a7a7a;
+}
