@@ -1,3 +1,15 @@
+footer {
+    position:absolute;
+    bottom:0;
+    width:100%;
+    height:90px;  
+    background: black;
+    color: white;
+    text-align: right;
+    padding: 5px;
+    width: 100%;
+    
+  }
 /* GENERAL STYLES */
 /* Colors */
 :root {
@@ -25,4 +37,56 @@ form label {
   font-weight: bolder;
   border: 2px solid var(--border-black);
   background-color: var(--bg-white);
+  text-align: center;
 }
+
+/*NAV BAR STYLING - CHRIS RAMIREZ*/
+
+  /* Basic styling */
+  nav {
+    background: #222;
+    padding: 0 15px;
+  }
+  
+  a {
+    color: white;
+    text-decoration: none;
+    cursor:pointer;
+  }
+
+/* SHOW SECTION STYLES START */
+.show {
+  background: #7a7a7a;
+}
+  a:hover, 
+  a:focus {
+  color: #ff0066;
+  }
+ 
+  .logo {
+    font-size: 20px;
+    padding: 7.5px 0px 7.5px 0;
+    text-align: center;
+    flex: 1;
+    order: 0;
+  }
+  .item {
+    padding: 10px 15px 5px 15px;
+    width: 100%;
+    text-align: center;
+    width: auto;
+    display: block;
+    position: relative;
+  }
+  .menu {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    padding: 5px;
+    background: none;
+  }
+  .menu li a {
+    display: block;
+    padding: 15px 5px;
+  }
