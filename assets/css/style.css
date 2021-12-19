@@ -37,9 +37,43 @@ nav {
 }
 
 a {
-  color: var(--primary-white);
+  color: var(--primary-black);
   text-decoration: none;
   cursor: pointer;
+}
+
+.show {
+  background: var(--bg-show);
+}
+a:hover,
+a:focus {
+  color: var(--primary-red);
+}
+
+.item {
+  padding: 10px 15px 5px 15px;
+  width: 100%;
+  text-align: center;
+  width: auto;
+  display: block;
+  position: relative;
+  border-radius: 1rem;
+  background-color: var(--bg-white);
+  color: var(--primary-black);
+}
+.menu {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  padding: 5px;
+  background: none;
+}
+.menu li a {
+  display: block;
+  padding: 15px 5px;
+ 
+
 }
 
 /* Form */
@@ -58,35 +92,7 @@ form label {
 }
 /* HEADER STYLES END */
 
-/* SHOW SECTION STYLES START */
-.show {
-  background: var(--bg-show);
-}
-a:hover,
-a:focus {
-  color: var(--primary-red);
-}
 
-.item {
-  padding: 10px 15px 5px 15px;
-  width: 100%;
-  text-align: center;
-  width: auto;
-  display: block;
-  position: relative;
-}
-.menu {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  justify-content: center;
-  padding: 5px;
-  background: none;
-}
-.menu li a {
-  display: block;
-  padding: 15px 5px;
-}
 
 /* FOOTER STYLE START */
 footer {
