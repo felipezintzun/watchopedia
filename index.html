@@ -5,9 +5,92 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Watchopedia</title>
+    <!-- Link Bulma CSS -->
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css"
+    />
+    <!-- Link CSS Stylesheet -->
     <link href="assets/css/style.css" rel="stylesheet" />
   </head>
   <body>
+    <header>
+      <!-- HERO START -->
+      <div class="hero">
+        <section
+          class="is-flex is-justify-content-space-between is-align-items-center"
+        >
+          <h1 class="header-title m-2 p-4 is-size-1">Watchopedia</h1>
+          <!-- NAV BAR START  -->
+          <nav>
+            <ul class="menu">
+              <li class="item"><a href="#">Movies</a></li>
+              <li class="item"><a href="#">TVShows</a></li>
+              <li class="item"><a href="#">Actors</a></li>
+            </ul>
+          </nav>
+          <!-- NAV BAR END -->
+          <!-- SEARCH BOX START -->
+          <div class="search-form m-2 p-4 is-size-6">
+          <form>
+            <label for="search">
+              Search by movie, television show, or actor
+            </label>
+            <br />
+            <input
+              id="search"
+              list="watch"
+              name="watch"
+              placeholder="Tom Hanks"
+              autocomplete="on"
+              autofocus
+            />
+            <!-- Dynamically populate the datalist options with APIs-->
+            <datalist id="watch">
+              <option value="test"></option>
+            </datalist>
+            <div class="search-button">
+              <button id="search">
+                <h2>SEARCH</h2>
+              </button>
+            </div>
+          </form>
+          </div>
+          <!-- SEARCH BOX END -->
+        </section>
+        <!-- HERO END -->
+      </div>
+    </header>
+
+    <main>
+      <!-- MOVIE SECTION STARTS -->
+      <section id="movie-section" class="movie">
+        <div class="flex-row">
+          <h2 class="section-title">Movies</h2>
+        </div>
+        <div class="flex-row">
+          <p>Movie Recommendations Go Here</p>
+        </div>
+      </section>
+      <!-- SHOW SECTION STARTS -->
+      <section id="show-section" class="show">
+        <div class="flex-row">
+          <h2 class="section-title">Shows</h2>
+        </div>
+        <div class="flex-row">
+          <p>Show Recommendations Go Here</p>
+        </div>
+      </section>
+
+      <!-- FOOTER STARTS -->
+      <footer>
+        <h2>Made by Watchopedia.</h2>
+        <div>&copy; 2021 Watchopedia, Inc.</div>
+      </footer>
+      <!-- FOOTER ENDS -->
+    </main>
+
+    <!-- LINK JAVASCRIPT PAGE -->
     <script src="assets/js/script.js"></script>
   </body>
 </html>
