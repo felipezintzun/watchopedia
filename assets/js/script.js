@@ -1,37 +1,50 @@
 
-//IMBD API
-var getNameSearch = function (name) {
-  var apiUrl = 'https://imdb-api.com/en/API/SearchName/k_1t9p2l2d/' + name;
+var buttonEl = document.getElementById('submitBtn');
+var searchInputEl = document.getElementById('search');
 
-  fetch(apiUrl).then(function (response) {
-    if (response.ok) {
-      response.json().then(function (name) {
-        displayIssues(name);
 
-      });
-    } else {
-      document.location.replace('./index.html');
-    }
+// FETCHING DATA
+function searchShow(query) {
+  const url = `http://api.tvmaze.com/search/shows?q=${query}`;
+  fetch(url)
+  .then(response => response.json())
+  .then((jsonData) => {
+    const results = jsonData.map(element => element.show.name);
+    renderResults(results);
   })
-        .catch(function(error){
-            alert('Unable to find name');
-        })
 };
 
-//Trakt API
-var getNameSearch = function (id) {
-    var apiUrl = 'https://api.trakt.tv/people/' + id;
-  
-    fetch(apiUrl).then(function (response) {
-      if (response.ok) {
-        response.json().then(function (id) {
-          displayIssues(id);
-        });
-      } else {
-        document.location.replace('./index.html');
-      }
-    })
-    .catch(function(error){
-        alert('Unable to find name');
-    })
-  };
+// MAKES LIST OF SHOWS APPEAR ON SITE
+function renderResults(results) {
+  const list = document.getElementById("resultsList")
+  list.innerHTML = "";
+  results.forEach(result => {
+    const element = document.createElement("li");
+    element.innerText = result;
+    list.appendChild(element);
+  })
+};
+
+// SEARCH BOX
+window.onload = () => {
+  const searchFieldElement = document.getElementById("search");
+  searchFieldElement.onkeyup = (event) => {
+
+    if (searchFieldElement.value.trim().length === 0) {
+      return; 
+    }
+
+    searchShow(searchFieldElement.value);
+  }
+};
+
+//button submission function
+var searchForActor = function(actorName){
+  console.log(actorName);
+};
+//get value from searchInputEl
+buttonEl.addEventListener('submit', function(event){
+  var actorName = searchInputEl.value.trim();
+  searchForActor(actorName);
+  });
+

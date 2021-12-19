@@ -58,10 +58,24 @@ form label {
 }
 /* HEADER STYLES END */
 
+/* MOIVE SECTION STYLES START */
+.movie {
+  background: #d3d3d3;
+  height: 120px;
+
+}
 /* SHOW SECTION STYLES START */
 .show {
-  background: var(--bg-show);
+  background: #9ddadf;
+  height: 120px;
 }
+
+.section-title {
+  font-weight: bold;
+  font-size: 22px;
+}
+
+
 a:hover,
 a:focus {
   color: var(--primary-red);

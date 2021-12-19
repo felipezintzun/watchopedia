@@ -34,24 +34,17 @@
           <!-- SEARCH BOX START -->
           <div class="search-form m-2 p-4 is-size-6">
           <form>
-            <label for="search">
+            <label for="search-here">
               Search by movie, television show, or actor
             </label>
             <br />
-            <input
-              id="search"
-              list="watch"
-              name="watch"
-              placeholder="Tom Hanks"
-              autocomplete="on"
-              autofocus
-            />
+            <input type= "text" id="search" placeholder="Actor Name"/>
             <!-- Dynamically populate the datalist options with APIs-->
             <datalist id="watch">
               <option value="test"></option>
             </datalist>
             <div class="search-button">
-              <button id="search">
+              <button id="search-b">
                 <h2>SEARCH</h2>
               </button>
             </div>
@@ -81,7 +74,10 @@
         <div class="flex-row">
           <p>Show Recommendations Go Here</p>
         </div>
+        <ul id="resultsList"></ul>
       </section>
+          
+
 
       <!-- FOOTER STARTS -->
       <footer>
