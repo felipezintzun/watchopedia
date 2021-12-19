@@ -2,23 +2,24 @@ var buttonEl = document.getElementById('submitBtn');
 var searchInputEl = document.getElementById('search');
 
 //IMBD API
-function searchForActor (actorName) {
-  console.log(actorName);
+function searchForActor (name) {
   // format the imdb api
-  var apiUrl = 'https://imdb-api.com/en/API/SearchAll/k_1t9p2l2d/' + actorName;
+  var apiUrl = 'https://imdb-api.com/en/API/Title/k_1t9p2l2d/' + name;
 
   // make a request to the url
-  fetch(apiUrl).then(function (response) {
-    if (response.ok) {
-      response.json().then(function (data) {
-        console.log(data);
-        displayName(data);
+  fetch(apiUrl)
+    .then(function (response) {
+      if (response.ok) {
+        response.json().then(function (name) {
+          showActorOption(name);
       });
-    } 
+    } else {
+      invalidInput();
+    }
   })
         .catch(function(error){
           //catching no actors found
-            alert('Unable to find name');
+            connectIssue();
         })
 };
 //Trakt API**Felipe
