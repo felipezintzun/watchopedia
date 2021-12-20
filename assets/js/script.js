@@ -2,7 +2,7 @@ var buttonEl = document.getElementById('submitBtn');
 var searchInputEl = document.getElementById('search');
 
 //IMBD API
-function searchForActor (name) {
+function getNameSearch (name) {
   // format the imdb api
   var apiUrl = 'https://imdb-api.com/en/API/Title/k_1t9p2l2d/' + name;
 
@@ -22,23 +22,6 @@ function searchForActor (name) {
             connectIssue();
         })
 };
-//Trakt API**Felipe
-var getNameSearch = function (id) {
-    var traktApi = 'https://api.trakt.tv/people/' + id;
-  
-    fetch(apiUrl).then(function (response) {
-      if (response.ok) {
-        response.json().then(function (id) {
-          displayIssues(id);
-        });
-      } else {
-        document.location.replace('./index.html');
-      }
-    })
-    .catch(function(error){
-        alert('Unable to find name');
-    })
-  };
 
     //button submission function
     var searchForActor = function(actorName){
@@ -49,4 +32,3 @@ var getNameSearch = function (id) {
       var actorName = searchInputEl.value.trim();
       searchForActor(actorName);
       })
-    
