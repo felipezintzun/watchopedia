@@ -7,6 +7,8 @@ var actorEl = document.getElementById('actor-section');
 var actorTitleEl = document.getElementById('actor-title');
 // Declare the paragraph for actor information
 var actorInfoEl = document.getElementById('actor-results');
+// Declare the unordered list to list the movies/shows the actor is known for
+var knownForEl = document.getElementById('known-for');
 // Declare error messages container
 var errorEl = document.getElementById('error');
 // Declare button
@@ -21,8 +23,7 @@ var getNameSearch = function (name) {
     .then(function (response) {
       if (response.ok) {
         response.json().then(function (name) {
-          showActorOption(name);
-          displayActor(name);
+          getActorId(name);
         });
       } else {
         invalidInput();
@@ -67,52 +68,94 @@ var connectIssue = function () {
 };
 
 // POPULATING ELEMENTS
-// Function to populate the datalist
-var showActorOption = function (name) {
+// Function to get the actors id
+var getActorId = function (name) {
   // define the actors array
   var actors = name.results;
-  // For loop to show all matching actor names
-  for (var i = 0; i < actors.length; i++) {
-    // define 5 individual actor names
-    var actor = actors[i].title;
-    // if an actor matches the input
-    if (actor == inputEl.value) {
-      // create the option element
-      var actorOption = document.createElement('option');
-      // Add the actor
-      actorOption.innerHTML = actor;
-      inputEl.append(actorOption);
-    } else {
-      invalidInput();
-    }
+  // get the actors id
+  var actorId = actors[0].id;
+  // call the actorInfo function
+  actorInfo(actorId);
+};
+
+// Call a new fetch function to get actor information
+var actorInfo = function (actorId) {
+  // Call api for actor information
+  var apiUrl = 'https://imdb-api.com/en/API/Name/k_1t9p2l2d/' + actorId;
+
+  fetch(apiUrl)
+    .then(function (response) {
+      if (response.ok) {
+        response.json().then(function (actorId) {
+          showActorOption(actorId);
+          showActorInfo(actorId);
+        });
+      }
+    })
+    .catch(function (error) {
+      connectIssue();
+    });
+};
+
+// Function to populate the datalist
+var showActorOption = function (actorId) {
+  // define the actors name
+  var actor = actorId.name;
+
+  // if an actor matches the input
+  if (actorId === inputEl.value) {
+    // create the option element
+    var actorOption = document.createElement('option');
+    // Add the actor
+    actorOption.innerHTML = actor;
+    inputEl.append(actorOption);
   }
 };
 
-var displayActor = function (name) {
-  console.log(name);
-  // define the actors array
-  var actors = name.results;
-  // For loop to show all matching actor names
-  for (var i = 0; i < actors.length; i++) {
-    // Define actors name
-    var actor = actors[i].title;
-    // Define the movies and shows the actor was in
-    var acted = actors[i].description;
-    console.log(acted);
-    // if an actor matches the input
-    if (actor == inputEl.value) {
-      // set the text content for the title
-      actorTitleEl.innerHTML =
-        'Movie and Show Information for ' + '<b>' + actor + '</b>';
-      // set the text content for the paragraph
-      actorInfoEl.textContent = acted;
+// Function to display the actors information
+var showActorInfo = function (actorId) {
+  // clear old content
+  actorEl.innerHTML = '';
+  // clear list item elements
+  knownForEl.innerHTML = '';
 
-      // append title to the actor container
-      actorEl.append(actorTitleEl);
-      // append paragraph to the actor container
-      actorEl.append(actorInfoEl);
-    }
+  // define the actor's name
+  var actorName = actorId.name;
+  // set the text content for the title
+  actorTitleEl.innerHTML =
+    'Top Movie and Shows for ' + '<b>' + actorName + '</b>';
+  // append title to the actor container
+  actorEl.appendChild(actorTitleEl);
+
+  // create an image element
+  var actorImage = document.createElement('img');
+  // set the source of the image
+  actorImage.setAttribute('src', actorId.image + '@2x.png');
+  actorImage.classList.add('actor-image');
+  // append image to the actor container
+  actorEl.appendChild(actorImage);
+
+  // Make a container to hold the actor information
+  var actorBioEl = document.createElement('div');
+
+  // define the actors known for array
+  var knownFor = actorId.knownFor;
+  // For loop to show all the movies/shows the actor is known for
+  for (var i = 0; i < knownFor.length; i++) {
+    // iterate through the knownFor array
+    knownForArr = knownFor[i];
+    // Make a list item element for the movies/shows the actor is known for
+    var knownforList = document.createElement('li');
+    // set the text content of the list item
+    knownforList.textContent = knownForArr.fullTitle;
+    // append the list item to the unordered list
+    knownForEl.appendChild(knownforList);
   }
+  // append the unordered list to the actorBio container
+  actorBioEl.appendChild(knownForEl);
+
+  // append information to the actor container
+  actorEl.append(actorBioEl);
 };
 // EVENT LISTENERS
 // button to capture name type into input, set to name vaiable and then running the getNameSearch() function
