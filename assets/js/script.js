@@ -35,3 +35,10 @@ var getNameSearch = function (id) {
         alert('Unable to find name');
     })
   };
+
+// create watch later from submission
+var watchList = {
+  title: searchInputEl.value.trim(),
+};
+// set new submission to local storage
+localStorage.setItem("watchList", JSON.stringify(watchList));
