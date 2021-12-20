@@ -33,7 +33,7 @@
           <!-- NAV BAR END -->
           <!-- SEARCH BOX START -->
           <div class="search-form m-2 p-4 is-size-6">
-            <form id="actor-form">
+            <form id="search-form">
               <label for="search">
                 Search by movie, television show, or actor
               </label>
@@ -65,7 +65,7 @@
 
     <main>
       <!-- MOVIE SECTION STARTS -->
-      <section id="movie-section" class="movie">
+      <section class="movie" id="movie-section">
         <div class="flex-row">
           <h2 class="section-title">Movies</h2>
         </div>
@@ -74,7 +74,7 @@
         </div>
       </section>
       <!-- SHOW SECTION STARTS -->
-      <section id="show-section" class="show">
+      <section class="show" id="show-section">
         <div class="flex-row">
           <h2 class="section-title">Shows</h2>
         </div>
@@ -82,7 +82,16 @@
           <p>Show Recommendations Go Here</p>
         </div>
       </section>
-
+      <!-- ACTOR SECTION -->
+      <section class="show" id="actor-section">
+        <div class="flex-row">
+          <h2 class="actor-title" id="actor-title"></h2>
+        </div>
+        <div class="flex-row">
+          <!-- Shows and movies for an actor populate here -->
+          <p id="actor-results"></p>
+        </div>
+      </section>
       <!-- FOOTER STARTS -->
       <footer>
         <h2>Made by Watchopedia.</h2>
