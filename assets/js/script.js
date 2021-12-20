@@ -17,9 +17,9 @@ var errorEl = document.getElementById('error');
 var buttonEL = document.getElementById('searchBtn');
 
 // API CALLS START
-//IMBD API (ORIGINAL KEY k_1t9p2l2d)
+//IMBD API
 var getNameSearch = function (name) {
-  var apiUrl = 'https://imdb-api.com/en/API/SearchName/k_t2dr26vg/' + name;
+  var apiUrl = 'https://imdb-api.com/en/API/SearchName/k_1t9p2l2d/' + name;
 
   fetch(apiUrl)
     .then(function (response) {
@@ -83,7 +83,7 @@ var getActorId = function (name) {
 // Call a new fetch function to get actor information
 var actorInfo = function (actorId) {
   // Call api for actor information
-  var apiUrl = 'https://imdb-api.com/en/API/Name/k_t2dr26vg/' + actorId;
+  var apiUrl = 'https://imdb-api.com/en/API/Name/k_1t9p2l2d/' + actorId;
 
   fetch(apiUrl)
     .then(function (response) {
