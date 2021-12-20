@@ -1,6 +1,6 @@
 var myImage = document.querySelector('img');
 
-// FETCHING DATA
+// FETCHING SHOW DATA
 function searchShow(query) {
   const url = `https://api.tvmaze.com/search/shows?q=${query}`;
   console.log(url)
@@ -15,7 +15,7 @@ function searchShow(query) {
       // jsonData.forEach(element => {
         let element = jsonData [i]
         console.log(element)
-       htmlCode+= `<div class="card">
+        htmlCode+= `<div class="card">
         <div class="card-image">
           <figure class="image is-4by3">
             <img src="${element.show.url}" alt="Placeholder image">
@@ -47,14 +47,19 @@ function searchShow(query) {
     })
 };
 
+
+
+
 // MAKES LIST OF SHOWS APPEAR ON SITE
 function renderResults(results) {
   results.forEach(result => {
-    const element = document.createElement("card");
-    element.innerText = result;
+    const element = document.createElement("li");
+    element.innerHTML = result;
     list.appendChild(element);
   })
 };
+
+
 
 // SEARCH BOX
 var searchElement = document.getElementById("search-b")
@@ -69,17 +74,6 @@ searchElement.addEventListener("click", function (event) {
 
 });
 
-// window.onload = () => {
-//   const searchFieldElement = document.getElementById("search");
-//   searchFieldElement.onkeyup = (event) => {
-
-//     if (searchFieldElement.value.trim().length === 0) {
-//       return; 
-//     }
-
-//     searchShow(searchFieldElement.value);
-//   }
-// };
 
 
 
