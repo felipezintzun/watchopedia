@@ -1,6 +1,8 @@
 // GLOBAL VARIABLES
 // Declare input variable
 var inputEl = document.getElementById('search');
+// Declare the datalist
+var datalistEl = document.getElementById('watch');
 // Declare the container that holds the actor information
 var actorEl = document.getElementById('actor-section');
 // Declare the actor title
@@ -15,9 +17,9 @@ var errorEl = document.getElementById('error');
 var buttonEL = document.getElementById('searchBtn');
 
 // API CALLS START
-//IMBD API
+//IMBD API (ORIGINAL KEY k_1t9p2l2d)
 var getNameSearch = function (name) {
-  var apiUrl = 'https://imdb-api.com/en/API/SearchName/k_1t9p2l2d/' + name;
+  var apiUrl = 'https://imdb-api.com/en/API/SearchName/k_t2dr26vg/' + name;
 
   fetch(apiUrl)
     .then(function (response) {
@@ -81,7 +83,7 @@ var getActorId = function (name) {
 // Call a new fetch function to get actor information
 var actorInfo = function (actorId) {
   // Call api for actor information
-  var apiUrl = 'https://imdb-api.com/en/API/Name/k_1t9p2l2d/' + actorId;
+  var apiUrl = 'https://imdb-api.com/en/API/Name/k_t2dr26vg/' + actorId;
 
   fetch(apiUrl)
     .then(function (response) {
@@ -90,6 +92,8 @@ var actorInfo = function (actorId) {
           showActorOption(actorId);
           showActorInfo(actorId);
         });
+      } else {
+        invalidInput();
       }
     })
     .catch(function (error) {
@@ -99,16 +103,18 @@ var actorInfo = function (actorId) {
 
 // Function to populate the datalist
 var showActorOption = function (actorId) {
+  console.log(actorId);
   // define the actors name
   var actor = actorId.name;
+  var input = inputEl.value;
 
   // if an actor matches the input
-  if (actorId === inputEl.value) {
+  if (actor === input) {
     // create the option element
     var actorOption = document.createElement('option');
     // Add the actor
-    actorOption.innerHTML = actor;
-    inputEl.append(actorOption);
+    actorOption.innerHTML = input;
+    datalistEl.append(actorOption);
   }
 };
 
@@ -121,9 +127,22 @@ var showActorInfo = function (actorId) {
 
   // define the actor's name
   var actorName = actorId.name;
+  var birthDate = actorId.birthDate;
+  var deathDate = actorId.deathDate;
+  var awards = actorId.awards;
+
   // set the text content for the title
   actorTitleEl.innerHTML =
-    'Top Movie and Shows for ' + '<b>' + actorName + '</b>';
+    'Top Movie and Shows for ' +
+    '<b>' +
+    actorName +
+    '</b>' +
+    '. ' +
+    '(' +
+    birthDate +
+    ' - ' +
+    deathDate +
+    ')';
   // append title to the actor container
   actorEl.appendChild(actorTitleEl);
 
@@ -153,6 +172,13 @@ var showActorInfo = function (actorId) {
   }
   // append the unordered list to the actorBio container
   actorBioEl.appendChild(knownForEl);
+
+  // make a span element to show the awards the actor has recieved
+  var actorAwardsEl = document.createElement('div');
+  // set the text content to the awards variable
+  actorAwardsEl.textContent = awards;
+  // append the awards section to the information container
+  actorAwardsEl.appendChild(actorBioEl);
 
   // append information to the actor container
   actorEl.append(actorBioEl);

@@ -19,9 +19,11 @@
       <!-- HERO START -->
       <div class="hero">
         <section
-          class="is-flex is-justify-content-space-between is-align-items-center"
+          class="is-flex is-justify-content-space-between is-align-items-flex-start"
         >
-          <h1 class="header-title m-2 p-4 is-size-1">Watchopedia</h1>
+          <h1 class="header-title m-2 p-4 is-size-1 is-size-5-touch">
+            Watchopedia
+          </h1>
           <!-- NAV BAR START  -->
           <nav>
             <ul class="menu">
@@ -33,7 +35,7 @@
           <!-- NAV BAR END -->
           <!-- SEARCH BOX START -->
           <div class="search-form m-2 p-4 is-size-6">
-            <form id="search-form">
+            <form class="align-items-flex-end" id="search-form">
               <label for="search">
                 Search by movie, television show, or actor
               </label>
@@ -83,15 +85,17 @@
         </div>
       </section>
       <!-- ACTOR SECTION -->
-      <section class="show" id="actor-section">
-        <div class="flex-row">
-          <h2 class="actor-title" id="actor-title"></h2>
+      <section class="actor" id="actor-section">
+        <div
+          class="flex-row is-size-4-touch is-size-2-tablet has-text-centered"
+        >
+          <h2>Actor Information</h2>
+          <h3 class="actor-title" id="actor-title"></h3>
         </div>
-        <div class="flex-row">
+        <div class="flex-row is-justify-content-space-evenly">
           <!-- Shows and movies for an actor populate here -->
           <p id="actor-results"></p>
-          <ul id="known-for">
-          </ul>
+          <ul id="known-for"></ul>
         </div>
       </section>
       <!-- FOOTER STARTS -->
