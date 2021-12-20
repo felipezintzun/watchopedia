@@ -15,10 +15,11 @@ function searchShow(query) {
       // jsonData.forEach(element => {
         let element = jsonData [i]
         console.log(element)
-        htmlCode+= `<div class="card">
+        htmlCode+=
+        `<div class="card">
         <div class="card-image">
           <figure class="image is-4by3">
-            <img src="${element.show.url}" alt="Placeholder image">
+            <img src="${element.show.image.medium}" alt="placeholder image">
           </figure>
         </div>
         <div class="card-content">

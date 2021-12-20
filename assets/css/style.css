@@ -75,6 +75,24 @@ form label {
   font-size: 22px;
 }
 
+.card {
+    width: 50%;
+    margin: 20px;
+    /* display: flex; */
+    /* flex: 1; */
+    /* flex-wrap: wrap; */
+    justify-content: space-between;
+    flex-direction: row;
+    background: #eae7dc;
+    color: #8e8d8a;
+    border-radius: 20px;
+}
+
+.show-section {
+  display: flex;
+  flex-direction:row;
+}
+
 
 a:hover,
 a:focus {
