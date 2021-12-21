@@ -39,7 +39,7 @@ var getNameSearch = function (name) {
 
 //search movies
 var getTitleSearch = function (title) {
-  var apiUrl = 'https://imdb-api.com/en/API/Title/k_xqqyxw1f/tt1375666/FullActor,FullCast,Posters,Images,Trailer,Ratings,/' + title;
+  var apiUrl = 'https://imdb-api.com/en/API/Title/k_xqqyxw1f/tt1375666/' + title;
 
   fetch(apiUrl)
     .then(function (response) {
