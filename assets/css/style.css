@@ -136,10 +136,10 @@ a:focus {
 }
 
 .title-item {
-  color: var(--grey);
+  color: var(--bg-show);
   padding: 15px 15px;
-  border: 2px solid var(--grey);
-  background: var(--tertiary);
+  border: 2px solid var(--bg-show);
+  background: #9ddadf;
   border-radius: 12px;
   margin-bottom: 20px;
 }
