@@ -38,14 +38,34 @@ var getNameSearch = function (name) {
 // API CALLS END
 
 //search movies
-var getTitleSearch = function (title) {
-  var apiUrl = 'https://imdb-api.com/en/API/Title/k_xqqyxw1f/tt1375666/' + title;
+var getMovieSearch = function (movie) {
+  var apiUrl = 'https://imdb-api.com/en/API/SearchMovie/k_xqqyxw1f/' + movie;
 
   fetch(apiUrl)
     .then(function (response) {
       if (response.ok) {
-        response.json().then(function (title) {
-          getMovieId(title);
+        response.json().then(function (movie) {
+          getMovieId(movie);
+        });
+      } else {
+        invalidInput();
+      }
+    })
+    .catch(function (error) {
+      connectIssue();
+    });
+};
+
+var movieInfo = function (movieId) {
+  // Call api for movie information
+  var apiUrl = 'https://imdb-api.com/en/API/SearchMovie/k_xqqyxw1f/' + movieId;
+
+  fetch(apiUrl)
+    .then(function (response) {
+      if (response.ok) {
+        response.json().then(function (movieId) {
+          showActorOption(movieId);
+          showActorInfo(movieId);
         });
       } else {
         invalidInput();
