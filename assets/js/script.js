@@ -16,10 +16,10 @@ function searchShow(query) {
         let element = jsonData [i]
         console.log(element)
         htmlCode+=
-        `<div class="card">
+        <div class="card">
         <div class="card-image">
           <figure class="image is-4by3">
-            <img src="${element.show.image.medium}" alt="placeholder image">
+            <img src="${element.show.image.medium}" alt="placeholder image" />
           </figure>
         </div>
         <div class="card-content">
@@ -33,11 +33,11 @@ function searchShow(query) {
           <div class="content">
             ${element.show.summary}
             <a href="${element.show.officialSite}">Offical Site</a>
-            <br>
+            <br />
             <time>${element.show.schedule.time}</time>
           </div>
         </div>
-      </div>`
+      </div>
       };
       htmlCode+= "<h4>end</h4>"
       console.log(htmlCode)
