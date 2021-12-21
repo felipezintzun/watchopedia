@@ -58,17 +58,54 @@ form label {
 }
 /* HEADER STYLES END */
 
-/* SHOW SECTION STYLES START */
-.show {
-  background: var(--bg-show);
+/* MOIVE SECTION STYLES START */
+.movie {
+  background: #d3d3d3;
+  height: 120px;
+
 }
+/* SHOW SECTION STYLES START */
+
+article{
+    display: flex;
+}
+
+.show {
+  background: #9ddadf;
+  height: 120px;
+}
+
+.section-title {
+  font-weight: bold;
+  font-size: 22px;
+}
+
+.card {
+    width: 100%;
+    margin: 20px;
+    /* display: flex; */
+    /* flex: 1; */
+    /* flex-wrap: wrap; */
+    justify-content: space-between;
+    flex-direction: row;
+    background: #eae7dc;
+    color: #8e8d8a;
+    border-radius: 20px;
+}
+
+.show-section {
+  display: flex;
+  flex-direction:row;
+}
+
+
 a:hover,
 a:focus {
   color: var(--primary-red);
 }
 
 .item {
-  padding: 10px 15px 5px 15px;
+  padding: 50px 15px 5px 15px;
   width: 100%;
   text-align: center;
   width: auto;
@@ -90,7 +127,7 @@ a:focus {
 
 /* FOOTER STYLE START */
 footer {
-  position: absolute;
+  position: fixed;bottom:0;
   text-align: right;
   width: 100%;
   height: 90px;
