@@ -125,6 +125,13 @@ a:focus {
   padding: 15px 5px;
 }
 
+/* ACTOR SECTION STARTS */
+/* Actor image */
+.actor-image {
+  max-width: 50%;
+  max-height: 30vh;
+}
+
 /* FOOTER STYLE START */
 footer {
   position: fixed;bottom:0;
