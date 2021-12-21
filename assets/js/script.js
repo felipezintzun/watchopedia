@@ -395,17 +395,10 @@ function renderResults(results) {
 }
 
 // SEARCH BOX
-<<<<<<< HEAD
-var searchElement = document.getElementById('search-b');
-searchElement.addEventListener('click', function (event) {
-  event.preventDefault();
-  const searchFieldElement = document.getElementById('search');
-=======
 var seeElement = document.getElementById("search-b")
 seeElement.addEventListener("click", function (event) {
   event.preventDefault()
   const searchFieldElement = document.getElementById("see");
->>>>>>> 9006a222ca2e5692b11731b9267846ccaee5173f
   if (searchFieldElement.value.trim().length > 0) {
     console.log(searchFieldElement.value);
     searchShow(searchFieldElement.value);
