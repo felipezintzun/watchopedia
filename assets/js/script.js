@@ -48,7 +48,7 @@ function searchMovie(query) {
     .then((jsonData) => {
       console.log(jsonData,"Json")
       var htmlCode = ""
-      var resultsList = document.getElementById("movieResults")
+      var movieResults = document.getElementById("movieResults")
       console.log(movieResults)
       for(let i = 0 ; i < jsonData.length;i++){
         var card = $("<div>").addClass("card").attr("style","width: 18em")
