@@ -19,7 +19,7 @@ var buttonEL = document.getElementById('searchBtn');
 // API CALLS START
 //IMBD API
 var getNameSearch = function (name) {
-  var apiUrl = 'https://imdb-api.com/en/API/SearchName/k_t2dr26vg/' + name;
+  var apiUrl = 'https://imdb-api.com/en/API/SearchName/k_ncae1kix/' + name;
 
   fetch(apiUrl)
     .then(function (response) {
@@ -64,7 +64,7 @@ var getActorId = function (name) {
 // Call a new fetch function to get actor information
 var actorInfo = function (actorId) {
   // Call api for actor information
-  var apiUrl = 'https://imdb-api.com/en/API/Name/k_t2dr26vg/' + actorId;
+  var apiUrl = 'https://imdb-api.com/en/API/Name/k_ncae1kix/' + actorId;
 
   fetch(apiUrl)
     .then(function (response) {
@@ -167,14 +167,18 @@ var showActorInfo = function (actorId) {
   actorEl.append(actorBioEl);
 };
 // EVENT LISTENERS
-// button to capture name type into input, set to name vaiable and then running the getNameSearch() function
+// button to capture name type into input, set to name vaiable and then running the getNameSearch() and searchShow() functions
 buttonEL.addEventListener('click', function (event) {
   // prevent page refresh
   event.preventDefault();
   // set name value
   var name = inputEl.value.trim();
-  // run getNameSearch() function
-  getNameSearch(name);
+  // run getNameSearch() and searchShow() function
+  if (name.length > 0) {
+    getNameSearch(name);
+    searchShow(name);
+  }
+  else { alert("try another search") }
 });
 var myImage = document.querySelector('img');
 
@@ -207,7 +211,6 @@ function searchShow(query) {
               <p class="subtitle is-6">${element.show.rating.average}</p>
             </div>
           </div>
-      
           <div class="content">
             ${element.show.summary}
             <a href="${element.show.officialSite}">Offical Site</a>
