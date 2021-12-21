@@ -6,10 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Watchopedia</title>
     <!-- Link Bulma CSS -->
-    <link
-      rel="stylesheet"
-      href="https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css"
-    />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css">
     <!-- Link CSS Stylesheet -->
     <link href="assets/css/style.css" rel="stylesheet" />
   </head>
@@ -34,24 +31,17 @@
           <!-- SEARCH BOX START -->
           <div class="search-form m-2 p-4 is-size-6">
           <form>
-            <label for="search">
+            <label for="search-here">
               Search by movie, television show, or actor
             </label>
             <br />
-            <input
-              id="search"
-              list="watch"
-              name="watch"
-              placeholder="Tom Hanks"
-              autocomplete="on"
-              autofocus
-            />
+            <input type= "text" id="search" placeholder="Actor Name"/>
             <!-- Dynamically populate the datalist options with APIs-->
             <datalist id="watch">
               <option value="test"></option>
             </datalist>
             <div class="search-button">
-              <button id="search">
+              <button id="search-b">
                 <h2>SEARCH</h2>
               </button>
             </div>
@@ -74,20 +64,21 @@
         </div>
       </section>
       <!-- SHOW SECTION STARTS -->
-      <section id="show-section" class="show">
-        <div class="flex-row">
-          <h2 class="section-title">Shows</h2>
+      <section id="show-section" >
+        <h1>Shows Populates below</h1>
+        <div class="card">
+          <article id="resultsList"></article>
         </div>
-        <div class="flex-row">
-          <p>Show Recommendations Go Here</p>
-        </div>
+        
       </section>
+          
+
 
       <!-- FOOTER STARTS -->
       <footer>
         <h2>Made by Watchopedia.</h2>
         <div>&copy; 2021 Watchopedia, Inc.</div>
-      </footer>
+      </footer> 
       <!-- FOOTER ENDS -->
     </main>
 
