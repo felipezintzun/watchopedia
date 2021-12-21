@@ -46,8 +46,8 @@ var movieInfo = function (movieId) {
     .then(function (response) {
       if (response.ok) {
         response.json().then(function (movieId) {
-          showActorOption(movieId);
-          showActorInfo(movieId);
+          showMovieOption(movieId);
+          showMovieInfo(movieId);
         });
       } else {
         invalidInput();
