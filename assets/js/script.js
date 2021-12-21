@@ -64,6 +64,12 @@ function renderResults(results) {
 var buttonEL = document.querySelector("#save-title");
 console.log(buttonEL);
 
+var titleItemEl = document.createElement("li");
+titleItemEl.textContent = "test";
+titleItemEl;
+
+
+
 // create watch later from submission
  //var watchList = {
   //title: searchInputEl.value.trim(),
