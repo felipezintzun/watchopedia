@@ -16,9 +16,11 @@
       <!-- HERO START -->
       <div class="hero">
         <section
-          class="is-flex is-justify-content-space-between is-align-items-center"
+          class="is-flex is-justify-content-space-between is-align-items-flex-start"
         >
-          <h1 class="header-title m-2 p-4 is-size-1">Watchopedia</h1>
+          <h1 class="header-title m-2 p-4 is-size-1 is-size-5-touch">
+            Watchopedia
+          </h1>
           <!-- NAV BAR START  -->
           <nav>
             <ul class="menu">
@@ -30,12 +32,35 @@
           <!-- NAV BAR END -->
           <!-- SEARCH BOX START -->
           <div class="search-form m-2 p-4 is-size-6">
+            <form class="align-items-flex-end" id="search-form">
+              <label for="search">
+                Search by movie, television show, or actor
+              </label>
+              <br />
+              <input
+                id="search"
+                list="watch"
+                name="watch"
+                placeholder="Tom Hanks"
+                autocomplete="on"
+                autofocus
+              />
+              <!-- Dynamically populate the datalist options with APIs-->
+              <datalist id="watch"> </datalist>
+              <div class="search-button">
+                <button id="searchBtn">
+                  <h2>SEARCH</h2>
+                </button>
+              </div>
+              <!-- Place for error messages -->
+              <div id="error"></div>
+            </form>
           <form>
             <label for="search-here">
               Search by movie, television show, or actor
             </label>
             <br />
-            <input type= "text" id="search" placeholder="Actor Name"/>
+            <input type= "text" id="see" placeholder="Show Name"/>
             <!-- Dynamically populate the datalist options with APIs-->
             <datalist id="watch">
               <option value="test"></option>
@@ -55,7 +80,7 @@
 
     <main>
       <!-- MOVIE SECTION STARTS -->
-      <section id="movie-section" class="movie">
+      <section class="movie" id="movie-section">
         <div class="flex-row">
           <h2 class="section-title">Movies</h2>
         </div>
@@ -65,15 +90,28 @@
       </section>
       <!-- SHOW SECTION STARTS -->
       <section id="show-section" >
-        <h1>Shows Populates below</h1>
+
+        <h2>Shows Populates below</h2>
+
         <div class="card">
           <article id="resultsList"></article>
         </div>
         
       </section>
-          
-
-
+      <!-- ACTOR SECTION -->
+      <section class="actor" id="actor-section">
+        <div
+          class="flex-row is-size-4-touch is-size-2-tablet has-text-centered"
+        >
+          <h2>Actor Information</h2>
+          <h3 class="actor-title" id="actor-title"></h3>
+        </div>
+        <div class="flex-row is-justify-content-space-evenly">
+          <!-- Shows and movies for an actor populate here -->
+          <p id="actor-results"></p>
+          <ul id="known-for"></ul>
+        </div>
+      </section>
       <!-- FOOTER STARTS -->
       <footer>
         <h2>Made by Watchopedia.</h2>
