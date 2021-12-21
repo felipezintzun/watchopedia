@@ -38,14 +38,14 @@ var getNameSearch = function (name) {
 // API CALLS END
 
 //search movies
-var getMovieSearch = function (movie) {
-  var apiUrl = 'https://imdb-api.com/en/API/SearchName/k_1t9p2l2d/' + movie;
+var getTitleSearch = function (title) {
+  var apiUrl = 'https://imdb-api.com/en/API/Title/k_xqqyxw1f/tt1375666/FullActor,FullCast,Posters,Images,Trailer,Ratings,/' + title;
 
   fetch(apiUrl)
     .then(function (response) {
       if (response.ok) {
-        response.json().then(function (movie) {
-          getMovieId(movie);
+        response.json().then(function (title) {
+          getMovieId(title);
         });
       } else {
         invalidInput();
