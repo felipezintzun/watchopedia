@@ -39,7 +39,6 @@ function searchShow(query) {
         </div>
       </div>`
       };
-      htmlCode+= "<h4>end</h4>"
       console.log(htmlCode)
       // const list = document.getElementById("resultsList")
       // list.innerHTML = htmlCode;
