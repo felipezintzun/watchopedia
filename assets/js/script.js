@@ -35,25 +35,6 @@ var getNameSearch = function (name) {
       connectIssue();
     });
 };
-
-// // Trakt API
-// var getRatingsSearch = function (id) {
-//   var apiUrl = 'https://api.trakt.tv/people/' + id;
-
-//   fetch(apiUrl)
-//     .then(function (response) {
-//       if (response.ok) {
-//         response.json().then(function (id) {
-//           displayIssues(id);
-//         });
-//       } else {
-//         invalidInput();
-//       }
-//     })
-//     .catch(function (error) {
-//       connectIssue();
-//     });
-// };
 // API CALLS END
 
 // ERROR MESSAGES
