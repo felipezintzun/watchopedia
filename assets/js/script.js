@@ -35,8 +35,6 @@ var getNameSearch = function (name) {
       connectIssue();
     });
 };
-
-
 // API CALLS END
 
 // ERROR MESSAGES
@@ -61,7 +59,6 @@ var getActorId = function (name) {
   var actorId = actors[0].id;
   // call the actorInfo function
   actorInfo(actorId);
-
 };
 
 // Call a new fetch function to get actor information
@@ -168,18 +165,18 @@ var showActorInfo = function (actorId) {
   actorEl.append(actorBioEl);
 };
 // EVENT LISTENERS
-// button to capture name type into input, set to name vaiable and then running the getNameSearch() function
+// button to capture name type into input, set to name vaiable and then running the getNameSearch() and searchShow() functions
 buttonEL.addEventListener('click', function (event) {
   // prevent page refresh
   event.preventDefault();
   // set name value
   var name = inputEl.value.trim();
-  // run getNameSearch() function
+  // run getNameSearch() and searchShow() function
   if (name.length > 0) {
     getNameSearch(name);
     searchShow(name);
   }
-  else { alert("search another show") }
+  else { alert("try another search") }
 });
 var myImage = document.querySelector('img');
 
