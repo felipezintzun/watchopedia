@@ -135,6 +135,15 @@ a:focus {
   border: 2px solid var(--bg-show);
 }
 
+.title-item {
+  color: var(--grey);
+  padding: 15px 15px;
+  border: 2px solid var(--grey);
+  background: var(--tertiary);
+  border-radius: 12px;
+  margin-bottom: 20px;
+}
+
 /* FOOTER STYLE START */
 footer {
   position: absolute;
