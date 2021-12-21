@@ -177,8 +177,9 @@ buttonEL.addEventListener('click', function (event) {
   if (name.length > 0) {
     getNameSearch(name);
     searchShow(name);
+  } else {
+    invalidInput();
   }
-  else { alert("try another search") }
 });
 var myImage = document.querySelector('img');
 
@@ -227,7 +228,6 @@ function searchShow(query) {
       // renderResults(results);
     });
 }
-
 // MAKES LIST OF SHOWS APPEAR ON SITE
 function renderResults(results) {
   results.forEach((result) => {
@@ -236,16 +236,3 @@ function renderResults(results) {
     list.appendChild(element);
   });
 }
-
-// SEARCH BOX
-var searchElement = document.getElementById('search-b');
-searchElement.addEventListener('click', function (event) {
-  event.preventDefault();
-  const searchFieldElement = document.getElementById('search');
-  if (searchFieldElement.value.trim().length > 0) {
-    console.log(searchFieldElement.value);
-    searchShow(searchFieldElement.value);
-  } else {
-    alert('search another show');
-  }
-});
