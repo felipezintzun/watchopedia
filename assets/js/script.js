@@ -174,6 +174,8 @@ buttonEL.addEventListener('click', function (event) {
   // run getNameSearch() function
   getNameSearch(name);
 });
+
+
 var myImage = document.querySelector('img');
 
 // FETCHING SHOW DATA
@@ -238,7 +240,7 @@ function renderResults(results) {
 
 
 // SEARCH BOX
-var searchElement = document.getElementById("search-b")
+var searchElement = document.getElementsById("search-b")
 searchElement.addEventListener("click", function (event) {
   event.preventDefault()
   const searchFieldElement = document.getElementById("search");

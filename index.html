@@ -30,7 +30,7 @@
             </ul>
           </nav>
           <!-- NAV BAR END -->
-          <!-- SEARCH BOX START -->
+          <!-- SEARCH ACTOR BOX START -->
           <div class="search-form m-2 p-4 is-size-6">
             <form class="align-items-flex-end" id="search-form">
               <label for="search">
@@ -55,23 +55,28 @@
               <!-- Place for error messages -->
               <div id="error"></div>
             </form>
-          <form>
-            <label for="search-here">
-              Search by movie, television show, or actor
-            </label>
-            <br />
-            <input type= "text" id="search" placeholder="Actor Name"/>
-            <!-- Dynamically populate the datalist options with APIs-->
-            <datalist id="watch">
-              <option value="test"></option>
-            </datalist>
-            <div class="search-button">
-              <button id="search-b">
-                <h2>SEARCH</h2>
-              </button>
-            </div>
-          </form>
           </div>
+
+          
+          <!-- SEARCH SHOW BOX START -->
+          <div class="search-form m-2 p-4 is-size-6">
+            <form>
+              <label for="search-here">
+                Search by movie, television show, or actor
+              </label>
+              <br />
+              <input type= "text" id="search-show" placeholder="Show Name"/>
+              <!-- Dynamically populate the datalist options with APIs-->
+              <datalist id="watch">
+                <option value="test"></option>
+              </datalist>
+              <div class="search-button">
+                <button id="search-b">
+                  <h2>SEARCH</h2>
+                </button>
+              </div>
+            </form>
+            </div>
           <!-- SEARCH BOX END -->
         </section>
         <!-- HERO END -->
