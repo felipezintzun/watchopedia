@@ -21,7 +21,7 @@ var myImage = document.querySelector('img');
 // API CALLS START
 //IMBD API
 var getNameSearch = function (name) {
-  var apiUrl = 'https://imdb-api.com/en/API/SearchName/k_1t9p2l2d/' + name;
+  var apiUrl = 'https://imdb-api.com/en/API/SearchName/k_uhbpn2tm/' + name;
 
   fetch(apiUrl)
     .then(function (response) {
@@ -66,7 +66,7 @@ var getActorId = function (name) {
 // Call a new fetch function to get actor information
 var actorInfo = function (actorId) {
   // Call api for actor information
-  var apiUrl = 'https://imdb-api.com/en/API/Name/k_1t9p2l2d/' + actorId;
+  var apiUrl = 'https://imdb-api.com/en/API/Name/k_uhbpn2tm/' + actorId;
 
   fetch(apiUrl)
     .then(function (response) {
