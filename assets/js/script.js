@@ -19,7 +19,7 @@ var buttonEL = document.getElementById('searchBtn');
 // API CALLS START
 //IMBD API
 var getNameSearch = function (name) {
-  var apiUrl = 'https://imdb-api.com/en/API/SearchName/k_1t9p2l2d/' + name;
+  var apiUrl = 'https://imdb-api.com/en/API/SearchName/k_ncae1kix/' + name;
 
   fetch(apiUrl)
     .then(function (response) {
@@ -35,6 +35,8 @@ var getNameSearch = function (name) {
       connectIssue();
     });
 };
+
+
 // API CALLS END
 
 // ERROR MESSAGES
@@ -59,12 +61,13 @@ var getActorId = function (name) {
   var actorId = actors[0].id;
   // call the actorInfo function
   actorInfo(actorId);
+
 };
 
 // Call a new fetch function to get actor information
 var actorInfo = function (actorId) {
   // Call api for actor information
-  var apiUrl = 'https://imdb-api.com/en/API/Name/k_1t9p2l2d/' + actorId;
+  var apiUrl = 'https://imdb-api.com/en/API/Name/k_ncae1kix/' + actorId;
 
   fetch(apiUrl)
     .then(function (response) {
@@ -172,7 +175,11 @@ buttonEL.addEventListener('click', function (event) {
   // set name value
   var name = inputEl.value.trim();
   // run getNameSearch() function
-  getNameSearch(name);
+  if (name.length > 0) {
+    getNameSearch(name);
+    searchShow(name);
+  }
+  else { alert("search another show") }
 });
 var myImage = document.querySelector('img');
 
@@ -205,7 +212,6 @@ function searchShow(query) {
               <p class="subtitle is-6">${element.show.rating.average}</p>
             </div>
           </div>
-      
           <div class="content">
             ${element.show.summary}
             <a href="${element.show.officialSite}">Offical Site</a>
@@ -222,10 +228,6 @@ function searchShow(query) {
       // renderResults(results);
     })
 };
-
-
-
-
 // MAKES LIST OF SHOWS APPEAR ON SITE
 function renderResults(results) {
   results.forEach(result => {
@@ -234,23 +236,3 @@ function renderResults(results) {
     list.appendChild(element);
   })
 };
-
-
-
-// SEARCH BOX
-var searchElement = document.getElementById("search-b")
-searchElement.addEventListener("click", function (event) {
-  event.preventDefault()
-  const searchFieldElement = document.getElementById("search");
-  if (searchFieldElement.value.trim().length > 0) {
-    console.log(searchFieldElement.value)
-    searchShow(searchFieldElement.value);
-  }
-  else { alert("search another show") }
-
-});
-
-
-
-
-
