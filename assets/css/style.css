@@ -16,6 +16,11 @@
   box-sizing: border-box;
 }
 
+/* Hide content */
+.hide {
+  display: none;
+}
+
 section {
   display: block;
   margin: 2vh;
