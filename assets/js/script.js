@@ -38,44 +38,57 @@ var getNameSearch = function (name) {
 // API CALLS END
 
 //search movies
-var movieInfo = function (movieId) {
-  // Call api for movie information
-  var apiUrl = 'https://imdb-api.com/en/API/SearchMovie/k_xqqyxw1f/' + movieId;
+function searchMovie(query) {
+  const url = `https://imdb-api.com/en/API/SearchMovie/k_xqqyxw1f?q=${query}`;
+  console.log(url)
+  fetch(url)
+    .then(response => {
+      console.log(response)
+     return response.json()})
+    .then((jsonData) => {
+      console.log(jsonData,"Json")
+      var htmlCode = ""
+      var resultsList = document.getElementById("movieResults")
+      console.log(movieResults)
+      for(let i = 0 ; i < jsonData.length;i++){
+        var card = $("<div>").addClass("card").attr("style","width: 18em")
+        var cardImg = $("<div>").addClass("card-img")
+        var fig = $("<figure>").addClass("image is-4by3")
+        var img = $("<img>").attr("src",jsonData[i].show.image.medium).attr("alt", jsonData[i].show.name)
+        var cardContent = $("<div>").addClass("card-content")
+        var media = $("<div>").addClass("media")
+        var mediaContent = $("<div>").addClass("media-content")
+        var p1 = $("<p>").addClass("title is-4").text(jsonData[i].show.name)
+        $("#movieResults").append(card.append(cardImg.append(fig.append(img)),cardContent.append(media.append(mediaContent.append(p1)))))
+        // resultsList.appendChild(card)
+        
 
-  fetch(apiUrl)
-    .then(function (response) {
-      if (response.ok) {
-        response.json().then(function (movieId) {
-          showMovieOption(movieId);
-          showMovieInfo(movieId);
-        });
-      } else {
-        invalidInput();
-      }
+      
+     
+      //   <div class="card-content">
+      //     <div class="media">
+      //       <div class="media-content">
+      //         <p class="title is-4">${element.show.name}</p>
+      //         <p class="subtitle is-6">${element.show.rating.average}</p>
+      //       </div>
+      //     </div>
+      
+      //     <div class="content">
+      //       ${element.show.summary}
+      //       <a href="${element.show.officialSite}">Offical Site</a>
+      //       <br>
+      //       <time>${element.show.schedule.time}</time>
+      //     </div>
+      //   </div>
+      // </div>`
+      };
+      console.log(htmlCode)
+      // const list = document.getElementById("resultsList")
+      // list.innerHTML = htmlCode;
+      // document.getElementById("resultsList").innerHTML = htmlCode
+      // renderResults(results);
     })
-    .catch(function (error) {
-      connectIssue();
-    });
 };
-
-var getMovieSearch = function (movie) {
-  var apiUrl = 'https://imdb-api.com/en/API/SearchMovie/k_xqqyxw1f/' + movie;
-
-  fetch(apiUrl)
-    .then(function (response) {
-      if (response.ok) {
-        response.json().then(function (movie) {
-          getMovieId(movie);
-        });
-      } else {
-        invalidInput();
-      }
-    })
-    .catch(function (error) {
-      connectIssue();
-    });
-};
-
 
 // ERROR MESSAGES
 // Function for invalid or improper inputs
