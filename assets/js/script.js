@@ -62,11 +62,11 @@ function renderResults(results) {
 
 
 // create watch later from submission
-var watchList = {
-  title: searchInputEl.value.trim(),
-};
-// set new submission to local storage
-localStorage.setItem("watchList", JSON.stringify(watchList));
+ //var watchList = {
+  //title: searchInputEl.value.trim(),
+//};
+//  set new submission to local storage
+// localStorage.setItem("watchList", JSON.stringify(watchList));
 
 
 // SEARCH BOX
