@@ -126,6 +126,15 @@ a:focus {
   margin: 0 20px 20px;
 }
 
+.watch-list {
+  list-style: none;
+  padding: 15px;
+  height: calc(100% - 50px);
+  background: rgb(196, 196, 196);
+  border-radius: 12px;
+  border: 2px solid var(--bg-show);
+}
+
 /* FOOTER STYLE START */
 footer {
   position: absolute;
