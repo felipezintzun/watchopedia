@@ -37,6 +37,26 @@ var getNameSearch = function (name) {
 };
 // API CALLS END
 
+//search movies
+var getMovieSearch = function (movie) {
+  var apiUrl = 'https://imdb-api.com/en/API/SearchName/k_1t9p2l2d/' + movie;
+
+  fetch(apiUrl)
+    .then(function (response) {
+      if (response.ok) {
+        response.json().then(function (movie) {
+          getMovieId(movie);
+        });
+      } else {
+        invalidInput();
+      }
+    })
+    .catch(function (error) {
+      connectIssue();
+    });
+};
+
+
 // ERROR MESSAGES
 // Function for invalid or improper inputs
 var invalidInput = function () {
