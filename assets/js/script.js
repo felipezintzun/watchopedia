@@ -60,6 +60,9 @@ function renderResults(results) {
   })
 };
 
+// CREATE WATCH LATER LIST 
+var buttonEL = document.querySelector("#save-title");
+console.log(buttonEL);
 
 // create watch later from submission
  //var watchList = {
