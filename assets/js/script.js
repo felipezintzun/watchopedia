@@ -23,15 +23,26 @@ var buttonEL = document.getElementById('searchBtn');
 
 /* SHOW SECTION START */
 function searchShow(query) {
+  console.log(query);
   const url = `https://api.tvmaze.com/search/shows?q=${query}`;
   fetch(url).then((response) => {
     if (response.ok) {
       response.json().then((jsonData) => {
+        // allow the show section and card to be visable
+        showSectionEl.classList.remove('hide');
+        // clear html
         var htmlCode = '';
+        // clear error
+        errorEl.textContent = '';
+
+        // Declare the show title
+        var showTitle = 'Shows';
+
         for (let i = 0; i < jsonData.length; i++) {
           // jsonData.forEach(element => {
           let element = jsonData[i];
-          htmlCode += `<div class="card">
+          htmlCode += `<div class="card is-flex-column is-justify-content-space-between"> 
+          <div class="section-title"> ${showTitle} </div>
         <div class="card-image">
           <figure class="image is-4by3">
             <img src="${element.show.image.medium}" alt="placeholder image" />
@@ -53,10 +64,7 @@ function searchShow(query) {
         </div>
       </div>`;
         }
-        // const list = document.getElementById("resultsList")
-        // list.innerHTML = htmlCode;
         document.getElementById('resultsList').innerHTML = htmlCode;
-        // renderResults(results);
       });
     } else {
       invalidShow();
@@ -64,15 +72,6 @@ function searchShow(query) {
   });
 }
 
-// MAKES LIST OF SHOWS APPEAR ON SITE
-function renderResults(results) {
-  console.log(results);
-  results.forEach((result) => {
-    const element = document.createElement('li');
-    element.innerHTML = result;
-    list.appendChild(element);
-  });
-}
 /* SHOW SECTION ENDS */
 
 /* ACTOR SECTION START */
