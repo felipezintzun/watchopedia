@@ -46,7 +46,7 @@
                 id="search"
                 list="watch"
                 name="watch"
-                placeholder="Tom Hanks"
+                placeholder="actor, movie, or show"
                 autocomplete="on"
                 autofocus
               />
@@ -59,22 +59,6 @@
               </div>
               <!-- Place for error messages -->
               <div id="error"></div>
-            </form>
-            <form>
-              <label for="search-here">
-                Search by movie, television show, or actor
-              </label>
-              <br />
-              <input type="text" id="see" placeholder="Show Name" />
-              <!-- Dynamically populate the datalist options with APIs-->
-              <datalist id="watch">
-                <option value="test"></option>
-              </datalist>
-              <div class="search-button">
-                <button id="search-b">
-                  <h2>SEARCH</h2>
-                </button>
-              </div>
             </form>
           </div>
           <!-- SEARCH BOX END -->
@@ -94,21 +78,19 @@
         <div id="movieResults"></div>
       </section>
       <!-- SHOW SECTION STARTS -->
-      <section id="show-section">
+      <section id="show-section" >
         <h2>Shows Populates below</h2>
-
-        <h2>Shows Populates below</h2>
-
         <div class="card">
           <article id="resultsList"></article>
         </div>
       </section>
       <!-- ACTOR SECTION -->
-      <section class="actor" id="actor-section">
+      <section class="actor">
+        <h2 class="section-title">Actor Information</h2>
         <div
           class="flex-row is-size-4-touch is-size-2-tablet has-text-centered"
+          id="actor-section"
         >
-          <h2>Actor Information</h2>
           <h3 class="actor-title" id="actor-title"></h3>
         </div>
         <div class="flex-row is-justify-content-space-evenly">
