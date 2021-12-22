@@ -16,10 +16,12 @@ var errorEl = document.getElementById('error');
 // Declare button
 var buttonEL = document.getElementById('searchBtn');
 
+var myImage = document.querySelector('img');
+
 // API CALLS START
 //IMBD API
 var getNameSearch = function (name) {
-  var apiUrl = 'https://imdb-api.com/en/API/SearchName/k_ncae1kix/' + name;
+  var apiUrl = 'https://imdb-api.com/en/API/SearchName/k_1t9p2l2d/' + name;
 
   fetch(apiUrl)
     .then(function (response) {
@@ -64,7 +66,7 @@ var getActorId = function (name) {
 // Call a new fetch function to get actor information
 var actorInfo = function (actorId) {
   // Call api for actor information
-  var apiUrl = 'https://imdb-api.com/en/API/Name/k_ncae1kix/' + actorId;
+  var apiUrl = 'https://imdb-api.com/en/API/Name/k_1t9p2l2d/' + actorId;
 
   fetch(apiUrl)
     .then(function (response) {
@@ -119,9 +121,9 @@ var showActorInfo = function (actorId) {
     actorName +
     '</b>' +
     '. ' +
-    '(Born: ' +
+    '(' +
     birthDate +
-    ' - Died: ' +
+    ' - ' +
     deathDate +
     ')';
   // append title to the actor container
@@ -148,8 +150,6 @@ var showActorInfo = function (actorId) {
     var knownforList = document.createElement('li');
     // set the text content of the list item
     knownforList.textContent = knownForArr.fullTitle;
-    // style the list item
-    knownforList.classList.add('known-list');
     // append the list item to the unordered list
     knownForEl.appendChild(knownforList);
   }
@@ -167,39 +167,34 @@ var showActorInfo = function (actorId) {
   actorEl.append(actorBioEl);
 };
 // EVENT LISTENERS
-// button to capture name type into input, set to name vaiable and then running the getNameSearch() and searchShow() functions
+// button to capture name type into input, set to name vaiable and then running the getNameSearch() function
 buttonEL.addEventListener('click', function (event) {
   // prevent page refresh
   event.preventDefault();
   // set name value
   var name = inputEl.value.trim();
-  // run getNameSearch() and searchShow() function
-  if (name.length > 0) {
-    getNameSearch(name);
-    searchShow(name);
-  } else {
-    invalidInput();
-  }
+  // run getNameSearch() function
+  getNameSearch(name);
 });
-var myImage = document.querySelector('img');
+
 
 // FETCHING SHOW DATA
 function searchShow(query) {
   const url = `https://api.tvmaze.com/search/shows?q=${query}`;
-  console.log(url);
+  console.log(url)
   fetch(url)
-    .then((response) => {
-      console.log(response);
-      return response.json();
-    })
+    .then(response => {
+      console.log(response)
+     return response.json()})
     .then((jsonData) => {
-      console.log(jsonData, 'Json');
-      var htmlCode = '';
-      for (let i = 0; i < jsonData.length; i++) {
-        // jsonData.forEach(element => {
-        let element = jsonData[i];
-        console.log(element);
-        htmlCode += `<div class="card">
+      console.log(jsonData,"Json")
+      var htmlCode = ""
+      for(let i = 0 ; i < jsonData.length;i++){
+      // jsonData.forEach(element => {
+        let element = jsonData [i]
+        console.log(element)
+        htmlCode+=
+        `<div class="card">
         <div class="card-image">
           <figure class="image is-4by3">
             <img src="${element.show.image.medium}" alt="placeholder image">
@@ -212,6 +207,7 @@ function searchShow(query) {
               <p class="subtitle is-6">${element.show.rating.average}</p>
             </div>
           </div>
+      
           <div class="content">
             ${element.show.summary}
             <a href="${element.show.officialSite}">Offical Site</a>
@@ -219,20 +215,39 @@ function searchShow(query) {
             <time>${element.show.schedule.time}</time>
           </div>
         </div>
-      </div>`;
-      }
-      console.log(htmlCode);
+      </div>`
+      };
+      console.log(htmlCode)
       // const list = document.getElementById("resultsList")
       // list.innerHTML = htmlCode;
-      document.getElementById('resultsList').innerHTML = htmlCode;
+      document.getElementById("resultsList").innerHTML = htmlCode
       // renderResults(results);
-    });
-}
+    })
+};
+
+
+
+
 // MAKES LIST OF SHOWS APPEAR ON SITE
 function renderResults(results) {
-  results.forEach((result) => {
-    const element = document.createElement('li');
+  results.forEach(result => {
+    const element = document.createElement("li");
     element.innerHTML = result;
     list.appendChild(element);
-  });
-}
+  })
+};
+
+
+
+// SEARCH BOX
+var seeElement = document.getElementById("search-b")
+seeElement.addEventListener("click", function (event) {
+  event.preventDefault()
+  const searchFieldElement = document.getElementById("see");
+  if (searchFieldElement.value.trim().length > 0) {
+    console.log(searchFieldElement.value)
+    searchShow(searchFieldElement.value);
+  }
+  else { alert("search another show") }
+
+});
