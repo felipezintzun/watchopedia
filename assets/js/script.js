@@ -21,7 +21,11 @@ var myImage = document.querySelector('img');
 // API CALLS START
 //IMBD API
 var getNameSearch = function (name) {
+<<<<<<< HEAD
   var apiUrl = 'https://imdb-api.com/en/API/SearchName/k_1t9p2l2d/' + name;
+=======
+  var apiUrl = 'https://imdb-api.com/en/API/SearchName/k_vc5wkpr4/' + name;
+>>>>>>> 13e0ff7a6e1bc2440ab8e35428366285401b6994
 
   fetch(apiUrl)
     .then(function (response) {
@@ -42,8 +46,12 @@ var getNameSearch = function (name) {
 // ERROR MESSAGES
 // Function for invalid or improper inputs
 var invalidInput = function () {
-  errorEl.textContent = 'Actor not found.';
-  errorEl.style.color = 'red';
+  // clear old content
+  actorEl.innerHTML = '';
+  // clear list item elements
+  knownForEl.innerHTML = '';
+  // clear image
+  actorImage.innerHTML = '';
 };
 
 // Function if you are unable to connect
@@ -59,14 +67,22 @@ var getActorId = function (name) {
   var actors = name.results;
   // get the actors id
   var actorId = actors[0].id;
-  // call the actorInfo function
-  actorInfo(actorId);
+  if (actorId) {
+    // call the actorInfo function
+    actorInfo(actorId);
+  } else {
+    invalidInput();
+  }
 };
 
 // Call a new fetch function to get actor information
 var actorInfo = function (actorId) {
   // Call api for actor information
+<<<<<<< HEAD
   var apiUrl = 'https://imdb-api.com/en/API/Name/k_1t9p2l2d/' + actorId;
+=======
+  var apiUrl = 'https://imdb-api.com/en/API/Name/k_vc5wkpr4/' + actorId;
+>>>>>>> 13e0ff7a6e1bc2440ab8e35428366285401b6994
 
   fetch(apiUrl)
     .then(function (response) {
@@ -98,6 +114,8 @@ var showActorOption = function (actorId) {
     // Add the actor
     actorOption.innerHTML = input;
     datalistEl.append(actorOption);
+  } else {
+    invalidInput();
   }
 };
 
@@ -173,8 +191,19 @@ buttonEL.addEventListener('click', function (event) {
   event.preventDefault();
   // set name value
   var name = inputEl.value.trim();
+<<<<<<< HEAD
   // run getNameSearch() function
   getNameSearch(name);
+=======
+  // run getNameSearch() and searchShow() function
+  if (name.length > 0) {
+    getNameSearch(name);
+    searchShow(name);
+    localStorage.setItem("search-result", JSON.stringify(name));
+  } else {
+    invalidInput();
+  }
+>>>>>>> 13e0ff7a6e1bc2440ab8e35428366285401b6994
 });
 
 
@@ -197,7 +226,7 @@ function searchShow(query) {
         `<div class="card">
         <div class="card-image">
           <figure class="image is-4by3">
-            <img src="${element.show.image.medium}" alt="placeholder image">
+            <img src="${element.show.image.medium}" alt="placeholder image" />
           </figure>
         </div>
         <div class="card-content">
@@ -211,7 +240,7 @@ function searchShow(query) {
           <div class="content">
             ${element.show.summary}
             <a href="${element.show.officialSite}">Offical Site</a>
-            <br>
+            <br />
             <time>${element.show.schedule.time}</time>
           </div>
         </div>
