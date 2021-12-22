@@ -29,3 +29,6 @@ I am a movie & tv show lover but I do not know what I want to watch. I open watc
 - Ratings
 - Trending section
 - Upcoming movies and local showtimes
+
+# TV Shows
+![TVshow](https://user-images.githubusercontent.com/35536193/147103025-48f32147-bc43-40a8-8fba-18d6d9ee3db9.png)
