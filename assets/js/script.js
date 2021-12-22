@@ -16,17 +16,16 @@ var errorEl = document.getElementById('error');
 // Declare button
 var buttonEL = document.getElementById('searchBtn');
 
+
 // API CALLS START
 //IMBD API
 var getNameSearch = function (name) {
   var apiUrl = 'https://imdb-api.com/en/API/SearchName/k_ncae1kix/' + name;
-  var movieUrl = 'https://imdb-api.com/en/API/Search/k_ncae1kix/' + search;
   fetch(apiUrl)
     .then(function (response) {
       if (response.ok) {
         response.json().then(function (name) {
           getActorId(name);
-          searchMovie(name);
         });
       } else {
         invalidInput();
@@ -36,6 +35,27 @@ var getNameSearch = function (name) {
       connectIssue();
     });
 };
+
+var getMovieSearch = function (search) {
+  console.log(search);
+  var movieUrl = 'https://imdb-api.com/en/API/SearchMovie/k_4724e504/' + search;
+  fetch(movieUrl)
+    .then(function (response) {
+      if (response.ok) {
+        response.json().then(function (search) {
+          getMovieId(search);
+          searchMovie(search);
+        });
+      } else {
+        invalidInput();
+      }
+    })
+    .catch(function (error) {
+      connectIssue();
+    });
+};
+
+
 // API CALLS END
 
 //search movies
@@ -106,6 +126,16 @@ var getActorId = function (name) {
   var actorId = actors[0].id;
   // call the actorInfo function
   actorInfo(actorId);
+};
+
+// populate movie section
+var getMovieId = function (search) {
+  // define the movie array
+  var movies = search.results;
+  // get the movies id
+  var movieId = movies[0].id;
+  // call the movieInfo function
+  actorInfo(movieId);
 };
 
 // Call a new fetch function to get actor information
@@ -213,6 +243,14 @@ var showActorInfo = function (actorId) {
   // append information to the actor container
   actorEl.append(actorBioEl);
 };
+
+
+// Function to display the actors information
+var showMovieInfo = function (movieId) {
+  
+};
+
+
 // EVENT LISTENERS
 // button to capture name type into input, set to name vaiable and then running the getNameSearch() and searchShow() functions
 buttonEL.addEventListener('click', function (event) {
@@ -224,6 +262,7 @@ buttonEL.addEventListener('click', function (event) {
   if (name.length > 0) {
     getNameSearch(name);
     searchShow(name);
+    getMovieSearch(name);
     localStorage.setItem("search-result", JSON.stringify(name));
   } else {
     invalidInput();
