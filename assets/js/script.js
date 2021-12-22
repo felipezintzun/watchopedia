@@ -143,7 +143,10 @@ var showActorInfo = function (actorId) {
   actorEl.innerHTML = '';
   // clear list item elements
   knownForEl.innerHTML = '';
+  // clear the actor subtitle section
   actorSubtitleEl.innerHTML = '';
+  // clear the error message
+  errorEl.textContent = '';
 
   // define the actor's name
   var actorName = actorId.name;
@@ -231,11 +234,12 @@ var showActorInfo = function (actorId) {
 //   errorEl.style.color = 'red';
 // };
 
-// // Function for invalid or improper inputs for shows
-// var invalidShow = function () {
-//   errorEl.textContent = 'Television show not found';
-//   errorEl.style.color = 'red';
-// };
+// Function for invalid or improper inputs for shows
+var invalidShow = function () {
+  errorEl.textContent = 'Television show not found';
+  errorEl.style.color = 'red';
+  showSectionEl.classList.add('hide');
+};
 
 // Function for invalid or improper inputs for actors
 var invalidActor = function () {
