@@ -15,7 +15,12 @@ var knownForEl = document.getElementById('known-for');
 var errorEl = document.getElementById('error');
 // Declare button
 var buttonEL = document.getElementById('searchBtn');
-
+//declare the container that holds movie infor
+var movieEl = document.getElementById('movie-section');
+// Declare the movie title
+var movieTitleEl = document.getElementById('movie-title');
+// Declare the paragraph for movie information
+var movieInfoEl = document.getElementById('movie-results');
 
 // API CALLS START
 //IMBD API
@@ -36,15 +41,15 @@ var getNameSearch = function (name) {
     });
 };
 
+//fetch movie
 var getMovieSearch = function (search) {
   console.log(search);
-  var movieUrl = 'https://imdb-api.com/en/API/SearchMovie/k_4724e504/' + search;
+  var movieUrl = 'https://imdb-api.com/en/API/SearchMovie/k_xqqyxw1f/' + search;
   fetch(movieUrl)
     .then(function (response) {
       if (response.ok) {
         response.json().then(function (search) {
           getMovieId(search);
-          searchMovie(search);
         });
       } else {
         invalidInput();
@@ -54,6 +59,78 @@ var getMovieSearch = function (search) {
       connectIssue();
     });
 };
+
+var getMovieId = function (search) {
+  // define the movie array
+  var movies = search.results;
+  // get the movies id
+  var movieId = movies[0].id;
+  // call the movieInfo function
+  actorInfo(movieId);
+};
+
+// Call a new fetch function to get movie ID
+var movieInfo = function (movieId) {
+  // Call api for movie information
+  var movieUrl = 'https://imdb-api.com/en/API/SearchMovie/k_xqqyxw1f/' + movieId;
+  
+  fetch(movieUrl)
+  .then(function (response) {
+    if (response.ok) {
+      response.json().then(function (movieId) {
+        showMovieInfo(movieId);
+      });
+    } else {
+      invalidInput();
+    }
+  })
+  .catch(function (error) {
+    connectIssue();
+  });
+};
+
+//functio to populate movie data
+var showMovieOption = function (movieId) {
+  console.log(movieId);
+  // define the movie name
+  var movie = movieId.name;
+  var input = inputEl.value;
+
+  // if an actor matches the input
+  if (movie === input) {
+    // create the option element
+    var movieOption = document.createElement('option');
+    // Add the actor
+    movieOption.innerHTML = input;
+    datalistEl.append(movieOption);
+  }
+};
+
+
+// Function to display the movies information
+var showMovieInfo = function (movieId) {
+  // clear old content
+  movieEl.innerHTML = '';
+  // clear list item elements
+  knownForEl.innerHTML = '';
+
+  //define movie variables
+  var movieName = movieId.name
+
+   // append title to the movie container
+   movieEl.appendChild(movieTitleEl);
+
+   // create an image element
+   var movieImage = document.createElement('img');
+   // set the source of the image
+   movieImage.setAttribute('src', actorId.image + '@2x.png');
+   movieImage.classList.add('movie-image');
+   // append image to the movie container
+   movieEl.appendChild(movieImage);
+ 
+ };
+  
+
 
 
 // API CALLS END
@@ -128,15 +205,7 @@ var getActorId = function (name) {
   actorInfo(actorId);
 };
 
-// populate movie section
-var getMovieId = function (search) {
-  // define the movie array
-  var movies = search.results;
-  // get the movies id
-  var movieId = movies[0].id;
-  // call the movieInfo function
-  actorInfo(movieId);
-};
+
 
 // Call a new fetch function to get actor information
 var actorInfo = function (actorId) {
@@ -244,11 +313,6 @@ var showActorInfo = function (actorId) {
   actorEl.append(actorBioEl);
 };
 
-
-// Function to display the actors information
-var showMovieInfo = function (movieId) {
-  
-};
 
 
 // EVENT LISTENERS
