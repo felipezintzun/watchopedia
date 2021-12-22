@@ -53,6 +53,17 @@ a {
   cursor: pointer;
 }
 
+.itemNav{
+width: 100%;
+text-align: center;
+width: auto;
+display: block;
+position: relative;
+border-radius: 1rem;
+background-color: var(--bg-white);
+color: var(--primary-black);
+}
+
 /* Form */
 .search-form {
   width: 30%;
@@ -67,6 +78,8 @@ a {
 form label {
   font-weight: bold;
 }
+
+
 /* HEADER STYLES END */
 
 /* MOIVE SECTION STYLES START */
