@@ -60,14 +60,18 @@ function renderResults(results) {
   })
 };
 
-// CREATE WATCH LATER LIST 
-var buttonEL = document.querySelector("#save-title");
-console.log(buttonEL);
+//Watch Later List
+var buttonEl = document.querySelector("#save-title"); 
+var titlesToWatchEl = document.querySelector("#titles-to-watch"); 
 
-var titleItemEl = document.createElement("li");
-titleItemEl.textContent = "test";
-titleItemEl;
+var createTitleHandler = function() { 
+  var listItemEl = document.createElement("li"); 
+  listItemEl.className = "title-item"; 
+  listItemEl.textContent = "This is a title"; 
+  titlesToWatchEl.appendChild(listItemEl); 
+  }; 
 
+buttonEl.addEventListener("click", createTitleHandler);
 
 
 // create watch later from submission
