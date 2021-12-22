@@ -21,11 +21,7 @@ var myImage = document.querySelector('img');
 // API CALLS START
 //IMBD API
 var getNameSearch = function (name) {
-<<<<<<< HEAD
-  var apiUrl = 'https://imdb-api.com/en/API/SearchName/k_1t9p2l2d/' + name;
-=======
   var apiUrl = 'https://imdb-api.com/en/API/SearchName/k_vc5wkpr4/' + name;
->>>>>>> 13e0ff7a6e1bc2440ab8e35428366285401b6994
 
   fetch(apiUrl)
     .then(function (response) {
@@ -78,11 +74,7 @@ var getActorId = function (name) {
 // Call a new fetch function to get actor information
 var actorInfo = function (actorId) {
   // Call api for actor information
-<<<<<<< HEAD
-  var apiUrl = 'https://imdb-api.com/en/API/Name/k_1t9p2l2d/' + actorId;
-=======
   var apiUrl = 'https://imdb-api.com/en/API/Name/k_vc5wkpr4/' + actorId;
->>>>>>> 13e0ff7a6e1bc2440ab8e35428366285401b6994
 
   fetch(apiUrl)
     .then(function (response) {
@@ -191,10 +183,6 @@ buttonEL.addEventListener('click', function (event) {
   event.preventDefault();
   // set name value
   var name = inputEl.value.trim();
-<<<<<<< HEAD
-  // run getNameSearch() function
-  getNameSearch(name);
-=======
   // run getNameSearch() and searchShow() function
   if (name.length > 0) {
     getNameSearch(name);
@@ -203,7 +191,6 @@ buttonEL.addEventListener('click', function (event) {
   } else {
     invalidInput();
   }
->>>>>>> 13e0ff7a6e1bc2440ab8e35428366285401b6994
 });
 
 
