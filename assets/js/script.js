@@ -177,6 +177,7 @@ buttonEL.addEventListener('click', function (event) {
   if (name.length > 0) {
     getNameSearch(name);
     searchShow(name);
+    localStorage.setItem("search-result", JSON.stringify(name));
   } else {
     invalidInput();
   }
@@ -202,7 +203,7 @@ function searchShow(query) {
         htmlCode += `<div class="card">
         <div class="card-image">
           <figure class="image is-4by3">
-            <img src="${element.show.image.medium}" alt="placeholder image">
+            <img src="${element.show.image.medium}" alt="placeholder image" />
           </figure>
         </div>
         <div class="card-content">
@@ -215,7 +216,7 @@ function searchShow(query) {
           <div class="content">
             ${element.show.summary}
             <a href="${element.show.officialSite}">Offical Site</a>
-            <br>
+            <br />
             <time>${element.show.schedule.time}</time>
           </div>
         </div>
