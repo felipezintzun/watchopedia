@@ -48,9 +48,20 @@ nav {
 }
 
 a {
-  color: var(--primary-white);
+  color: var(--primary-black);
   text-decoration: none;
   cursor: pointer;
+}
+
+.itemNav{
+width: 100%;
+text-align: center;
+width: auto;
+display: block;
+position: relative;
+border-radius: 1rem;
+background-color: var(--bg-white);
+color: var(--primary-black);
 }
 
 /* Form */
@@ -67,6 +78,8 @@ a {
 form label {
   font-weight: bold;
 }
+
+
 /* HEADER STYLES END */
 
 /* MOIVE SECTION STYLES START */
@@ -119,6 +132,9 @@ a:focus {
   width: auto;
   display: block;
   position: relative;
+  border-radius: 1rem;
+  background-color: var(--bg-white);
+  color: var(--primary-black);
 }
 .menu {
   display: flex;
@@ -131,7 +147,27 @@ a:focus {
 .menu li a {
   display: block;
   padding: 15px 5px;
+ 
+
 }
+
+/* Form */
+.search-form {
+  width: 30%;
+  font-weight: 500;
+  font-style: italic;
+  text-align: left;
+  border-radius: 1rem;
+  background-color: var(--bg-white);
+  color: var(--primary-black);
+}
+
+form label {
+  font-weight: bold;
+}
+/* HEADER STYLES END */
+
+
 
 /* ACTOR SECTION STARTS */
 /* Style the actor section */
