@@ -43,14 +43,14 @@ var getNameSearch = function (name) {
 };
 
 //fetch movie
-var getMovieSearch = function (search) {
-  console.log(search);
-  var movieUrl = 'https://imdb-api.com/en/API/SearchMovie/k_xqqyxw1f/' + search;
+var getMovieSearch = function (name) {
+  console.log(name);
+  var movieUrl = 'https://imdb-api.com/en/API/SearchMovie/k_xqqyxw1f/inception%202010' + name;
   fetch(movieUrl)
     .then(function (response) {
       if (response.ok) {
-        response.json().then(function (search) {
-          getMovieId(search);
+        response.json().then(function (name) {
+          getMovieId(name);
         });
       } else {
         invalidInput();
@@ -61,7 +61,8 @@ var getMovieSearch = function (search) {
     });
 };
 
-var getMovieId = function (search) {
+
+var getMovieId = function (name) {
   // define the movie array
   var movies = search.results;
   // get the movies id
@@ -70,11 +71,12 @@ var getMovieId = function (search) {
   actorInfo(movieId);
 };
 
+
+
 // Call a new fetch function to get movie ID
 var movieInfo = function (movieId) {
   // Call api for movie information
-  var movieUrl = 'https://imdb-api.com/en/API/SearchMovie/k_xqqyxw1f/' + movieId;
-  
+  var movieUrl = 'https://imdb-api.com/en/API/SearchMovie/k_xqqyxw1f/inception%202010' + movieId;
   fetch(movieUrl)
   .then(function (response) {
     if (response.ok) {
@@ -89,6 +91,7 @@ var movieInfo = function (movieId) {
     connectIssue();
   });
 };
+
 
 //functio to populate movie data
 var showMovieOption = function (movieId) {
@@ -130,6 +133,7 @@ var showMovieInfo = function (movieId) {
    movieEl.appendChild(movieImage);
  
  };
+ 
   
 
 
@@ -337,7 +341,7 @@ buttonEL.addEventListener('click', function (event) {
   if (name.length > 0) {
     getNameSearch(name);
     searchShow(name);
-    getMovieSearch(name);
+    getMovieSearch(search);
     localStorage.setItem("search-result", JSON.stringify(name));
   } else {
     invalidInput();
