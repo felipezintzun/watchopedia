@@ -106,22 +106,20 @@
         <form id="title-form">
           <div class="form-group">
             <input type="text" name="title-name" placeholder="Enter Title Name" />
+          </div>
+
+          <div class="form-group">
+            <select name="title-type">
+              <option value="" disabled selected>Pick a title type</option>
+              <option value="Movie">Movie</option>
+              <option value="Show">Show</option>
+            </select>
+          </div>
+
+          <div>
             <button class="btn" id="save-title" type="submit">Add Title</button>
           </div>
         </form>
-      </section>
-
-          <div class="form-group">
-        <select name="title-type" class="select-dropdown">
-          <option value="" disabled selected>Pick a title type</option>
-          <option value="Movie">Movie</option>
-          <option value="Show">Show</option>
-        </select>
-      </div>
-      <div class="form-group">
-        <button class="btn" id="save-title" type="submit">Add Title</button>
-      </div>
-    </form>
       </section>
             
             <!--<section id="watch-section" class="watch-list"></section> -->
