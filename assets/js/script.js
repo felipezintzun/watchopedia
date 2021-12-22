@@ -177,6 +177,7 @@ buttonEL.addEventListener('click', function (event) {
   if (name.length > 0) {
     getNameSearch(name);
     searchShow(name);
+    localStorage.setItem("search-result", JSON.stringify(name));
   } else {
     invalidInput();
   }
