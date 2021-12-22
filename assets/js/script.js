@@ -60,7 +60,7 @@ function searchMovie(query) {
         var mediaContent = $("<div>").addClass("media-content")
         var p1 = $("<p>").addClass("title is-4").text(jsonData[i].show.name)
         $("#movieResults").append(card.append(cardImg.append(fig.append(img)),cardContent.append(media.append(mediaContent.append(p1)))))
-        // resultsList.appendChild(card)
+        resultsList.appendChild(card)
         
 
       
@@ -386,6 +386,7 @@ buttonEL.addEventListener('click', function (event) {
   var name = inputEl.value.trim();
   // run getNameSearch() function
   getNameSearch(name);
+  searchMovie(movieResults);
 });
 
 
