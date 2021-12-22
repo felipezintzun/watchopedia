@@ -20,12 +20,13 @@ var buttonEL = document.getElementById('searchBtn');
 //IMBD API
 var getNameSearch = function (name) {
   var apiUrl = 'https://imdb-api.com/en/API/SearchName/k_ncae1kix/' + name;
-
+  var movieUrl = 'https://imdb-api.com/en/API/Search/k_ncae1kix/' + search;
   fetch(apiUrl)
     .then(function (response) {
       if (response.ok) {
         response.json().then(function (name) {
           getActorId(name);
+          searchMovie(name);
         });
       } else {
         invalidInput();
@@ -38,50 +39,50 @@ var getNameSearch = function (name) {
 // API CALLS END
 
 //search movies
-function searchMovie(query) {
-  const url = `https://imdb-api.com/en/API/SearchMovie/k_xqqyxw1f?q=${query}`;
-  console.log(url);
-  fetch(url)
-    .then((response) => {
-      console.log(response);
-      return response.json();
-    })
-    .then((jsonData) => {
-      console.log(jsonData, 'Json');
-      var htmlCode = '';
-      for (let i = 0; i < jsonData.length; i++) {
-        // jsonData.forEach(element => {
-        let element = jsonData[i];
-        console.log(element);
-        htmlCode += `<div class="card">
-        <div class="card-image">
-          <figure class="image is-4by3">
-            <img src="${element.show.image.medium}" alt="placeholder image">
-          </figure>
-        </div>
-        <div class="card-content">
-          <div class="media">
-            <div class="media-content">
-              <p class="title is-4">${element.show.name}</p>
-              <p class="subtitle is-6">${element.show.rating.average}</p>
-            </div>
-          </div>
-          <div class="content">
-            ${element.show.summary}
-            <a href="${element.show.officialSite}">Offical Site</a>
-            <br>
-            <time>${element.show.schedule.time}</time>
-          </div>
-        </div>
-      </div>`;
-      }
-      console.log(htmlCode);
-      // const list = document.getElementById("resultsList")
-      // list.innerHTML = htmlCode;
-      document.getElementById('movieResults').innerHTML = htmlCode;
-      // renderResults(results);
-    });
-}
+// function searchMovie(query) {
+//   const url = `https://imdb-api.com/en/API/SearchMovie/k_xqqyxw1f?q=${query}`;
+//   console.log(url);
+//   fetch(url)
+//     .then((response) => {
+//       console.log(response);
+//       return response.json();
+//     })
+//     .then((jsonData) => {
+//       console.log(jsonData, 'Json');
+//       var htmlCode = '';
+//       for (let i = 0; i < jsonData.length; i++) {
+//         // jsonData.forEach(element => {
+//         let element = jsonData[i];
+//         console.log(element);
+//         htmlCode += `<div class="card">
+//         <div class="card-image">
+//           <figure class="image is-4by3">
+//             <img src="${element.show.image.medium}" alt="placeholder image">
+//           </figure>
+//         </div>
+//         <div class="card-content">
+//           <div class="media">
+//             <div class="media-content">
+//               <p class="title is-4">${element.show.name}</p>
+//               <p class="subtitle is-6">${element.show.rating.average}</p>
+//             </div>
+//           </div>
+//           <div class="content">
+//             ${element.show.summary}
+//             <a href="${element.show.officialSite}">Offical Site</a>
+//             <br>
+//             <time>${element.show.schedule.time}</time>
+//           </div>
+//         </div>
+//       </div>`;
+//       }
+//       console.log(htmlCode);
+//       // const list = document.getElementById("resultsList")
+//       // list.innerHTML = htmlCode;
+//       document.getElementById('movieResults').innerHTML = htmlCode;
+//       // renderResults(results);
+//     });
+// }
 
 // ERROR MESSAGES
 // Function for invalid or improper inputs
