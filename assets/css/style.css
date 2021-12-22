@@ -27,6 +27,11 @@ section {
 }
 
 /* UTILITY CLASSES */
+/* Hide each section */
+.hide {
+  display: none;
+}
+
 /* Main titles for each section */
 .section-title {
   font-size: 2vw;
@@ -100,15 +105,8 @@ form label {
 }
 /* SHOW SECTION STYLES START */
 
-article {
-  display: flex;
-}
-
 .card {
   min-width: 100%;
-  margin: 20px;
-  justify-content: space-between;
-  flex-direction: row;
   background: var(--bg-card);
   color: var(--primary-card);
   border-radius: 20px;

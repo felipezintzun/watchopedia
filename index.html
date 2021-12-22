@@ -71,7 +71,7 @@
 
     <main>
       <!-- MOVIE SECTION STARTS -->
-      <section class="movie" id="movie-section">
+      <section class="movie hide" id="movie-section">
         <div class="flex-row">
           <h2 class="section-title">Movies</h2>
         </div>
@@ -79,21 +79,21 @@
           <p>Movie Recommendations Go Here</p>
         </div>
       </section>
-      
+
       <!-- SHOW SECTION STARTS -->
-      <section id="show-section">
-        <div class="card is-flex section">
+      <section class="section hide" id="show-section">
+        <div class="card is-flex is-justify-content-space-between">
           <h2>Shows</h2>
-          <article id="resultsList"></article>
+          <article class="is-flex" id="resultsList"></article>
         </div>
       </section>
 
       <!-- ACTOR SECTION -->
-      <section class="actor">
+      <section class="actor hide" id="actor-section">
         <h2 class="section-title">Actor Information</h2>
         <div
           class="flex-row is-size-4-touch is-size-2-tablet has-text-centered"
-          id="actor-section"
+          id="actor"
         >
           <h3 class="actor-subtitle" id="actor-subtitle"></h3>
         </div>
@@ -104,7 +104,7 @@
       </section>
 
       <!-- WATCH LATER SECTION -->
-      <section id="watch-section" class="watch-list">
+      <section id="watch-section" class="watch-list hide">
         <h2 class="section-title">My Watch Later List</h2>
         <p>Click the button below to add a show or movie to watch later</p>
         <form id="title-form">
@@ -129,7 +129,7 @@
       </section>
 
       <!--<section id="watch-section" class="watch-list"></section> -->
-      <section class="watch-list-wrapper">
+      <section class="watch-list-wrapper hide">
         <h2 class="list-title">Titles to Watch</h2>
         <ul class="watch-list" id="titles-to-watch"></ul>
       </section>
