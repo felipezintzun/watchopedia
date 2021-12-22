@@ -16,6 +16,17 @@
   box-sizing: border-box;
 }
 
+/* Hide content */
+.hide {
+  display: none;
+}
+
+section {
+  display: block;
+  margin: 2vh;
+  min-height: 25vw;
+}
+
 /* HEADER STYLES START */
 header {
   min-height: 30vh;
@@ -42,16 +53,67 @@ a {
   cursor: pointer;
 }
 
-.show {
-  background: var(--bg-show);
+/* Form */
+.search-form {
+  width: 30%;
+  font-weight: 500;
+  font-style: italic;
+  text-align: left;
+  border-radius: 1rem;
+  background-color: var(--bg-white);
+  color: var(--primary-black);
 }
+
+form label {
+  font-weight: bold;
+}
+/* HEADER STYLES END */
+
+/* MOIVE SECTION STYLES START */
+.movie {
+  background: #d3d3d3;
+  height: 120px;
+}
+/* SHOW SECTION STYLES START */
+
+article {
+  display: flex;
+}
+
+.show {
+  background: #9ddadf;
+  height: 120px;
+}
+
+.section-title {
+  font-weight: bold;
+  font-size: 2vw;
+  text-align: center;
+  padding: 1vw;
+}
+
+.card {
+  width: 100%;
+  margin: 20px;
+  justify-content: space-between;
+  flex-direction: row;
+  background: #eae7dc;
+  color: #8e8d8a;
+  border-radius: 20px;
+}
+
+.show-section {
+  display: flex;
+  flex-direction: row;
+}
+
 a:hover,
 a:focus {
   color: var(--primary-red);
 }
 
 .item {
-  padding: 10px 15px 5px 15px;
+  padding: 50px 15px 5px 15px;
   width: 100%;
   text-align: center;
   width: auto;
@@ -94,13 +156,38 @@ form label {
 
 
 
+/* ACTOR SECTION STARTS */
+/* Style the actor section */
+.actor {
+  background: #d3d3d3;
+  height: 120px;
+}
+
+/* Actor image */
+.actor-image {
+  max-height: 30vh;
+  position: absolute;
+  left: 10vw;
+}
+
+/* Actor title */
+.actor-title {
+  font-size: 1.5vw;
+}
+
+/* Actor known for styling */
+.known-list {
+  font-weight: bold;
+  font-size: 1.4vw;
+  font-style: italic;
+  margin: 1vw 0.2vw 0.2vw 0.2vw;
+}
+
 /* FOOTER STYLE START */
 footer {
-  position: absolute;
   text-align: right;
   width: 100%;
   height: 90px;
-  bottom: 0;
   padding: 20px;
   background: var(--bg-black);
   color: var(--primary-white);
