@@ -19,7 +19,7 @@ var buttonEL = document.getElementById('searchBtn');
 // API CALLS START
 //IMBD API
 var getNameSearch = function (name) {
-  var apiUrl = 'https://imdb-api.com/en/API/SearchName/k_ncae1kix/' + name;
+  var apiUrl = 'https://imdb-api.com/en/API/SearchName/k_vc5wkpr4/' + name;
 
   fetch(apiUrl)
     .then(function (response) {
@@ -40,8 +40,12 @@ var getNameSearch = function (name) {
 // ERROR MESSAGES
 // Function for invalid or improper inputs
 var invalidInput = function () {
-  errorEl.textContent = 'Actor not found.';
-  errorEl.style.color = 'red';
+  // clear old content
+  actorEl.innerHTML = '';
+  // clear list item elements
+  knownForEl.innerHTML = '';
+  // clear image
+  actorImage.innerHTML = '';
 };
 
 // Function if you are unable to connect
@@ -57,14 +61,18 @@ var getActorId = function (name) {
   var actors = name.results;
   // get the actors id
   var actorId = actors[0].id;
-  // call the actorInfo function
-  actorInfo(actorId);
+  if (actorId) {
+    // call the actorInfo function
+    actorInfo(actorId);
+  } else {
+    invalidInput();
+  }
 };
 
 // Call a new fetch function to get actor information
 var actorInfo = function (actorId) {
   // Call api for actor information
-  var apiUrl = 'https://imdb-api.com/en/API/Name/k_ncae1kix/' + actorId;
+  var apiUrl = 'https://imdb-api.com/en/API/Name/k_vc5wkpr4/' + actorId;
 
   fetch(apiUrl)
     .then(function (response) {
@@ -96,6 +104,8 @@ var showActorOption = function (actorId) {
     // Add the actor
     actorOption.innerHTML = input;
     datalistEl.append(actorOption);
+  } else {
+    invalidInput();
   }
 };
 
