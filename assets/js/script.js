@@ -1,31 +1,31 @@
 // GLOBAL VARIABLES
 // Declare input variable
-var inputEl = document.getElementById('search');
+var inputEl = document.getElementById("search");
 // Declare the datalist
-var datalistEl = document.getElementById('watch');
+var datalistEl = document.getElementById("watch");
 // Declare the container that holds the actor information
-var actorEl = document.getElementById('actor-section');
+var actorEl = document.getElementById("actor-section");
 // Declare the actor title
-var actorTitleEl = document.getElementById('actor-title');
+var actorTitleEl = document.getElementById("actor-title");
 // Declare the paragraph for actor information
-var actorInfoEl = document.getElementById('actor-results');
+var actorInfoEl = document.getElementById("actor-results");
 // Declare the unordered list to list the movies/shows the actor is known for
-var knownForEl = document.getElementById('known-for');
+var knownForEl = document.getElementById("known-for");
 // Declare error messages container
-var errorEl = document.getElementById('error');
+var errorEl = document.getElementById("error");
 // Declare button
-var buttonEL = document.getElementById('searchBtn');
+var buttonEL = document.getElementById("searchBtn");
 //declare the container that holds movie infor
-var movieEl = document.getElementById('movie-section');
+var movieSectionEl = document.getElementById("movie-section");
 // Declare the movie title
-var movieTitleEl = document.getElementById('movie-title');
+var movieTitleEl = document.getElementById("movie-title");
 // Declare the paragraph for movie information
-var movieInfoEl = document.getElementById('movie-results');
+var movieResultsEl = document.getElementById("movie-results");
 
 // API CALLS START
 //IMBD API
 var getNameSearch = function (name) {
-  var apiUrl = 'https://imdb-api.com/en/API/SearchName/k_vc5wkpr4/' + name;
+  var apiUrl = "https://imdb-api.com/en/API/SearchName/k_xqqyxw1f/" + name;
 
   fetch(apiUrl)
     .then(function (response) {
@@ -44,99 +44,111 @@ var getNameSearch = function (name) {
 
 //fetch movie
 var getMovieSearch = function (name) {
-  console.log(name);
-  var movieUrl = 'https://imdb-api.com/en/API/SearchMovie/k_xqqyxw1f/inception%202010' + name;
+  var movieUrl = "https://imdb-api.com/en/API/SearchMovie/k_xqqyxw1f/" + name;
+
   fetch(movieUrl)
     .then(function (response) {
+      //if response is good run getMovieId function
       if (response.ok) {
         response.json().then(function (name) {
           getMovieId(name);
         });
       } else {
-        invalidInput();
+        // otherwise run invalid input
+        invalidMovie();
       }
     })
+    //runs if there is a connection issues
     .catch(function (error) {
       connectIssue();
     });
 };
 
-
+//check if there is a movie id
 var getMovieId = function (name) {
-  // define the movie array
-  var movies = search.results;
-  // get the movies id
+ 
+  //define the movies array
+  var movies = name.results;
+  //check for the movies id
   var movieId = movies[0].id;
-  // call the movieInfo function
-  actorInfo(movieId);
-};
-
-
-
-// Call a new fetch function to get movie ID
-var movieInfo = function (movieId) {
-  // Call api for movie information
-  var movieUrl = 'https://imdb-api.com/en/API/SearchMovie/k_xqqyxw1f/inception%202010' + movieId;
-  fetch(movieUrl)
-  .then(function (response) {
-    if (response.ok) {
-      response.json().then(function (movieId) {
-        showMovieInfo(movieId);
-      });
-    } else {
-      invalidInput();
-    }
-  })
-  .catch(function (error) {
-    connectIssue();
-  });
-};
-
-
-//functio to populate movie data
-var showMovieOption = function (movieId) {
-  console.log(movieId);
-  // define the movie name
-  var movie = movieId.name;
-  var input = inputEl.value;
-
-  // if an actor matches the input
-  if (movie === input) {
-    // create the option element
-    var movieOption = document.createElement('option');
-    // Add the actor
-    movieOption.innerHTML = input;
-    datalistEl.append(movieOption);
+  // if there is a movie id
+  if (movieId) {
+    // call the movieInfor function
+    movieInfo(movieId);
+  } else {
+    invalidMovie();
   }
 };
 
+// cal a new fetch function to get movie info
+var movieInfo = function (movieId) {
+  
+  // call api for movie info
+  var movieUrl = "https://imdb-api.com/en/API/SearchMovie/k_xqqyxw1f/" + movieId;
 
-// Function to display the movies information
+  fetch(movieUrl)
+    .then(function (response) {
+    // if there is a valid input
+      if (response.ok) {
+      //conver to json and run showMovieInfo Functions
+      response.json().then(function (movieId) {
+        showMovieInfo(movieId);
+      });
+    }
+  })
+  //runs if ther is a connection issue
+   .catch(function (error) {
+      connectIssue();
+  });
+};
+
+// function to display movie info
 var showMovieInfo = function (movieId) {
-  // clear old content
-  movieEl.innerHTML = '';
-  // clear list item elements
-  knownForEl.innerHTML = '';
+  console.log(movieId);
+  //clear old content
+  movieSectionEl.innerHTML = '';
+  movieResultsEl.innerHTML = '';
 
-  //define movie variables
-  var movieName = movieId.name
-
-   // append title to the movie container
-   movieEl.appendChild(movieTitleEl);
-
-   // create an image element
-   var movieImage = document.createElement('img');
-   // set the source of the image
-   movieImage.setAttribute('src', actorId.image + '@2x.png');
-   movieImage.classList.add('movie-image');
-   // append image to the movie container
-   movieEl.appendChild(movieImage);
- 
- };
- 
+  //define movie name
   
 
+//style movie section
 
+
+
+  
+debugger;
+  var movieResults = movieId.results;
+
+  for (var i = 0; i < movieResults.length; i++) {
+   var movieResultsarr = movieResults[i];
+  
+    var movieId = movieResultsarr.image;
+   //create image element
+  var movieImage = document.createElement('img');
+  // set the source of the image
+  movieImage.setAttribute('src', movieId.image + '@2x.png');
+  // movieImage.classList.add('movie-image');
+  //append image to the movie section
+  movieSectionEl.append(movieImage);
+
+  var movieImageEl = document.createElement('div');
+  var movieTitle = document.createElement('span');
+  movieTitle.textContent = movieResultsarr.title;
+  movieImageEl.append(movieTitle);
+
+  var movieDate = document.createElement('span');
+  movieDate.textContent = movieResultsarr.description;
+  movieImageEl.append(movieDate);
+
+  movieSectionEl.append(movieImageEl);
+
+  }
+
+
+  
+  // 
+}
 
 // API CALLS END
 
@@ -186,21 +198,11 @@ var showMovieInfo = function (movieId) {
 //     });
 // }
 
-// ERROR MESSAGES
-// Function for invalid or improper inputs
-var invalidInput = function () {
-  // clear old content
-  actorEl.innerHTML = '';
-  // clear list item elements
-  knownForEl.innerHTML = '';
-  // clear image
-  actorImage.innerHTML = '';
-};
 
 // Function if you are unable to connect
 var connectIssue = function () {
-  errorEl.textContent = 'Unable to connect.';
-  errorEl.style.color = 'red';
+  errorEl.textContent = "Unable to connect.";
+  errorEl.style.color = "red";
 };
 
 // POPULATING ELEMENTS
@@ -218,54 +220,33 @@ var getActorId = function (name) {
   }
 };
 
-
-
 // Call a new fetch function to get actor information
 var actorInfo = function (actorId) {
   // Call api for actor information
-  var apiUrl = 'https://imdb-api.com/en/API/Name/k_vc5wkpr4/' + actorId;
+  var apiUrl = "https://imdb-api.com/en/API/Name/k_vc5wkpr4/" + actorId;
 
   fetch(apiUrl)
     .then(function (response) {
       if (response.ok) {
         response.json().then(function (actorId) {
-          showActorOption(actorId);
           showActorInfo(actorId);
         });
-      } else {
-        invalidInput();
-      }
+      } 
     })
     .catch(function (error) {
       connectIssue();
     });
 };
 
-// Function to populate the datalist
-var showActorOption = function (actorId) {
-  console.log(actorId);
-  // define the actors name
-  var actor = actorId.name;
-  var input = inputEl.value;
 
-  // if an actor matches the input
-  if (actor === input) {
-    // create the option element
-    var actorOption = document.createElement('option');
-    // Add the actor
-    actorOption.innerHTML = input;
-    datalistEl.append(actorOption);
-  } else {
-    invalidInput();
-  }
-};
+  
 
 // Function to display the actors information
 var showActorInfo = function (actorId) {
   // clear old content
-  actorEl.innerHTML = '';
+  actorEl.innerHTML = "";
   // clear list item elements
-  knownForEl.innerHTML = '';
+  knownForEl.innerHTML = "";
 
   // define the actor's name
   var actorName = actorId.name;
@@ -275,29 +256,29 @@ var showActorInfo = function (actorId) {
 
   // set the text content for the title
   actorTitleEl.innerHTML =
-    'Top Movie and Shows for ' +
-    '<b>' +
+    "Top Movie and Shows for " +
+    "<b>" +
     actorName +
-    '</b>' +
-    '. ' +
-    '(Born: ' +
+    "</b>" +
+    ". " +
+    "(Born: " +
     birthDate +
-    ' - Died: ' +
+    " - Died: " +
     deathDate +
-    ')';
+    ")";
   // append title to the actor container
   actorEl.appendChild(actorTitleEl);
 
   // create an image element
-  var actorImage = document.createElement('img');
+  var actorImage = document.createElement("img");
   // set the source of the image
-  actorImage.setAttribute('src', actorId.image + '@2x.png');
-  actorImage.classList.add('actor-image');
+  actorImage.setAttribute("src", actorId.image + "@2x.png");
+  actorImage.classList.add("actor-image");
   // append image to the actor container
   actorEl.appendChild(actorImage);
 
   // Make a container to hold the actor information
-  var actorBioEl = document.createElement('div');
+  var actorBioEl = document.createElement("div");
 
   // define the actors known for array
   var knownFor = actorId.knownFor;
@@ -306,11 +287,11 @@ var showActorInfo = function (actorId) {
     // iterate through the knownFor array
     knownForArr = knownFor[i];
     // Make a list item element for the movies/shows the actor is known for
-    var knownforList = document.createElement('li');
+    var knownforList = document.createElement("li");
     // set the text content of the list item
     knownforList.textContent = knownForArr.fullTitle;
     // style the list item
-    knownforList.classList.add('known-list');
+    knownforList.classList.add("known-list");
     // append the list item to the unordered list
     knownForEl.appendChild(knownforList);
   }
@@ -318,7 +299,7 @@ var showActorInfo = function (actorId) {
   actorBioEl.appendChild(knownForEl);
 
   // make a span element to show the awards the actor has recieved
-  var actorAwardsEl = document.createElement('div');
+  var actorAwardsEl = document.createElement("div");
   // set the text content to the awards variable
   actorAwardsEl.textContent = awards;
   // append the awards section to the information container
@@ -328,11 +309,9 @@ var showActorInfo = function (actorId) {
   actorEl.append(actorBioEl);
 };
 
-
-
 // EVENT LISTENERS
 // button to capture name type into input, set to name vaiable and then running the getNameSearch() and searchShow() functions
-buttonEL.addEventListener('click', function (event) {
+buttonEL.addEventListener("click", function (event) {
   // prevent page refresh
   event.preventDefault();
   // set name value
@@ -340,65 +319,65 @@ buttonEL.addEventListener('click', function (event) {
   // run getNameSearch() and searchShow() function
   if (name.length > 0) {
     getNameSearch(name);
-    searchShow(name);
-    getMovieSearch(search);
+    // searchShow(name);
+    getMovieSearch(name);
     localStorage.setItem("search-result", JSON.stringify(name));
   } else {
     invalidInput();
   }
 });
-var myImage = document.querySelector('img');
+var myImage = document.querySelector("img");
 
 // FETCHING SHOW DATA
-function searchShow(query) {
-  const url = `https://api.tvmaze.com/search/shows?q=${query}`;
-  console.log(url);
-  fetch(url)
-    .then((response) => {
-      console.log(response);
-      return response.json();
-    })
-    .then((jsonData) => {
-      console.log(jsonData, 'Json');
-      var htmlCode = '';
-      for (let i = 0; i < jsonData.length; i++) {
-        // jsonData.forEach(element => {
-        let element = jsonData[i];
-        console.log(element);
-        htmlCode += `<div class="card">
-        <div class="card-image">
-          <figure class="image is-4by3">
-            <img src="${element.show.image.medium}" alt="placeholder image" />
-          </figure>
-        </div>
-        <div class="card-content">
-          <div class="media">
-            <div class="media-content">
-              <p class="title is-4">${element.show.name}</p>
-              <p class="subtitle is-6">${element.show.rating.average}</p>
-            </div>
-          </div>
-          <div class="content">
-            ${element.show.summary}
-            <a href="${element.show.officialSite}">Offical Site</a>
-            <br />
-            <time>${element.show.schedule.time}</time>
-          </div>
-        </div>
-      </div>`;
-      }
-      console.log(htmlCode);
-      // const list = document.getElementById("resultsList")
-      // list.innerHTML = htmlCode;
-      document.getElementById('resultsList').innerHTML = htmlCode;
-      // renderResults(results);
-    });
-}
-// MAKES LIST OF SHOWS APPEAR ON SITE
-function renderResults(results) {
-  results.forEach((result) => {
-    const element = document.createElement('li');
-    element.innerHTML = result;
-    list.appendChild(element);
-  });
-}
+// function searchShow(query) {
+//   const url = `https://api.tvmaze.com/search/shows?q=${query}`;
+  
+//   fetch(url)
+//     .then((response) => {
+     
+//       return response.json();
+//     })
+//     .then((jsonData) => {
+      
+//       var htmlCode = "";
+//       for (let i = 0; i < jsonData.length; i++) {
+//         // jsonData.forEach(element => {
+//         let element = jsonData[i];
+        
+//         htmlCode += `<div class="card">
+//         <div class="card-image">
+//           <figure class="image is-4by3">
+//             <img src="${element.show.image.medium}" alt="placeholder image" />
+//           </figure>
+//         </div>
+//         <div class="card-content">
+//           <div class="media">
+//             <div class="media-content">
+//               <p class="title is-4">${element.show.name}</p>
+//               <p class="subtitle is-6">${element.show.rating.average}</p>
+//             </div>
+//           </div>
+//           <div class="content">
+//             ${element.show.summary}
+//             <a href="${element.show.officialSite}">Offical Site</a>
+//             <br />
+//             <time>${element.show.schedule.time}</time>
+//           </div>
+//         </div>
+//       </div>`;
+//       }
+     
+//       // const list = document.getElementById("resultsList")
+//       // list.innerHTML = htmlCode;
+//       document.getElementById("resultsList").innerHTML = htmlCode;
+//       // renderResults(results);
+//     });
+// }
+// // MAKES LIST OF SHOWS APPEAR ON SITE
+// function renderResults(results) {
+//   results.forEach((result) => {
+//     const element = document.createElement("li");
+//     element.innerHTML = result;
+//     list.appendChild(element);
+//   });
+// }
