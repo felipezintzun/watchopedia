@@ -1,7 +1,7 @@
 /* GENERAL STYLES */
 /* Colors */
 html {
-  background-image: linear-gradient(to bottom right, #5ab9ea, #8860d0);
+  background-image: linear-gradient(to bottom right, #1f1c2d, #020302);
 }
 
 :root {
@@ -34,17 +34,19 @@ section {
 /* HEADER STYLES START */
 header {
   /* min-height: 30vh; */
-  background-image: url('../images/watchopedia-stream.svg');
+  /* background-image: url('../images/watchopedia-stream.svg'); */
   /* background-size: contain; */
   background-repeat:no-repeat;
   background-position: right;
+  margin-right: 50px;
+  /* padding: 0 20px; */
 }
 
 .header-title {
   font-weight: bolder;
   /* border-radius: 1rem; */
   /* background-color: var(--bg-white); */
-  color: white;
+  color: #fe5018;
 }
 
 /* NAV STYLES START */
