@@ -4,12 +4,15 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
     <title>Watchopedia</title>
+
     <!-- Link Bulma CSS -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css">
     <!-- Link CSS Stylesheet -->
     <link href="assets/css/style.css" rel="stylesheet" />
   </head>
+
   <body>
     <header>
       <!-- HERO START -->
@@ -78,64 +81,59 @@
     </header>
 
     <main>
+
       <!-- MOVIE SECTION STARTS -->
-      <section class="movie" id="movie-section">
-        <div class="flex-row">
-          <h2 class="section-title">Movies</h2>
+      <section class="movie hide" id="movie-section">
+        <h2 class="section-title">Movies</h2>
+        <div
+          class="flex-row is-size-4-touch is-size-2-tablet has-text-centered"
+          id="movie"
+        >
+          <h3 class="movie-title"></h3>
         </div>
-        <div class="flex-row">
-          <p>Movie Recommendations Go Here</p>
+        <div class="flex-row is-justify-content-space-evenly">
+          <!-- Shows and movies for an actor populate here -->
+          <ul id="movie-results"></ul>
         </div>
       </section>
+
       <!-- SHOW SECTION STARTS -->
+<<<<<<< HEAD
       <section id="show-section" >
         <h2>Shows Populates below</h2>
         <div class="card">
           <article id="resultsList"></article>
         </div>
         
+=======
+      <section class="section hide" id="show-section">
+        <article class="is-flex" id="resultsList"></article>
+>>>>>>> 6f9f461f0f15b71ae7f56e4930489901ac34ed45
       </section>
+
       <!-- ACTOR SECTION -->
+<<<<<<< HEAD
       <section class="actor" id="actor-section">
         <div
           class="flex-row is-size-4-touch is-size-2-tablet has-text-centered"
         >
           <h2>Actor Information</h2>
           <h3 class="actor-title" id="actor-title"></h3>
+=======
+      <section class="actor hide" id="actor-section">
+        <h2 class="section-title">Actor Information</h2>
+        <div
+          class="flex-row is-size-4-touch is-size-2-tablet has-text-centered"
+          id="actor"
+        >
+          <h3 class="actor-subtitle" id="actor-subtitle"></h3>
+>>>>>>> 6f9f461f0f15b71ae7f56e4930489901ac34ed45
         </div>
         <div class="flex-row is-justify-content-space-evenly">
           <!-- Shows and movies for an actor populate here -->
-          <p id="actor-results"></p>
           <ul id="known-for"></ul>
         </div>
       </section>
-
-      <!-- WATCH LATER SECTION STARTS -->
-      <section id="watch-section" class="watch-list">
-        <h2 class="section-title">My Watch Later List</h2>
-        <p>Click the button below to add a show or movie to watch later</p>
-        <form id="title-form">
-      <div class="form-group">
-        <input type="text" name="title-name" placeholder="Enter Title Name" />
-      </div>
-          <div class="form-group">
-        <select name="title-type" class="select-dropdown">
-          <option value="" disabled selected>Pick a title type</option>
-          <option value="Movie">Movie</option>
-          <option value="Show">Show</option>
-        </select>
-      </div>
-      <div class="form-group">
-        <button class="btn" id="save-title" type="submit">Add Title</button>
-      </div>
-    </form>
-      </section>
-            
-            <!--<section id="watch-section" class="watch-list"></section> -->
-            <section class="watch-list-wrapper">
-              <h2 class="list-title">Titles to Watch</h2>
-              <ul class="watch-list" id="titles-to-watch"></ul>
-            </section>
 
       <!-- FOOTER STARTS -->
       <footer>
@@ -146,6 +144,8 @@
     </main>
 
     <!-- LINK JAVASCRIPT PAGE -->
+    
+
     <script src="assets/js/script.js"></script>
   </body>
 </html>
