@@ -14,17 +14,17 @@ var actorEl = document.getElementById('actor');
 // Declare the actor subtitle
 var actorSubtitleEl = document.getElementById('actor-subtitle');
 // Declare the unordered list to list the movies/shows the actor is known for
-var knownForEl = document.getElementById("known-for");
+var knownForEl = document.getElementById('known-for');
 // Declare error messages container
-var errorEl = document.getElementById("error");
+var errorEl = document.getElementById('error');
 // Declare button
-var buttonEL = document.getElementById("searchBtn");
+var buttonEL = document.getElementById('searchBtn');
 //declare the container that holds movie infor
-var movieSectionEl = document.getElementById("movie-section");
+var movieSectionEl = document.getElementById('movie-section');
 // Declare the movie title
-var movieTitleEl = document.getElementById("movie-title");
+var movieTitleEl = document.getElementById('movie-title');
 // Declare the paragraph for movie information
-var movieResultsEl = document.getElementById("movie-results");
+var movieResultsEl = document.getElementById('movie-results');
 
 /* SHOW SECTION START */
 function searchShow(query) {
@@ -83,7 +83,7 @@ function searchShow(query) {
 // Imbd API call to get actor id. Note: name parameter is defined as the input value
 // (Original key: k_vc5wkpr4)
 var getNameSearch = function (name) {
-  var apiUrl = "https://imdb-api.com/en/API/SearchName/k_xqqyxw1f/" + name;
+  var apiUrl = 'https://imdb-api.com/en/API/SearchName/k_xqqyxw1f/' + name;
 
   fetch(apiUrl)
     .then(function (response) {
@@ -105,7 +105,7 @@ var getNameSearch = function (name) {
 
 //fetch movie
 var getMovieSearch = function (name) {
-  var movieUrl = "https://imdb-api.com/en/API/SearchMovie/k_xqqyxw1f/" + name;
+  var movieUrl = 'https://imdb-api.com/en/API/SearchMovie/k_xqqyxw1f/' + name;
 
   fetch(movieUrl)
     .then(function (response) {
@@ -127,7 +127,6 @@ var getMovieSearch = function (name) {
 
 //check if there is a movie id
 var getMovieId = function (name) {
- 
   //define the movies array
   var movies = name.results;
   //check for the movies id
@@ -143,24 +142,24 @@ var getMovieId = function (name) {
 
 // cal a new fetch function to get movie info
 var movieInfo = function (movieId) {
-  
   // call api for movie info
-  var movieUrl = "https://imdb-api.com/en/API/SearchMovie/k_xqqyxw1f/" + movieId;
+  var movieUrl =
+    'https://imdb-api.com/en/API/SearchMovie/k_xqqyxw1f/' + movieId;
 
   fetch(movieUrl)
     .then(function (response) {
-    // if there is a valid input
+      // if there is a valid input
       if (response.ok) {
-      //conver to json and run showMovieInfo Functions
-      response.json().then(function (movieId) {
-        showMovieInfo(movieId);
-      });
-    }
-  })
-  //runs if ther is a connection issue
-   .catch(function (error) {
+        //conver to json and run showMovieInfo Functions
+        response.json().then(function (movieId) {
+          showMovieInfo(movieId);
+        });
+      }
+    })
+    //runs if ther is a connection issue
+    .catch(function (error) {
       connectIssue();
-  });
+    });
 };
 
 // function to display movie info
@@ -169,49 +168,45 @@ var showMovieInfo = function (movieId) {
   //clear old content
   movieSectionEl.innerHTML = '';
   movieResultsEl.innerHTML = '';
-  
+
   if (movieId) {
     movieSectionEl.classList.remove('hide');
-  
 
-  var movieResults = movieId.results;
+    var movieResults = movieId.results;
 
-  for (var i = 0; i < movieResults.length; i++) {
-   var movieResultsarr = movieResults[i];
-  
-  
-   //create image element
-  var movieImage = document.createElement('img');
-  // set the source of the image
-  movieImage.setAttribute('src', movieResultsarr.image + '@2x.png');
-  // movieImage.classList.add('movie-image');
-  //append image to the movie section
-  movieSectionEl.append(movieImage);
+    for (var i = 0; i < movieResults.length; i++) {
+      var movieResultsarr = movieResults[i];
 
-  var movieImageEl = document.createElement('div');
-  var movieTitle = document.createElement('span');
-  movieTitle.textContent = movieResultsarr.title;
-  movieImageEl.append(movieTitle);
+      //create image element
+      var movieImage = document.createElement('img');
+      // set the source of the image
+      movieImage.setAttribute('src', movieResultsarr.image + '@2x.png');
+      // movieImage.classList.add('movie-image');
+      //append image to the movie section
+      movieSectionEl.append(movieImage);
 
-  var movieDate = document.createElement('span');
-  movieDate.textContent = movieResultsarr.description;
-  movieImageEl.append(movieDate);
+      var movieImageEl = document.createElement('div');
+      var movieTitle = document.createElement('span');
+      movieTitle.textContent = movieResultsarr.title;
+      movieImageEl.append(movieTitle);
 
-  movieSectionEl.append(movieImageEl);
-  }
-    } else {
-      invalidMovie();
+      var movieDate = document.createElement('span');
+      movieDate.textContent = movieResultsarr.description;
+      movieImageEl.append(movieDate);
+
+      movieSectionEl.append(movieImageEl);
     }
-  } 
-
+  } else {
+    invalidMovie();
+  }
+};
 
 // API CALLS END
 
-
 // Function if you are unable to connect
 var connectIssue = function () {
-  errorEl.textContent = "Unable to connect.";
-  errorEl.style.color = "red";
+  errorEl.textContent = 'Unable to connect.';
+  errorEl.style.color = 'red';
 };
 
 // POPULATING ELEMENTS
@@ -234,7 +229,7 @@ var getActorId = function (name) {
 // Call a new fetch function to get actor information
 var actorInfo = function (actorId) {
   // Call api for actor information
-  var apiUrl = "https://imdb-api.com/en/API/Name/k_vc5wkpr4/" + actorId;
+  var apiUrl = 'https://imdb-api.com/en/API/Name/k_vc5wkpr4/' + actorId;
 
   fetch(apiUrl)
     .then(function (response) {
@@ -255,7 +250,7 @@ var actorInfo = function (actorId) {
 // Function to display the actors information
 var showActorInfo = function (actorId) {
   // clear old content
-  actorEl.innerHTML = "";
+  actorEl.innerHTML = '';
   // clear list item elements
   knownForEl.innerHTML = '';
   // clear the actor subtitle section
@@ -385,7 +380,8 @@ buttonEL.addEventListener('click', function (event) {
     // run getNameSearch() and searchShow() function
     getNameSearch(name);
     searchShow(name);
-
+    // searchShow(name);
+    getMovieSearch(name);
     // save item to local storage
     localStorage.setItem('search-result', JSON.stringify(name));
   } else {
