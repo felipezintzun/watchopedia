@@ -394,11 +394,22 @@ buttonEL.addEventListener('click', function (event) {
 var formEl = document.querySelector("#title-form");
 var titlesToWatchEl = document.querySelector("#titles-to-watch");
 
-var createTitleHandler = function (event) {
+var titleFormHandler = function(event) {
   event.preventDefault();
   var titleNameInput = document.querySelector("input[name='title-name']").value;
   var titleTypeInput = document.querySelector("select[name='title-type']").value;
 
+  // package up data as an object
+  var titleDataObj = {
+      name: titleNameInput,
+      type: titleTypeInput
+  };
+
+  // send it as an argument to createTaskEl
+  createTitleEl(titleDataObj);
+};
+
+var createTitleEl = function (titleDataObj) {
   // create list item
   var listItemEl = document.createElement("li");
   listItemEl.className = "title-item";
@@ -406,13 +417,12 @@ var createTitleHandler = function (event) {
   // create div to hold task info and add to list item
   var titleInfoEl = document.createElement("div");
   titleInfoEl.className = "title-info";
-
-  // add HTML content to div
-  titleInfoEl.innerHTML = "<h3 class='title-name'>" + titleNameInput + "</h3><span class='title-type'>" + titleTypeInput + "</span>";
+  titleInfoEl.innerHTML = "<h3 class='title-name'>" + titleDataObj.name + "</h3><span class='title-type'>" + titleDataObj.type + "</span>";
   listItemEl.appendChild(titleInfoEl);
 
   // add entire list item to list
   titlesToWatchEl.appendChild(listItemEl);
 };
 
-formEl.addEventListener("submit", createTitleHandler);
+formEl.addEventListener("submit", titleFormHandler);
+//WATCH LATER LIST END
