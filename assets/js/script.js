@@ -237,18 +237,3 @@ function renderResults(results) {
     list.appendChild(element);
   });
 }
-
-//FUNCTION TO ADD TITLES TO A WATCH LATER LIST
-var formEl = document.querySelector("#title-form"); 
-var titlesToWatchEl = document.querySelector("#titles-to-watch"); 
-
-var createTitleHandler = function(event) { 
-  event.preventDefault(); 
-
-  var listItemEl = document.createElement("li"); 
-  listItemEl.className = "title-item"; 
-  listItemEl.textContent = "This is a new title."; 
-  titlesToWatchEl.appendChild(listItemEl); 
-  }; 
-
-  formEl.addEventListener("submit", createTitleHandler);
