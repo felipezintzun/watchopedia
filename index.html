@@ -27,10 +27,10 @@
           </h1>
           <!-- NAV BAR START  -->
           <nav>
-            <ul class="menu">
-              <li class="item"><a href="#">Movies</a></li>
-              <li class="item"><a href="#">TVShows</a></li>
-              <li class="item"><a href="#">Actors</a></li>
+            <ul class="menu header-title m-2 p-4 is-size-3">
+              <li class="itemNav"><a href="#">Movies</a></li>
+              <li class="itemNav"><a href="#">TVShows</a></li>
+              <li class="itemNav"><a href="#">Actors</a></li>
             </ul>
           </nav>
           <!-- NAV BAR END -->
@@ -67,15 +67,22 @@
     </header>
 
     <main>
+
       <!-- MOVIE SECTION STARTS -->
-      <section class="movie" id="movie-section">
-        <div class="flex-row">
-          <h2 class="section-title">Movies</h2>
+      <section class="movie hide" id="movie-section">
+        <h2 class="section-title">Movies</h2>
+        <div
+          class="flex-row is-size-4-touch is-size-2-tablet has-text-centered"
+          id="movie"
+        >
+          <h3 class="movie-title"></h3>
         </div>
-        <div class="flex-row">
-          <p>Movie Recommendations Go Here</p>
+        <div class="flex-row is-justify-content-space-evenly">
+          <!-- Shows and movies for an actor populate here -->
+          <ul id="movie-results"></ul>
         </div>
       </section>
+
       <!-- SHOW SECTION STARTS -->
       <section id="show-section" >
         <h2>Shows Populates below</h2>
@@ -108,6 +115,8 @@
     </main>
 
     <!-- LINK JAVASCRIPT PAGE -->
+    
+
     <script src="assets/js/script.js"></script>
   </body>
 </html>
