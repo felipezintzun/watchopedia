@@ -46,7 +46,7 @@ function searchShow(query) {
         for (let i = 0; i < jsonData.length; i++) {
           // jsonData.forEach(element => {
           let element = jsonData[i];
-          htmlCode += `<div class="card is-flex-column is-justify-content-space-between"> 
+          htmlCode += `<div class="card is-flex-column is-justify-content-space-between" id="tvnav"> 
           <div class="section-title"> ${showTitle} </div>
         <div class="card-image">
           <figure class="image is-4by3">
