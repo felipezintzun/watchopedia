@@ -106,7 +106,7 @@ form label {
 /* SHOW SECTION STYLES START */
 
 .card {
-  min-width: 100%;
+  max-width: 100%;
   background: var(--bg-card);
   color: var(--primary-card);
   border-radius: 20px;
