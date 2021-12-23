@@ -169,6 +169,13 @@ a:focus {
   margin: 1vw 0.2vw 0.2vw 0.2vw;
 }
 
+/* WATCH LATER SECTION STYLING */
+form {
+  display: flex;
+  align-items: flex-end;
+  flex-wrap: wrap;
+}
+
 /* FOOTER STYLE START */
 footer {
   text-align: right;
