@@ -24,17 +24,15 @@
             Watchopedia
           </h1>
           <!-- NAV BAR START  -->
-          <nav>
-            <ul class="menu header-title m-2 p-4 is-size-3">
-              <li class="itemNav"><a href="#">Movies</a></li>
-              <li class="itemNav"><a href="#">TVShows</a></li>
-              <li class="itemNav"><a href="#">Actors</a></li>
-            </ul>
-          </nav>
+          <div class="topnav menu header-title m-2 p-4 is-size-3">
+              <a href="#movies">Movies</a></li>
+              <a href="#tvshows">TVShows</a></li>
+              <a href="#actors">Actors</a></li>
+          </div>
           <!-- NAV BAR END -->
           <!-- SEARCH BOX START -->
           <div class="search-form m-2 p-4 is-size-6">
-            <form class="align-items-flex-end" id="search-form">
+            <form id="search-form">
               <label for="search">
                 Search by movie, television show, or actor
               </label>
@@ -83,13 +81,9 @@
     <main>
 
       <!-- MOVIE SECTION STARTS -->
-      <section class="movie hide" id="movie-section">
-        <h2 class="section-title">Movies</h2>
-        <div
-          class="flex-row is-size-4-touch is-size-2-tablet has-text-centered"
-          id="movie"
-        >
-          <h3 class="movie-title"></h3>
+      <section class="movie is-medium" id="movie-section">
+        <div class="flex-row">
+          <h2 class="section-title">Movies</h2>
         </div>
         <div class="flex-row is-justify-content-space-evenly">
           <!-- Shows and movies for an actor populate here -->
@@ -99,11 +93,16 @@
 
       <!-- SHOW SECTION STARTS -->
 <<<<<<< HEAD
+<<<<<<< HEAD
       <section id="show-section" >
+=======
+      <section class="is-medium" id="show-section">
+>>>>>>> feature/css-test
         <h2>Shows Populates below</h2>
         <div class="card">
           <article id="resultsList"></article>
         </div>
+<<<<<<< HEAD
         
 =======
       <section class="section hide" id="show-section">
@@ -121,6 +120,12 @@
           <h3 class="actor-title" id="actor-title"></h3>
 =======
       <section class="actor hide" id="actor-section">
+=======
+      </section>
+
+      <!-- ACTOR SECTION -->
+      <section class="actor is-medium">
+>>>>>>> feature/css-test
         <h2 class="section-title">Actor Information</h2>
         <div
           class="flex-row is-size-4-touch is-size-2-tablet has-text-centered"
