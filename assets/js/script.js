@@ -393,14 +393,26 @@ buttonEL.addEventListener('click', function (event) {
 //FUNCTION TO ADD TITLES TO A WATCH LATER LIST
 var formEl = document.querySelector("#title-form");
 var titlesToWatchEl = document.querySelector("#titles-to-watch");
- 
-var createTitleHandler = function(event) {
+
+var createTitleHandler = function (event) {
   event.preventDefault();
- 
+  var titleNameInput = document.querySelector("input[name='title-name']").value;
+  var titleTypeInput = document.querySelector("select[name='title-type']").value;
+
+  // create list item
   var listItemEl = document.createElement("li");
   listItemEl.className = "title-item";
-  listItemEl.textContent = "This is a new title.";
+
+  // create div to hold task info and add to list item
+  var titleInfoEl = document.createElement("div");
+  titleInfoEl.className = "title-info";
+
+  // add HTML content to div
+  titleInfoEl.innerHTML = "<h3 class='title-name'>" + titleNameInput + "</h3><span class='title-type'>" + titleTypeInput + "</span>";
+  listItemEl.appendChild(titleInfoEl);
+
+  // add entire list item to list
   titlesToWatchEl.appendChild(listItemEl);
-  };
- 
-  formEl.addEventListener("submit", createTitleHandler);
+};
+
+formEl.addEventListener("submit", createTitleHandler);
