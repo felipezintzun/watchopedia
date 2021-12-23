@@ -1,5 +1,9 @@
 /* GENERAL STYLES */
 /* Colors */
+html {
+  background-image: linear-gradient(to bottom right, #5ab9ea, #8860d0);
+}
+
 :root {
   --border-black: #131111;
   --bg-black: #000000;
@@ -29,39 +33,49 @@ section {
 
 /* HEADER STYLES START */
 header {
-  min-height: 30vh;
-  background-image: url('../images/receiver-pile.jpg');
-  background-size: contain;
-  background-position: center;
+  /* min-height: 30vh; */
+  background-image: url('../images/watchopedia-stream.svg');
+  /* background-size: contain; */
+  background-repeat:no-repeat;
+  background-position: right;
 }
 
 .header-title {
   font-weight: bolder;
-  border-radius: 1rem;
-  background-color: var(--bg-white);
-  color: var(--primary-black);
+  /* border-radius: 1rem; */
+  /* background-color: var(--bg-white); */
+  color: white;
 }
 
-/* Nav Bar*/
-nav {
+/* NAV STYLES START */
+/* nav {
   padding: 0 15px;
-}
+  background-image: linear-gradient(to right, #8860d0, #5680e9);
+} */
 
 a {
-  color: var(--primary-black);
-  text-decoration: none;
+  /* color: var(--primary-black);
+  text-decoration: none; */
   cursor: pointer;
 }
 
-.itemNav{
-width: 100%;
-text-align: center;
-width: auto;
-display: block;
-position: relative;
-border-radius: 1rem;
-background-color: var(--bg-white);
-color: var(--primary-black);
+.topnav {
+  overflow: hidden;
+  background-color: #333;
+}
+
+.topnav a {
+  float: left;
+  color: #f2f2f2;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+  font-size: 17px;
+}
+
+.topnav a:hover {
+  /* background-color: #ddd; */
+  color: black;
 }
 
 /* Form */
@@ -70,6 +84,8 @@ color: var(--primary-black);
   font-weight: 500;
   font-style: italic;
   text-align: left;
+  display: flex;
+  flex-wrap: wrap;
   border-radius: 1rem;
   background-color: var(--bg-white);
   color: var(--primary-black);
@@ -228,7 +244,7 @@ footer {
   width: 100%;
   height: 90px;
   padding: 20px;
-  background: var(--bg-black);
+  /* background: var(--bg-black); */
   color: var(--primary-white);
 }
 /* FOOTER STYLE END */

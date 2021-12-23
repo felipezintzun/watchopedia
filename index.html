@@ -26,17 +26,15 @@
             Watchopedia
           </h1>
           <!-- NAV BAR START  -->
-          <nav>
-            <ul class="menu header-title m-2 p-4 is-size-3">
-              <li class="itemNav"><a href="#">Movies</a></li>
-              <li class="itemNav"><a href="#">TVShows</a></li>
-              <li class="itemNav"><a href="#">Actors</a></li>
-            </ul>
-          </nav>
+          <div class="topnav menu header-title m-2 p-4 is-size-3">
+              <a href="#movies">Movies</a></li>
+              <a href="#tvshows">TVShows</a></li>
+              <a href="#actors">Actors</a></li>
+          </div>
           <!-- NAV BAR END -->
           <!-- SEARCH BOX START -->
           <div class="search-form m-2 p-4 is-size-6">
-            <form class="align-items-flex-end" id="search-form">
+            <form id="search-form">
               <label for="search">
                 Search by movie, television show, or actor
               </label>
@@ -68,7 +66,7 @@
 
     <main>
       <!-- MOVIE SECTION STARTS -->
-      <section class="movie" id="movie-section">
+      <section class="movie is-medium" id="movie-section">
         <div class="flex-row">
           <h2 class="section-title">Movies</h2>
         </div>
@@ -77,14 +75,14 @@
         </div>
       </section>
       <!-- SHOW SECTION STARTS -->
-      <section id="show-section" >
+      <section class="is-medium" id="show-section">
         <h2>Shows Populates below</h2>
         <div class="card">
           <article id="resultsList"></article>
         </div>
       </section>
       <!-- ACTOR SECTION -->
-      <section class="actor">
+      <section class="actor is-medium">
         <h2 class="section-title">Actor Information</h2>
         <div
           class="flex-row is-size-4-touch is-size-2-tablet has-text-centered"
