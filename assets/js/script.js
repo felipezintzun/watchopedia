@@ -108,26 +108,21 @@ var showMovieInfo = function (movieId) {
   //clear old content
   movieSectionEl.innerHTML = '';
   movieResultsEl.innerHTML = '';
-
-  //define movie name
+  
+  if (movieId) {
+    movieSectionEl.classList.remove('hide');
   
 
-//style movie section
-
-
-
-  
-debugger;
   var movieResults = movieId.results;
 
   for (var i = 0; i < movieResults.length; i++) {
    var movieResultsarr = movieResults[i];
   
-    var movieId = movieResultsarr.image;
+  
    //create image element
   var movieImage = document.createElement('img');
   // set the source of the image
-  movieImage.setAttribute('src', movieId.image + '@2x.png');
+  movieImage.setAttribute('src', movieResultsarr.image + '@2x.png');
   // movieImage.classList.add('movie-image');
   //append image to the movie section
   movieSectionEl.append(movieImage);
@@ -142,13 +137,12 @@ debugger;
   movieImageEl.append(movieDate);
 
   movieSectionEl.append(movieImageEl);
-
   }
+    } else {
+      invalidMovie();
+    }
+  } 
 
-
-  
-  // 
-}
 
 // API CALLS END
 
