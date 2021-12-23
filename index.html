@@ -4,7 +4,9 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
     <title>Watchopedia</title>
+
     <!-- Link Bulma CSS -->
     <link
       rel="stylesheet"
@@ -13,6 +15,7 @@
     <!-- Link CSS Stylesheet -->
     <link href="assets/css/style.css" rel="stylesheet" />
   </head>
+
   <body>
     <header>
       <!-- HERO START -->
@@ -84,24 +87,21 @@
       </section>
 
       <!-- SHOW SECTION STARTS -->
-      <section id="show-section" >
-        <h2>Shows Populates below</h2>
-        <div class="card">
-          <article id="resultsList"></article>
-        </div>
+      <section class="section hide" id="show-section">
+        <article class="is-flex" id="resultsList"></article>
       </section>
+
       <!-- ACTOR SECTION -->
-      <section class="actor">
+      <section class="actor hide" id="actor-section">
         <h2 class="section-title">Actor Information</h2>
         <div
           class="flex-row is-size-4-touch is-size-2-tablet has-text-centered"
-          id="actor-section"
+          id="actor"
         >
-          <h3 class="actor-title" id="actor-title"></h3>
+          <h3 class="actor-subtitle" id="actor-subtitle"></h3>
         </div>
         <div class="flex-row is-justify-content-space-evenly">
           <!-- Shows and movies for an actor populate here -->
-          <p id="actor-results"></p>
           <ul id="known-for"></ul>
         </div>
       </section>

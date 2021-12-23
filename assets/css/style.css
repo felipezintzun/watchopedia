@@ -2,10 +2,14 @@
 /* Colors */
 :root {
   --border-black: #131111;
+  --border-section: #7a7a7a;
+  --bg-nav: #222;
+  --bg-card: #eae7dc;
+  --bg-oddSection: #d3d3d3;
+  --bg-sectionTitle: #9ddadf;
   --bg-black: #000000;
   --bg-white: rgb(255, 255, 255, 0.8);
-  --bg-show: #7a7a7a;
-  --bg-nav: #222;
+  --primary-card: #8e8d8a;
   --primary-white: #f1f1f1;
   --primary-red: #ff0066;
   --primary-black: #000000;
@@ -16,15 +20,29 @@
   box-sizing: border-box;
 }
 
-/* Hide content */
-.hide {
-  display: none;
-}
-
 section {
   display: block;
   margin: 2vh;
   min-height: 25vw;
+}
+
+/* UTILITY CLASSES */
+/* Hide each section */
+.hide {
+  display: none;
+}
+
+/* Main titles for each section */
+.section-title {
+  font-size: 2vw;
+  font-weight: bold;
+  text-align: center;
+  padding: 1vw;
+  margin-bottom: 1.5vw;
+  border: 2px solid var(--border-section);
+  border-radius: 12px;
+  background: var(--bg-sectionTitle);
+  color: var(--bg-show);
 }
 
 /* HEADER STYLES START */
@@ -53,15 +71,15 @@ a {
   cursor: pointer;
 }
 
-.itemNav{
-width: 100%;
-text-align: center;
-width: auto;
-display: block;
-position: relative;
-border-radius: 1rem;
-background-color: var(--bg-white);
-color: var(--primary-black);
+.itemNav {
+  width: 100%;
+  text-align: center;
+  width: auto;
+  display: block;
+  position: relative;
+  border-radius: 1rem;
+  background-color: var(--bg-white);
+  color: var(--primary-black);
 }
 
 /* Form */
@@ -79,45 +97,19 @@ form label {
   font-weight: bold;
 }
 
-
 /* HEADER STYLES END */
 
-/* MOIVE SECTION STYLES START */
+/* MOVIE SECTION STYLES START */
 .movie {
-  background: #d3d3d3;
-  height: 120px;
+  background: var(--bg-oddSection);
 }
 /* SHOW SECTION STYLES START */
 
-article {
-  display: flex;
-}
-
-.show {
-  background: #9ddadf;
-  height: 120px;
-}
-
-.section-title {
-  font-weight: bold;
-  font-size: 2vw;
-  text-align: center;
-  padding: 1vw;
-}
-
 .card {
-  width: 100%;
-  margin: 20px;
-  justify-content: space-between;
-  flex-direction: row;
-  background: #eae7dc;
-  color: #8e8d8a;
+  max-width: 100%;
+  background: var(--bg-card);
+  color: var(--primary-card);
   border-radius: 20px;
-}
-
-.show-section {
-  display: flex;
-  flex-direction: row;
 }
 
 a:hover,
@@ -147,32 +139,13 @@ a:focus {
 .menu li a {
   display: block;
   padding: 15px 5px;
- 
-
 }
-
-/* Form */
-.search-form {
-  width: 30%;
-  font-weight: 500;
-  font-style: italic;
-  text-align: left;
-  border-radius: 1rem;
-  background-color: var(--bg-white);
-  color: var(--primary-black);
-}
-
-form label {
-  font-weight: bold;
-}
-/* HEADER STYLES END */
-
-
+/* SHOW SECTION END */
 
 /* ACTOR SECTION STARTS */
 /* Style the actor section */
 .actor {
-  background: #d3d3d3;
+  background: var(--bg-oddSection);
   height: 120px;
 }
 
@@ -184,7 +157,7 @@ form label {
 }
 
 /* Actor title */
-.actor-title {
+.actor-subtitle {
   font-size: 1.5vw;
 }
 
