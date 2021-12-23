@@ -399,6 +399,27 @@ var titleFormHandler = function(event) {
   var titleNameInput = document.querySelector("input[name='title-name']").value;
   var titleTypeInput = document.querySelector("select[name='title-type']").value;
 
+  // check if inputs are empty (validate)
+  if (taskNameInput === "" || taskTypeInput === "") {
+    alert("You need to fill out the task form!");
+    return false;
+  }
+    
+  formEl.reset();
+  
+  // reset form fields for next task to be entered
+  document.querySelector("input[name='task-name']").value = "";
+  document.querySelector("select[name='task-type']").selectedIndex = 0;
+  
+  var taskDataObj = {
+    name: taskNameInput,
+    type: taskTypeInput
+  };
+  
+  createTaskEl(taskDataObj);
+};
+
+
   // package up data as an object
   var titleDataObj = {
       name: titleNameInput,
