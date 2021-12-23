@@ -105,7 +105,7 @@ var getNameSearch = function (name) {
 
 //fetch movie
 var getMovieSearch = function (name) {
-  var movieUrl = 'https://imdb-api.com/en/API/SearchMovie/k_xqqyxw1f/' + name;
+  var movieUrl = 'https://imdb-api.com/en/API/SearchMovie/k_oc2s3xpt/' + name;
 
   fetch(movieUrl)
     .then(function (response) {
@@ -144,7 +144,7 @@ var getMovieId = function (name) {
 var movieInfo = function (movieId) {
   // call api for movie info
   var movieUrl =
-    'https://imdb-api.com/en/API/SearchMovie/k_xqqyxw1f/' + movieId;
+    'https://imdb-api.com/en/API/SearchMovie/k_oc2s3xpt/' + movieId;
 
   fetch(movieUrl)
     .then(function (response) {

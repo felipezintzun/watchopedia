@@ -103,6 +103,14 @@ form label {
 .movie {
   background: var(--bg-oddSection);
 }
+
+.movie-image {
+  max-height: 30vh;
+  position: absolute;
+  left: 10vw;
+}
+/*MOVIE SECTION ENDS */
+
 /* SHOW SECTION STYLES START */
 
 .card {
