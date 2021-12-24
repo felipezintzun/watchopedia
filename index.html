@@ -8,10 +8,7 @@
     <title>Watchopedia</title>
 
     <!-- Link Bulma CSS -->
-    <link
-      rel="stylesheet"
-      href="https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css"
-    />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css">
     <!-- Link CSS Stylesheet -->
     <link href="assets/css/style.css" rel="stylesheet" />
   </head>
@@ -26,6 +23,12 @@
           </div>
       <!-- HERO START -->
       <div class="hero">
+<<<<<<< HEAD
+=======
+        <section
+          class="is-flex is-justify-content-space-between is-align-items-flex-start"
+        >
+>>>>>>> develop
           <h1 class="header-title m-2 p-4 is-size-1 is-size-5-touch">
         
           </h1>
@@ -42,7 +45,7 @@
                 id="search"
                 list="watch"
                 name="watch"
-                placeholder="actor, movie, or show"
+                placeholder="Tom Hanks"
                 autocomplete="on"
                 autofocus
               />
@@ -56,6 +59,22 @@
               <!-- Place for error messages -->
               <div id="error"></div>
             </form>
+          <form>
+            <label for="search-here">
+              Search by movie, television show, or actor
+            </label>
+            <br />
+            <input type= "text" id="see" placeholder="Show Name"/>
+            <!-- Dynamically populate the datalist options with APIs-->
+            <datalist id="watch">
+              <option value="test"></option>
+            </datalist>
+            <div class="search-button">
+              <button id="search-b">
+                <h2>SEARCH</h2>
+              </button>
+            </div>
+          </form>
           </div>
           <!-- SEARCH BOX END -->
 
@@ -81,18 +100,56 @@
       </section>
 
       <!-- SHOW SECTION STARTS -->
+<<<<<<< HEAD
       <section class="section hide" id="show-section">
         <article class="is-flex" id="resultsList"></article>
       </section>
 
       <!-- ACTOR SECTION -->
       <section class="actor hide" id="actor-section">
+=======
+<<<<<<< HEAD
+<<<<<<< HEAD
+      <section id="show-section" >
+=======
+      <section class="is-medium" id="show-section">
+>>>>>>> feature/css-test
+        <h2>Shows Populates below</h2>
+        <div class="card">
+          <article id="resultsList"></article>
+        </div>
+<<<<<<< HEAD
+        
+=======
+      <section class="section hide" id="show-section">
+        <article class="is-flex" id="resultsList"></article>
+>>>>>>> 6f9f461f0f15b71ae7f56e4930489901ac34ed45
+      </section>
+
+      <!-- ACTOR SECTION -->
+<<<<<<< HEAD
+      <section class="actor" id="actor-section">
+        <div
+          class="flex-row is-size-4-touch is-size-2-tablet has-text-centered"
+        >
+          <h2>Actor Information</h2>
+          <h3 class="actor-title" id="actor-title"></h3>
+=======
+      <section class="actor hide" id="actor-section">
+=======
+      </section>
+
+      <!-- ACTOR SECTION -->
+      <section class="actor is-medium">
+>>>>>>> feature/css-test
+>>>>>>> develop
         <h2 class="section-title">Actor Information</h2>
         <div
           class="flex-row is-size-4-touch is-size-2-tablet has-text-centered"
           id="actor"
         >
           <h3 class="actor-subtitle" id="actor-subtitle"></h3>
+>>>>>>> 6f9f461f0f15b71ae7f56e4930489901ac34ed45
         </div>
         <div class="flex-row is-justify-content-space-evenly">
           <!-- Shows and movies for an actor populate here -->
@@ -104,7 +161,7 @@
       <footer>
         <h2>Made by Watchopedia.</h2>
         <div>&copy; 2021 Watchopedia, Inc.</div>
-      </footer>
+      </footer> 
       <!-- FOOTER ENDS -->
     </main>
 
