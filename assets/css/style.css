@@ -1,0 +1,188 @@
+/* GENERAL STYLES */
+/* Colors */
+:root {
+  --border-black: #131111;
+  --border-section: #7a7a7a;
+  --bg-nav: #222;
+  --bg-card: #eae7dc;
+  --bg-oddSection: #d3d3d3;
+  --bg-sectionTitle: #9ddadf;
+  --bg-black: #000000;
+  --bg-white: rgb(255, 255, 255, 0.8);
+  --primary-card: #8e8d8a;
+  --primary-white: #f1f1f1;
+  --primary-red: #ff0066;
+  --primary-black: #000000;
+}
+
+/* Margin and padding are included in element's width and height */
+* {
+  box-sizing: border-box;
+}
+
+html body {
+  min-height: 100vh;
+}
+
+/* UTILITY CLASSES */
+/* Hide each section */
+.hide {
+  display: none;
+}
+
+/* Main titles for each section */
+.section-title {
+  font-size: 2vw;
+  font-weight: bold;
+  text-align: center;
+  padding: 1vw;
+  margin-bottom: 1.5vw;
+  border: 2px solid var(--border-section);
+  border-radius: 12px;
+  background: var(--bg-sectionTitle);
+  color: var(--bg-show);
+}
+
+/* HEADER STYLES START */
+header {
+  min-height: 30vh;
+  background-image: url('../images/receiver-pile.jpg');
+  background-size: contain;
+  background-position: center;
+}
+
+.header-title {
+  font-weight: bolder;
+  border-radius: 1rem;
+  background-color: var(--bg-white);
+  color: var(--primary-black);
+}
+
+/* Nav Bar*/
+nav {
+  padding: 0 15px;
+}
+
+a {
+  color: var(--primary-black);
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.itemNav {
+  width: 100%;
+  text-align: center;
+  width: auto;
+  display: block;
+  position: relative;
+  border-radius: 1rem;
+  background-color: var(--bg-white);
+  color: var(--primary-black);
+}
+
+/* Form */
+.search-form {
+  width: 30%;
+  font-weight: 500;
+  font-style: italic;
+  text-align: left;
+  border-radius: 1rem;
+  background-color: var(--bg-white);
+  color: var(--primary-black);
+}
+
+form label {
+  font-weight: bold;
+}
+
+/* HEADER STYLES END */
+
+/* MOVIE SECTION STYLES START */
+.movie {
+  background: var(--bg-oddSection);
+}
+/* SHOW SECTION STYLES START */
+.show {
+  margin: 2vh;
+  min-height: 25vw;
+}
+
+.card {
+  max-width: 100%;
+  background: var(--bg-card);
+  color: var(--primary-card);
+  border-radius: 20px;
+  padding: 0.5vw 0 5vw 0;
+}
+
+a:hover,
+a:focus {
+  color: var(--primary-red);
+}
+
+.item {
+  padding: 50px 15px 5px 15px;
+  width: 100%;
+  text-align: center;
+  width: auto;
+  display: block;
+  position: relative;
+  border-radius: 1rem;
+  background-color: var(--bg-white);
+  color: var(--primary-black);
+}
+.menu {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  padding: 5px;
+  background: none;
+}
+.menu li a {
+  display: block;
+  padding: 15px 5px;
+}
+/* SHOW SECTION END */
+
+/* ACTOR SECTION STARTS */
+/* Style the actor section */
+.actor {
+  background: var(--bg-oddSection);
+  height: 120px;
+  margin: 2vh;
+  min-height: 25vw;
+}
+
+/* Actor image */
+.actor-image {
+  max-height: 30vh;
+  position: absolute;
+  left: 10vw;
+}
+
+/* Actor title */
+.actor-subtitle {
+  font-size: 1.5vw;
+}
+
+/* Actor known for styling */
+.known-list {
+  font-weight: bold;
+  font-size: 1.4vw;
+  font-style: italic;
+  margin: 1vw 0.2vw 0.2vw 0.2vw;
+}
+
+/* FOOTER STYLE START */
+footer {
+  text-align: right;
+  width: 100%;
+  height: 90px;
+  padding: 20px;
+  background: var(--bg-black);
+  color: var(--primary-white);
+  position: fixed;
+  bottom: 0;
+}
+/* FOOTER STYLE END */

@@ -4,10 +4,119 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
     <title>Watchopedia</title>
+
+    <!-- Link Bulma CSS -->
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css"
+    />
+    <!-- Link CSS Stylesheet -->
     <link href="assets/css/style.css" rel="stylesheet" />
   </head>
+
   <body>
+    <header>
+      <!-- HERO START -->
+      <div class="hero">
+        <section
+          class="
+            is-flex is-justify-content-space-between is-align-items-flex-start
+          "
+        >
+          <h1 class="header-title m-2 p-4 is-size-1 is-size-5-touch">
+            Watchopedia
+          </h1>
+          <!-- NAV BAR START  -->
+          <nav>
+            <ul class="menu header-title m-2 p-4 is-size-3">
+              <li class="itemNav"><a href=#moviesnav>Movies</a></li>
+              <li class="itemNav"><a href=#tvshowsnav>TVShows</a></li>
+              <li class="itemNav"><a href=#actorsnav>Actors</a></li>
+            </ul>
+          </nav>
+          <!-- NAV BAR END -->
+          <!-- SEARCH BOX START -->
+          <div class="search-form m-2 p-4 is-size-6">
+            <form class="align-items-flex-end" id="search-form">
+              <label for="search">
+                Search by movie, television show, or actor
+              </label>
+              <br />
+              <input
+                id="search"
+                list="watch"
+                name="watch"
+                placeholder="actor, movie, or show"
+                autocomplete="on"
+                autofocus
+              />
+              <!-- Dynamically populate the datalist options with APIs-->
+              <datalist id="watch"> </datalist>
+              <div class="search-button">
+                <button id="searchBtn">
+                  <h2>SEARCH</h2>
+                </button>
+              </div>
+              <!-- Place for error messages -->
+              <div id="error"></div>
+            </form>
+          </div>
+          <!-- SEARCH BOX END -->
+        </section>
+        <!-- HERO END -->
+      </div>
+    </header>
+
+    <main>
+
+      <!-- MOVIE SECTION STARTS -->
+      <section class="movie hide" id="movie-section">
+        <h2 class="section-title">Movies</h2>
+        <div
+          class="flex-row is-size-4-touch is-size-2-tablet has-text-centered"
+          id="movie"
+        >
+          <h3 class="movie-title"></h3>
+        </div>
+        <div class="flex-row is-justify-content-space-evenly" id="moviesnav">
+          <!-- Shows and movies for an actor populate here -->
+          <ul id="movie-results"></ul>
+        </div>
+      </section>
+
+      <!-- SHOW SECTION STARTS -->
+      <section class="section hide" id="show-section">
+        <article class="is-flex" id="resultsList"></article>
+      </section>
+
+      <!-- ACTOR SECTION -->
+      <section class="actor hide" id="actor-section">
+        <h2 class="section-title">Actor Information</h2>
+        <div
+          class="flex-row is-size-4-touch is-size-2-tablet has-text-centered"
+          id="actor"
+        >
+          <h3 class="actor-subtitle" id="actor-subtitle"></h3>
+        </div>
+        <div class="flex-row is-justify-content-space-evenly" id="actorsnav">
+          <!-- Shows and movies for an actor populate here -->
+          <ul id="known-for"></ul>
+        </div>
+      </section>
+
+      <!-- FOOTER STARTS -->
+      <footer>
+        <h2>Made by Watchopedia.</h2>
+        <div>&copy; 2021 Watchopedia, Inc.</div>
+      </footer>
+      <!-- FOOTER ENDS -->
+    </main>
+
+    <!-- LINK JAVASCRIPT PAGE -->
+    
+
     <script src="assets/js/script.js"></script>
   </body>
 </html>
