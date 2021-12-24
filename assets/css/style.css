@@ -20,10 +20,8 @@
   box-sizing: border-box;
 }
 
-section {
-  display: block;
-  margin: 2vh;
-  min-height: 25vw;
+html body {
+  min-height: 100vh;
 }
 
 /* UTILITY CLASSES */
@@ -104,12 +102,17 @@ form label {
   background: var(--bg-oddSection);
 }
 /* SHOW SECTION STYLES START */
+.show {
+  margin: 2vh;
+  min-height: 25vw;
+}
 
 .card {
   max-width: 100%;
   background: var(--bg-card);
   color: var(--primary-card);
   border-radius: 20px;
+  padding: 0.5vw 0 5vw 0;
 }
 
 a:hover,
@@ -147,6 +150,8 @@ a:focus {
 .actor {
   background: var(--bg-oddSection);
   height: 120px;
+  margin: 2vh;
+  min-height: 25vw;
 }
 
 /* Actor image */
@@ -169,24 +174,6 @@ a:focus {
   margin: 1vw 0.2vw 0.2vw 0.2vw;
 }
 
-/*WATCH LATER LIST STYLE START */
-
-.watch-list-wrapper {
-  flex: 1;
-  margin: 0 20px 20px;
-}
-
-.watch-list {
-  list-style: none;
-  padding: 15px;
-  height: calc(100% - 50px);
-  background: var(--bg-oddSection);
-  border-radius: 12px;
-  border: 2px solid var(--border-section);
-}
-
-/* WATCH LATER STYLE END */
-
 /* FOOTER STYLE START */
 footer {
   text-align: right;
@@ -195,5 +182,7 @@ footer {
   padding: 20px;
   background: var(--bg-black);
   color: var(--primary-white);
+  position: fixed;
+  bottom: 0;
 }
 /* FOOTER STYLE END */
