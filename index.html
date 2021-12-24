@@ -31,9 +31,9 @@
           <!-- NAV BAR START  -->
           <nav>
             <ul class="menu header-title m-2 p-4 is-size-3">
-              <li class="itemNav"><a href="#">Movies</a></li>
-              <li class="itemNav"><a href="#">TVShows</a></li>
-              <li class="itemNav"><a href="#">Actors</a></li>
+              <li class="itemNav"><a href=#moviesnav>Movies</a></li>
+              <li class="itemNav"><a href=#tvshowsnav>TVShows</a></li>
+              <li class="itemNav"><a href=#actorsnav>Actors</a></li>
             </ul>
           </nav>
           <!-- NAV BAR END -->
@@ -80,7 +80,7 @@
         >
           <h3 class="movie-title"></h3>
         </div>
-        <div class="flex-row is-justify-content-space-evenly">
+        <div class="flex-row is-justify-content-space-evenly" id="moviesnav">
           <!-- Shows and movies for an actor populate here -->
           <ul id="movie-results"></ul>
         </div>
@@ -100,7 +100,7 @@
         >
           <h3 class="actor-subtitle" id="actor-subtitle"></h3>
         </div>
-        <div class="flex-row is-justify-content-space-evenly">
+        <div class="flex-row is-justify-content-space-evenly" id="actorsnav">
           <!-- Shows and movies for an actor populate here -->
           <ul id="known-for"></ul>
         </div>
