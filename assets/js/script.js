@@ -46,7 +46,7 @@ function searchShow(query) {
         for (let i = 0; i < jsonData.length; i++) {
           // jsonData.forEach(element => {
           let element = jsonData[i];
-          htmlCode += `<div class="card is-flex-column is-justify-content-space-between"> 
+          htmlCode += `<div class="card is-flex-column is-justify-content-space-between" id="tvshowsnav"> 
           <div class="section-title"> ${showTitle} </div>
         <div class="card-image">
           <figure class="image is-4by3">
@@ -83,7 +83,7 @@ function searchShow(query) {
 // Imbd API call to get actor id. Note: name parameter is defined as the input value
 // (Original key: k_vc5wkpr4)
 var getNameSearch = function (name) {
-  var apiUrl = 'https://imdb-api.com/en/API/SearchName/k_xqqyxw1f/' + name;
+  var apiUrl = 'https://imdb-api.com/en/API/SearchName/k_fx2tmjk8/' + name;
 
   fetch(apiUrl)
     .then(function (response) {
@@ -105,7 +105,7 @@ var getNameSearch = function (name) {
 
 //fetch movie
 var getMovieSearch = function (name) {
-  var movieUrl = 'https://imdb-api.com/en/API/SearchMovie/k_xqqyxw1f/' + name;
+  var movieUrl = 'https://imdb-api.com/en/API/SearchMovie/k_fx2tmjk8/' + name;
 
   fetch(movieUrl)
     .then(function (response) {
@@ -144,7 +144,7 @@ var getMovieId = function (name) {
 var movieInfo = function (movieId) {
   // call api for movie info
   var movieUrl =
-    'https://imdb-api.com/en/API/SearchMovie/k_xqqyxw1f/' + movieId;
+    'https://imdb-api.com/en/API/SearchMovie/k_0pdwjmyc/' + movieId;
 
   fetch(movieUrl)
     .then(function (response) {
@@ -229,7 +229,7 @@ var getActorId = function (name) {
 // Call a new fetch function to get actor information
 var actorInfo = function (actorId) {
   // Call api for actor information
-  var apiUrl = 'https://imdb-api.com/en/API/Name/k_vc5wkpr4/' + actorId;
+  var apiUrl = 'https://imdb-api.com/en/API/Name/k_fx2tmjk8/' + actorId;
 
   fetch(apiUrl)
     .then(function (response) {
