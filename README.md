@@ -1,6 +1,6 @@
 # watchopedia
 
-# description  
+# Description  
 I am a movie & tv show lover but I do not know what I want to watch. I open watchopedia and search by (actor, tv show, or movie). The website populates results of the search. I can save some of those titles to favorites. If I have no idea what I feel like watching the website has a featured section at the homepage.
 
 # Technologies Used
@@ -29,3 +29,6 @@ I am a movie & tv show lover but I do not know what I want to watch. I open watc
 - Ratings
 - Trending section
 - Upcoming movies and local showtimes
+
+# Link 
+https://felipezintzun.github.io/watchopedia/
