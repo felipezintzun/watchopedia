@@ -83,7 +83,7 @@ function searchShow(query) {
 // Imbd API call to get actor id. Note: name parameter is defined as the input value
 // (Original key: k_vc5wkpr4)
 var getNameSearch = function (name) {
-  var apiUrl = 'https://imdb-api.com/en/API/SearchName/k_0pdwjmyc/' + name;
+  var apiUrl = 'https://imdb-api.com/en/API/SearchName/k_fx2tmjk8/' + name;
 
   fetch(apiUrl)
     .then(function (response) {
@@ -105,7 +105,7 @@ var getNameSearch = function (name) {
 
 //fetch movie
 var getMovieSearch = function (name) {
-  var movieUrl = 'https://imdb-api.com/en/API/SearchMovie/k_0pdwjmyc/' + name;
+  var movieUrl = 'https://imdb-api.com/en/API/SearchMovie/k_fx2tmjk8/' + name;
 
   fetch(movieUrl)
     .then(function (response) {
@@ -229,7 +229,7 @@ var getActorId = function (name) {
 // Call a new fetch function to get actor information
 var actorInfo = function (actorId) {
   // Call api for actor information
-  var apiUrl = 'https://imdb-api.com/en/API/Name/k_0pdwjmyc/' + actorId;
+  var apiUrl = 'https://imdb-api.com/en/API/Name/k_fx2tmjk8/' + actorId;
 
   fetch(apiUrl)
     .then(function (response) {
