@@ -176,6 +176,58 @@ form {
   flex-wrap: wrap;
 }
 
+form input {
+  outline: none;
+  border: none;
+  padding: 12px;
+  width: 100%;
+  font-size: 2.2rem;
+  border: 2px solid var(--grey);
+  border-radius: 12px;
+}
+
+form .form-group {
+  margin: 10px 6px 10px 0;
+  flex: 1;
+}
+
+.title-list-wrapper {
+  flex: 1;
+  margin: 0 20px 20px;
+}
+
+.list-title {
+  color: var(--secondary);
+  font-size: 2.6rem;
+}
+
+.title-list {
+  list-style: none;
+  padding: 15px;
+  height: calc(100% - 50px);
+  /*background: rgb(196, 196, 196); */
+  border-radius: 12px;
+  border: 2px solid var(--grey);
+}
+.title-item {
+  color: var(--grey);
+  padding: 15px 15px;
+  border: 2px solid var(--grey);
+  background: var(--tertiary);
+  border-radius: 12px;
+  margin-bottom: 20px;
+}
+
+.title-name {
+  margin: 0;
+  font-size: 1.8rem;
+}
+
+.list-title {
+  color: var(--secondary);
+  font-size: 2.6rem;
+}
+
 /* FOOTER STYLE START */
 footer {
   text-align: right;
@@ -185,4 +237,5 @@ footer {
   background: var(--bg-black);
   color: var(--primary-white);
 }
+
 /* FOOTER STYLE END */
