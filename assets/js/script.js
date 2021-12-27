@@ -391,8 +391,13 @@ buttonEL.addEventListener('click', function (event) {
 /* EVENT LISTENERS END */
 
 //FUNCTION TO ADD TITLES TO A WATCH LATER LIST
+var titleIdCounter = 0;
+
 var formEl = document.querySelector("#title-form");
 var titlesToWatchEl = document.querySelector("#titles-to-watch");
+var titlesInProgressEl = document.querySelector("#titles-in-progress");
+var titlesCompletedEl = document.querySelector("#titles-watched");
+var watchlistContentEl = document.querySelector("#watchlist-content");
 
 var titleFormHandler = function(event) {
   event.preventDefault();
@@ -404,32 +409,41 @@ var titleFormHandler = function(event) {
     alert("You need to fill out the title form!");
     return false;
   }
-    
-  formEl.reset();
   
   // reset form fields for next task to be entered
   document.querySelector("input[name='title-name']").value = "";
   document.querySelector("select[name='title-type']").selectedIndex = 0;
-  
+ 
+  // check if task is new or one being edited by seeing if it has a data-task-id attribute
+  var isEdit = formEl.hasAttribute("data-title-id");
+
+  if (isEdit) {
+    var titleId = formEl.getAttribute("data-title-id");
+    completeEditTitle(titleNameInput, titleTypeInput, titleId);
+  } else {
   //package up data as an object
-  var titleDataObj = {
-    name: titleNameInput,
-    type: titleTypeInput
-  };
+    var titleDataObj = {
+      name: titleNameInput,
+      type: titleTypeInput
+    };
   
-  createTitleEl(titleDataObj);
+    createTitleEl(titleDataObj);
+  }
 };
 
 var createTitleEl = function (titleDataObj) {
   // create list item
   var listItemEl = document.createElement("li");
   listItemEl.className = "title-item";
+  listItemEl.setAttribute("data-title-id", titleIdCounter);
 
   // create div to hold task info and add to list item
   var titleInfoEl = document.createElement("div");
   titleInfoEl.className = "title-info";
   titleInfoEl.innerHTML = "<h3 class='title-name'>" + titleDataObj.name + "</h3><span class='title-type'>" + titleDataObj.type + "</span>";
   listItemEl.appendChild(titleInfoEl);
+
+  
 
   // add entire list item to list
   titlesToWatchEl.appendChild(listItemEl);
