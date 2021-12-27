@@ -465,9 +465,16 @@ var createTitleActions = function(titleId) {
   editButtonEl.setAttribute("data-title-id", titleId);
   actionContainerEl.appendChild(editButtonEl);
 
+  // create delete button
+  var deleteButtonEl = document.createElement("button");
+  deleteButtonEl.textContent = "Delete";
+  deleteButtonEl.className = "btn delete-btn";
+  deleteButtonEl.setAttribute("data-title-id", titleId);
+  actionContainerEl.appendChild(deleteButtonEl);
+
 
   // add entire list item to list
   //titlesToWatchEl.appendChild(listItemEl);
 
 formEl.addEventListener("submit", titleFormHandler);
-//WATCH LATER LIST END //
+//WATCH LATER LIST END
