@@ -472,6 +472,13 @@ var createTitleActions = function(titleId) {
   deleteButtonEl.setAttribute("data-title-id", titleId);
   actionContainerEl.appendChild(deleteButtonEl);
 
+  // create change status dropdown
+  var statusSelectEl = document.createElement("select");
+  statusSelectEl.setAttribute("name", "status-change");
+  statusSelectEl.setAttribute("data-title-id", titleId);
+  statusSelectEl.className = "select-status";
+  actionContainerEl.appendChild(statusSelectEl);
+
 
   // add entire list item to list
   //titlesToWatchEl.appendChild(listItemEl);
