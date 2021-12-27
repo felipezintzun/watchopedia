@@ -191,9 +191,30 @@ form .form-group {
   flex: 1;
 }
 
+.watchlist-title {
+  //*color: var(--primary);*//
+  margin-bottom: 5px;
+  margin-top: 0;
+  font-size: 4.5rem;
+}
+
+.watchlist-content {
+  flex: 1;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin: 25px auto;
+  width: 95%;
+}
+
 .title-list-wrapper {
   flex: 1;
   margin: 0 20px 20px;
+}
+
+.list-title {
+  /*color: var(--secondary);*/
+  font-size: 2.6rem;
 }
 
 .title-list {
@@ -205,10 +226,6 @@ form .form-group {
   border: 2px solid /*var(--grey)*/;
 }
 
-.list-title {
-  /* color: var(--secondary);*/
-  font-size: 2.6rem;
-}
 
 .title-item {
   /*color: var(--grey); */
@@ -224,15 +241,10 @@ form .form-group {
   /*font-size: 1.8rem; */
 }
 
-.list-title {
+.title-type {
   /*color: var(--secondary);*/
-  font-size: 2.6rem;
-}
-
-/*.tITLE-type {
-  color: var(--secondary);
   font-size: 1.55rem;
-} */
+}
 
 .title-actions {
   display: flex;
@@ -240,6 +252,11 @@ form .form-group {
   align-items: center;
   margin: 10px 0 5px 0;
   justify-content: space-between;
+}
+
+.title-actions button,
+.title-actions select {
+  flex: 1;
 }
 
 .btn {
@@ -254,6 +271,18 @@ form .form-group {
   top: -3px;
   box-shadow: 0 3px /*var(--grey)*/;
 }
+
+.btn:hover {
+  box-shadow: 0 2px /*var(--grey)*/;
+  top: -2px;
+}
+
+.btn:active {
+  box-shadow: 0 0px /*var(--grey)*/;
+  top: 0;
+}
+
+
 
 .select-dropdown,
 .select-status {
@@ -275,6 +304,8 @@ form .form-group {
   background-position: right 0.7em top 50%, 0 0;
   background-size: 0.65em auto, 100%;
 }
+
+
 /* WATCH LATER LIST STYLES END */
 
 /* FOOTER STYLE START */
