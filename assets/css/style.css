@@ -37,7 +37,7 @@ html body {
 
 /* Main titles for each section */
 .section-title {
-  font-size: 2vw;
+  font-size: 2.5vw;
   font-weight: bold;
   text-align: center;
   padding: 1vw;
@@ -176,9 +176,14 @@ a:focus {
   min-height: 25vw;
 }
 
+/* Actor image container */
+.actor-image-container {
+  max-height: 120px;
+}
+
 /* Actor image */
 .actor-image {
-  max-height: 30vh;
+  max-width: 10%;
   position: absolute;
   left: 10vw;
 }
@@ -191,9 +196,9 @@ a:focus {
 /* Actor known for styling */
 .known-list {
   font-weight: bold;
-  font-size: 1.4vw;
+  font-size: 2vw;
   font-style: italic;
-  margin: 1vw 0.2vw 0.2vw 0.2vw;
+  margin: 0.2vw;
 }
 
 /* FOOTER STYLE START */

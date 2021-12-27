@@ -10,7 +10,7 @@ var showSectionEl = document.getElementById('show-section');
 // Define the movie section
 var movieSectionEl = document.getElementById('movie-section');
 // Declare the container that holds the actor information
-var actorEl = document.getElementById('actor');
+var actorImageContainerEl = document.getElementById('actor-img-container');
 // Declare the actor subtitle
 var actorSubtitleEl = document.getElementById('actor-subtitle');
 // Declare the unordered list to list the movies/shows the actor is known for
@@ -28,7 +28,6 @@ var movieResultsEl = document.getElementById('movie-results');
 
 /* SHOW SECTION START */
 function searchShow(query) {
-  console.log(query);
   const url = `https://api.tvmaze.com/search/shows?q=${query}`;
   fetch(url).then((response) => {
     if (response.ok) {
@@ -164,7 +163,6 @@ var movieInfo = function (movieId) {
 
 // function to display movie info
 var showMovieInfo = function (movieId) {
-  console.log(movieId);
   //clear old content
   movieSectionEl.innerHTML = '';
   movieResultsEl.innerHTML = '';
@@ -212,7 +210,6 @@ var connectIssue = function () {
 // POPULATING ELEMENTS
 // Function to get the actors id
 var getActorId = function (name) {
-  console.log(name);
   // define the actors array
   var actors = name.results;
   // check for the actors id
@@ -249,8 +246,9 @@ var actorInfo = function (actorId) {
 
 // Function to display the actors information
 var showActorInfo = function (actorId) {
+  console.log(actorId);
   // clear old content
-  actorEl.innerHTML = '';
+  actorSectionEl.innerHTML = '';
   // clear list item elements
   knownForEl.innerHTML = '';
   // clear the actor subtitle section
@@ -297,15 +295,17 @@ var showActorInfo = function (actorId) {
     // style the actor subtitle
     actorSubtitleEl;
     // append title to the actor container
-    actorEl.append(actorSubtitleEl);
+    actorSectionEl.append(actorSubtitleEl);
 
     // create an image element
     var actorImage = document.createElement('img');
     // set the source of the image
     actorImage.setAttribute('src', actorId.image + '@2x.png');
     actorImage.classList.add('actor-image');
-    // append image to the actor container
-    actorEl.append(actorImage);
+    // append image to the image container
+    actorImageContainerEl.append(actorImage);
+    // append image container to the actor bio section
+    actorSectionEl.append(actorImageContainerEl);
 
     // Make a container to hold the actor information
     var actorBioEl = document.createElement('div');
@@ -329,7 +329,7 @@ var showActorInfo = function (actorId) {
     actorBioEl.append(knownForEl);
 
     // append information to the actor container
-    actorEl.append(actorBioEl);
+    actorSectionEl.append(actorBioEl);
   } else {
     // otherwise run the function to hide the section and display 'actor not found'
     invalidActor();
