@@ -437,7 +437,7 @@ var createTitleEl = function (titleDataObj) {
   listItemEl.className = "title-item";
   listItemEl.setAttribute("data-title-id", titleIdCounter);
 
-  // create div to hold task info and add to list item
+  // create div to hold title info and add to list item
   var titleInfoEl = document.createElement("div");
   titleInfoEl.className = "title-info";
   titleInfoEl.innerHTML = "<h3 class='title-name'>" + titleDataObj.name + "</h3><span class='title-type'>" + titleDataObj.type + "</span>";
@@ -479,7 +479,7 @@ var createTitleActions = function(titleId) {
   statusSelectEl.className = "select-status";
   actionContainerEl.appendChild(statusSelectEl);
   // create status options
-  var statusChoices = ["To Do", "In Progress", "Completed"];
+  var statusChoices = ["To Watch", "In Progress", "Watched"];
 
   for (var i = 0; i < statusChoices.length; i++) {
     // create option element
@@ -494,9 +494,77 @@ var createTitleActions = function(titleId) {
   return actionContainerEl;
 };
 
+var completeEditTitle = function(titleName, titleType, titleId) {
+  // find title list item with titleId value
+  var titleSelected = document.querySelector(".title-item[data-title-id='" + titleId + "']");
 
-  // add entire list item to list
-  //titlesToWatchEl.appendChild(listItemEl);
+  // set new values
+  titleSelected.querySelector("h3.title-name").textContent = titleName;
+  titleSelected.querySelector("span.title-type").textContent = titleType;
+
+  // remove data attribute from form
+  formEl.removeAttribute("data-title-id");
+  // update formEl button to go back to saying "Add Titl" instead of "Edit Title"
+  formEl.querySelector("#save-title").textContent = "Add Title";
+};
+
+var titleButtonHandler = function(event) {
+  // get target element from event
+  var targetEl = event.target;
+
+  if (targetEl.matches(".edit-btn")) {
+    console.log("edit", targetEl);
+    var titleId = targetEl.getAttribute("data-title-id");
+    editTitle(titleId);
+  } else if (targetEl.matches(".delete-btn")) {
+    console.log("delete", targetEl);
+    var titleId = targetEl.getAttribute("data-title-id");
+    deleteTitle(titleId);
+  }
+};
+
+var titleStatusChangeHandler = function(event) {
+  console.log(event.target.value);
+
+  // find title list item based on event.target's data-title-id attribute
+  var titleId = event.target.getAttribute("data-title-id");
+
+  var titleSelected = document.querySelector(".title-item[data-title-id='" + titleId + "']");
+
+  // convert value to lower case
+  var statusValue = event.target.value.toLowerCase();
+
+  if (statusValue === "to watch") {
+    titlesToWatchEl.appendChild(titleSelected);
+  } else if (statusValue === "in progress") {
+    titlesInProgressEl.appendChild(titleSelected);
+  } else if (statusValue === "watched") {
+    titlesCompletedEl.appendChild(titleSelected);
+  }
+};
+
+var editTitle = function(titleId) {
+  console.log(titleId);
+
+  // get title list item element
+  var titleSelected = document.querySelector(".title-item[data-title-id='" + titleId + "']");
+
+  // get content from title name and type
+  var titleName = titleSelected.querySelector("h3.title-name").textContent;
+  console.log(titleName);
+
+  var titleType = titleSelected.querySelector("span.title-type").textContent;
+  console.log(titleType);
+
+  // write values of titlename and titleType to form to be edited
+  document.querySelector("input[name='title-name']").value = titleName;
+  document.querySelector("select[name='title-type']").value = titleType;
+
+  // set data attribute to the form with a value of the title's id so it knows which one is being edited
+  formEl.setAttribute("data-title-id", titleId);
+  // update form's button to reflect editing a title rather than creating a new one
+  formEl.querySelector("#save-title").textContent = "Save Title";
+};
 
 
 var deleteTitle = function(titleId) {
