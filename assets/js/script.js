@@ -444,6 +444,9 @@ var createTitleEl = function (titleDataObj) {
   listItemEl.appendChild(titleInfoEl);
 
   // create list actions (buttons and select) for title
+  var titleActionsEl = createTitleActions(titleIdCounter);
+  listItemEl.appendChild(titleActionsEl);
+  titlesToWatchEl.appendChild(listItemEl);
 
   // add entire list item to list
   titlesToWatchEl.appendChild(listItemEl);
