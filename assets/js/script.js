@@ -453,9 +453,14 @@ var createTitleEl = function (titleDataObj) {
 
 };
 
+var createTitleActions = function(titleId) {
+  // create container to hold elements
+  var actionContainerEl = document.createElement("div");
+  actionContainerEl.className = "title-actions";
+
 
   // add entire list item to list
   //titlesToWatchEl.appendChild(listItemEl);
 
 formEl.addEventListener("submit", titleFormHandler);
-//WATCH LATER LIST END
+//WATCH LATER LIST END //
