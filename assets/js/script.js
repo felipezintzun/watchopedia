@@ -483,5 +483,20 @@ var createTitleActions = function(titleId) {
   // add entire list item to list
   //titlesToWatchEl.appendChild(listItemEl);
 
+
+var deleteTitle = function(titleId) {
+  console.log(titleId);
+  // find title list element with titleId value and remove it
+  var titleSelected = document.querySelector(".title-item[data-title-id='" + titleId + "']");
+  titleSelected.remove();
+};
+  
+// Add a new title
 formEl.addEventListener("submit", titleFormHandler);
+  
+// for edit and delete buttons
+watchlistContentEl.addEventListener("click", titleButtonHandler);
+  
+// for changing the status
+watchlistContentEl.addEventListener("change", titleStatusChangeHandler);
 //WATCH LATER LIST END
