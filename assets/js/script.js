@@ -458,6 +458,13 @@ var createTitleActions = function(titleId) {
   var actionContainerEl = document.createElement("div");
   actionContainerEl.className = "title-actions";
 
+  // create edit button
+  var editButtonEl = document.createElement("button");
+  editButtonEl.textContent = "Edit";
+  editButtonEl.className = "btn edit-btn";
+  editButtonEl.setAttribute("data-title-id", titleId);
+  actionContainerEl.appendChild(editButtonEl);
+
 
   // add entire list item to list
   //titlesToWatchEl.appendChild(listItemEl);
