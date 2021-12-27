@@ -1,6 +1,6 @@
 /* GENERAL STYLES */
 html {
-  background-image: linear-gradient(to bottom right, #1b6c86, #281e32); 
+  background-image: linear-gradient(to bottom right, #1b6c86, #281e32);
   background-repeat: no-repeat;
 }
 
@@ -51,16 +51,15 @@ html body {
 /* HEADER STYLES START */
 header {
   min-height: 60vh;
-  background-image: url('../images/watchopedia-bg-2.svg'); */
+  background-image: url('../images/watchopedia-bg-2.svg');
   background-size: contain;
   background-position: right;
   background-repeat: no-repeat;
-  
-} 
+}
 
 .header-title {
-  background: url("../images/watchopedia-logo.svg") no-repeat;
-  background-image: url("../images/watchopedia-logo.svg");
+  background: url('../images/watchopedia-logo.svg') no-repeat;
+  background-image: url('../images/watchopedia-logo.svg');
   /* background-size: auto; */
   display: block;
   width: 500px;
@@ -79,21 +78,14 @@ header {
 .topnav a {
   float: right;
   color: #f2f2f2;
-  position: ;
   text-align: center;
   padding: 20px 50px 0px 0px;
-  /* text-decoration: none;
-  font-size: 17px;
-  display: inline; */
   margin: 0px;
   text-align: center;
-  display:inline-block;
-  /* vertical-align:top; */
 }
 
 /* Change the color of links on hover */
 .topnav a:hover {
-  /* background-color: #ddd; */
   color: #fe6601;
 }
 
@@ -118,8 +110,7 @@ header {
 }
 
 #searchBtn:hover {
-  background-color: #1b6c86
-
+  background-color: #1b6c86;
 }
 
 form label {
@@ -207,15 +198,11 @@ a:focus {
 
 /* FOOTER STYLE START */
 footer {
-  position: fixed;
-  bottom: 0;
   text-align: right;
-  width: 100%;
+  max-width: 100%;
   height: 90px;
   padding: 20px;
-  background-image: linear-gradient(to bottom right, #1b6c86, #281e32); 
+  background-image: linear-gradient(to bottom right, #1b6c86, #281e32);
   background-repeat: no-repeat;
   color: var(--primary-white);
-  position: fixed;
-  bottom: 0;
 }
