@@ -410,11 +410,11 @@ var titleFormHandler = function(event) {
     return false;
   }
   
-  // reset form fields for next task to be entered
+  // reset form fields for next title to be entered
   document.querySelector("input[name='title-name']").value = "";
   document.querySelector("select[name='title-type']").selectedIndex = 0;
  
-  // check if task is new or one being edited by seeing if it has a data-task-id attribute
+  // check if title is new or one being edited by seeing if it has a data-title-id attribute
   var isEdit = formEl.hasAttribute("data-title-id");
 
   if (isEdit) {
@@ -443,7 +443,7 @@ var createTitleEl = function (titleDataObj) {
   titleInfoEl.innerHTML = "<h3 class='title-name'>" + titleDataObj.name + "</h3><span class='title-type'>" + titleDataObj.type + "</span>";
   listItemEl.appendChild(titleInfoEl);
 
-  
+  // create list actions (buttons and select) for title
 
   // add entire list item to list
   titlesToWatchEl.appendChild(listItemEl);
