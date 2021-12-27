@@ -448,9 +448,14 @@ var createTitleEl = function (titleDataObj) {
   listItemEl.appendChild(titleActionsEl);
   titlesToWatchEl.appendChild(listItemEl);
 
-  // add entire list item to list
-  titlesToWatchEl.appendChild(listItemEl);
+  // increase title counter for next unique id
+  titleIdCounter++;
+
 };
+
+
+  // add entire list item to list
+  //titlesToWatchEl.appendChild(listItemEl);
 
 formEl.addEventListener("submit", titleFormHandler);
 //WATCH LATER LIST END
