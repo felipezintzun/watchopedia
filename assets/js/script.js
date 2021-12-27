@@ -478,6 +478,21 @@ var createTitleActions = function(titleId) {
   statusSelectEl.setAttribute("data-title-id", titleId);
   statusSelectEl.className = "select-status";
   actionContainerEl.appendChild(statusSelectEl);
+  // create status options
+  var statusChoices = ["To Do", "In Progress", "Completed"];
+
+  for (var i = 0; i < statusChoices.length; i++) {
+    // create option element
+    var statusOptionEl = document.createElement("option");
+    statusOptionEl.setAttribute("value", statusChoices[i]);
+    statusOptionEl.textContent = statusChoices[i];
+  
+    // append to select
+    statusSelectEl.appendChild(statusOptionEl);
+  }
+  
+  return actionContainerEl;
+};
 
 
   // add entire list item to list
