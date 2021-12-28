@@ -13,7 +13,7 @@ var movieSectionEl = document.getElementById('movie-section');
 var movieTitleEl = document.getElementById('movie-title');
 var movieResultsEl = document.getElementById('movie-results');
 // the movie db api key
-var movieApi = '40ead071b983da851d42031943eb549a';
+var movieDbApi = '40ead071b983da851d42031943eb549a';
 
 /* SHOW SECTION START */
 function searchShow(query) {
@@ -72,7 +72,8 @@ function searchShow(query) {
 // Imbd API call to get actor id. Note: name parameter is defined as the input value
 // (Original key: k_vc5wkpr4)
 var getNameSearch = function (name) {
-  var apiUrl = 'https://imdb-api.com/en/API/SearchName/k_fx2tmjk8/' + name;
+  var apiUrl = 'https://api.themoviedb.org/3/search/person?api_key='
+    + movieDbApi + '&language=en-US&query' + name + '&page=1&include_adult=false';
 
   fetch(apiUrl)
     .then(function (response) {
@@ -95,7 +96,7 @@ var getNameSearch = function (name) {
 //fetch movie
 var getMovieSearch = function (name) {
   var movieUrl = 'https://api.themoviedb.org/3/search/movie?api_key=' 
-  + movieApi + '&language=en-US&query' + name + '&page=1&include_adult=false';
+  + movieDbApi + '&language=en-US&query' + name + '&page=1&include_adult=false';
 
   fetch(movieUrl)
     .then(function (response) {
@@ -134,7 +135,7 @@ var getMovieId = function (name) {
 var movieInfo = function (movieId) {
   // call api for movie info
   var movieUrl =
-    'https://imdb-api.com/en/API/SearchMovie/k_0pdwjmyc/' + movieId;
+    'https://api.themoviedb.org/3/movie/' + movieId + '?api_key=' + movieDbApi + '&language=en-US';
 
   fetch(movieUrl)
     .then(function (response) {
@@ -219,7 +220,7 @@ var getActorId = function (name) {
 // Call a new fetch function to get actor information
 var actorInfo = function (actorId) {
   // Call api for actor information
-  var apiUrl = 'https://imdb-api.com/en/API/Name/k_fx2tmjk8/' + actorId;
+  var apiUrl = 'https://api.themoviedb.org/3/person/' + actorId +'?api_key=' + movieDbApi + '&language=en-US';
 
   fetch(apiUrl)
     .then(function (response) {
