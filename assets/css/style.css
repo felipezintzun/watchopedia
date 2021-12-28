@@ -188,11 +188,6 @@ a:focus {
   left: 10vw;
 }
 
-/* Actor title */
-.actor-subtitle {
-  font-size: 1.5vw;
-}
-
 /* Actor known for styling */
 .known-list {
   font-weight: bold;

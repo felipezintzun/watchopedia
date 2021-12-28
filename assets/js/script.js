@@ -183,7 +183,9 @@ var showMovieInfo = function (movieId) {
       //append image to the movie section
       movieSectionEl.append(movieImage);
 
+      // make a container for the movie image
       var movieImageEl = document.createElement('div');
+      // make a span f
       var movieTitle = document.createElement('span');
       movieTitle.textContent = movieResultsarr.title;
       movieImageEl.append(movieTitle);
@@ -266,9 +268,14 @@ var showActorInfo = function (actorId) {
   if (birthDate) {
     // unhide the actor section
     actorSectionEl.classList.remove('hide');
+    // hide the tv shows section
+    showSectionEl.classList.add('hide');
+    // hide the movie section
+    movieSectionEl.classList.add('hide');
+
     // define div where actor is alive
     var liveDiv =
-      'Top Movie and Shows for ' +
+      'Information for ' +
       actorName +
       ' (Born: ' +
       birthDate +
@@ -278,7 +285,7 @@ var showActorInfo = function (actorId) {
 
     // define div where the actor died
     var deadDiv =
-      'Top Movie and Shows for ' +
+      'Information for ' +
       actorName +
       ' (Born: ' +
       birthDate +
@@ -336,21 +343,6 @@ var showActorInfo = function (actorId) {
   }
 };
 /* ACTOR SECTION ENDS */
-
-/* ERROR MESSAGES START */
-// Function for invalid or improper inputs for movies
-// var invalidMovie = function () {
-//   errorEl.textContent = 'Movie not found';
-//   errorEl.style.color = 'red';
-// };
-
-// Function for invalid or improper inputs for shows
-var invalidShow = function () {
-  errorEl.textContent = 'Television show not found';
-  errorEl.style.color = 'red';
-  showSectionEl.classList.add('hide');
-};
-
 // Function for invalid or improper inputs for actors
 var invalidActor = function () {
   errorEl.textContent = 'Actor not found';
