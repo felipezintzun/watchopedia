@@ -1,30 +1,19 @@
 /* GLOBAL VARIABLES START */
-// Declare input element
 var inputEl = document.getElementById('search');
-// Declare the datalist
 var datalistEl = document.getElementById('watch');
-// Define the actor section
 var actorSectionEl = document.getElementById('actor-section');
-// Define the show section
 var showSectionEl = document.getElementById('show-section');
-// Define the movie section
 var movieSectionEl = document.getElementById('movie-section');
-// Declare the container that holds the actor information
 var actorEl = document.getElementById('actor');
-// Declare the actor subtitle
 var actorSubtitleEl = document.getElementById('actor-subtitle');
-// Declare the unordered list to list the movies/shows the actor is known for
 var knownForEl = document.getElementById('known-for');
-// Declare error messages container
 var errorEl = document.getElementById('error');
-// Declare button
 var buttonEL = document.getElementById('searchBtn');
-//declare the container that holds movie infor
 var movieSectionEl = document.getElementById('movie-section');
-// Declare the movie title
 var movieTitleEl = document.getElementById('movie-title');
-// Declare the paragraph for movie information
 var movieResultsEl = document.getElementById('movie-results');
+// the movie db api key
+var movieApi = '40ead071b983da851d42031943eb549a';
 
 /* SHOW SECTION START */
 function searchShow(query) {
@@ -105,7 +94,8 @@ var getNameSearch = function (name) {
 
 //fetch movie
 var getMovieSearch = function (name) {
-  var movieUrl = 'https://imdb-api.com/en/API/SearchMovie/k_fx2tmjk8/' + name;
+  var movieUrl = 'https://api.themoviedb.org/3/search/movie?api_key=' 
+  + movieApi + '&language=en-US&query' + name + '&page=1&include_adult=false';
 
   fetch(movieUrl)
     .then(function (response) {
