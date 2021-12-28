@@ -35,9 +35,13 @@ var buttonEL = document.getElementById('searchBtn');
 /* MOVIE SECTION START */
 // fetch movie from imdb
 var getMovieSearch = function (name) {
-  var movieUrl = 'https://api.themoviedb.org/3/search/movie?api_key=' 
-  + movieDbApi + '&language=en-US&query=' + name + '&page=1&include_adult=false';
-  
+  var movieUrl =
+    'https://api.themoviedb.org/3/search/movie?api_key=' +
+    movieDbApi +
+    '&language=en-US&query=' +
+    name +
+    '&page=1&include_adult=false';
+
   fetch(movieUrl)
     .then(function (response) {
       //if response is good run getMovieId function
@@ -75,7 +79,11 @@ var getMovieId = function (name) {
 var movieInfo = function (movieId) {
   // call api for movie info
   var movieUrl =
-    'https://api.themoviedb.org/3/movie/' + movieId + '?api_key=' + movieDbApi + '&language=en-US';
+    'https://api.themoviedb.org/3/movie/' +
+    movieId +
+    '?api_key=' +
+    movieDbApi +
+    '&language=en-US';
 
   fetch(movieUrl)
     .then(function (response) {
@@ -192,8 +200,13 @@ function searchShow(query) {
 /* ACTOR SECTION START */
 // the movie DB API call to get actor id. Note: name parameter is defined as the input value
 var getNameSearch = function (name) {
-  var apiUrl = 'https://api.themoviedb.org/3/search/person?api_key='
-    + movieDbApi + '&language=en-US&query=' + name + '&page=1&include_adult=false';
+  console.log(name);
+  var apiUrl =
+    'https://api.themoviedb.org/3/search/person?api_key=' +
+    movieDbApi +
+    '&language=en-US&query=' +
+    name +
+    '&page=1&include_adult=false';
 
   fetch(apiUrl)
     .then(function (response) {
@@ -231,7 +244,12 @@ var getActorId = function (name) {
 // Call a new fetch function to get actor information
 var actorInfo = function (actorId) {
   // Call api for actor information
-  var apiUrl = 'https://api.themoviedb.org/3/person/' + actorId +'?api_key=' + movieDbApi + '&language=en-US';
+  var apiUrl =
+    'https://api.themoviedb.org/3/person/' +
+    actorId +
+    '?api_key=' +
+    movieDbApi +
+    '&language=en-US';
 
   fetch(apiUrl)
     .then(function (response) {
@@ -264,9 +282,12 @@ var showActorInfo = function (actorId) {
   // define the actor's name
   var actorName = actorId.name;
   // define the actors birth date
-  var birthDate = actorId.birthDate;
+  var birthDate = actorId.birthday;
   // define the actors death date (if applicable)
-  var deathDate = actorId.deathDate;
+  var deathDate = actorId.deathday;
+  // define the actors biography
+  var actorBiography = actorId.biography;
+
   // if theres a birth date then show the actor information
   if (birthDate) {
     // unhide the actor section
@@ -310,7 +331,7 @@ var showActorInfo = function (actorId) {
     // create an image element
     var actorImage = document.createElement('img');
     // set the source of the image
-    actorImage.setAttribute('src', actorId.image + '@2x.png');
+    actorImage.setAttribute('src', 'https://image.tmdb.org/t/p/original' + actorId.profile_path);
     actorImage.classList.add('actor-image');
     // append image to the image container
     actorImageContainerEl.append(actorImage);
@@ -318,28 +339,20 @@ var showActorInfo = function (actorId) {
     actorSectionEl.append(actorImageContainerEl);
 
     // Make a container to hold the actor information
-    var actorBioEl = document.createElement('div');
+    var actorInfoEl = document.createElement('div');
+    actorInfoEl.classList.add('actorInfoContainer');
+    // Make a paragraph element for the actor's biography
+    var actorBio = document.createElement('p');
+    // set the text content of the list item
+    actorBio.textContent = actorBiography;
+    // style the biography
+    actorBio.classList.add('biography');
 
-    // define the actors known for array for top 4 movies/shows
-    var knownFor = actorId.knownFor;
-    // For loop to show all the movies/shows the actor is known for
-    for (var i = 0; i < knownFor.length; i++) {
-      // iterate through the knownFor array
-      knownForArr = knownFor[i];
-      // Make a list item element for the movies/shows the actor is known for
-      var knownforList = document.createElement('li');
-      // set the text content of the list item
-      knownforList.textContent = knownForArr.fullTitle;
-      // style the list item
-      knownforList.classList.add('known-list');
-      // append the list item to the unordered list
-      knownForEl.append(knownforList);
-    }
-    // append the unordered list to the actorBio container
-    actorBioEl.append(knownForEl);
+    // append the biography to the actorInfo container
+    actorInfoEl.append(actorBio);
 
     // append information to the actor container
-    actorSectionEl.append(actorBioEl);
+    actorSectionEl.append(actorInfoEl);
   } else {
     // otherwise run the function to hide the section and display 'actor not found'
     invalidActor();

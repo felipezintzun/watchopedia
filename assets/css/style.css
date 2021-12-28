@@ -38,9 +38,7 @@ html body {
 .section-title {
   font-size: 2.5vw;
   font-weight: bold;
-  text-align: center;
   padding: 1vw;
-  margin-bottom: 1.5vw;
   border: 2px solid var(--gray);
   border-radius: 12px;
   background: var(--bg-sectionTitle);
@@ -169,7 +167,6 @@ a:focus {
 /* Style the actor section */
 .actor {
   background: var(--bg-oddSection);
-  height: 120px;
   min-height: 25vw;
 }
 
@@ -183,14 +180,24 @@ a:focus {
   max-width: 10%;
   position: absolute;
   left: 10vw;
+  margin-top: 2.4vw;
 }
 
+/* Actor information container */
+.actorInfoContainer {
+  display: flex;
+  justify-content: flex-end;
+  margin: 1vw;
+}
 /* Actor known for styling */
-.known-list {
+.biography {
   font-weight: bold;
-  font-size: 2vw;
+  font-size: 1vw;
+  padding: 1vw;
+  text-align: left;
   font-style: italic;
   margin: 0.2vw;
+  width: 50%;
 }
 
 /* FOOTER STYLE START */
