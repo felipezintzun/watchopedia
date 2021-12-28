@@ -37,7 +37,7 @@ var buttonEL = document.getElementById('searchBtn');
 var getMovieSearch = function (name) {
   var movieUrl = 'https://api.themoviedb.org/3/search/movie?api_key=' 
   + movieDbApi + '&language=en-US&query=' + name + '&page=1&include_adult=false';
-  
+
   fetch(movieUrl)
     .then(function (response) {
       //if response is good run getMovieId function
@@ -57,17 +57,21 @@ var getMovieSearch = function (name) {
 };
 
 //check if there is a movie id
+
 var getMovieId = function (name) {
-  //define the movies array
-  var movies = name.results;
-  //check for the movies id
-  var movieId = movies[0].id;
-  // if there is a movie id
-  if (movieId) {
+  debugger;
+  for (var i = 0; i < 10; i++); {
+    //movie array
+    var movieArr = name.results[i];
+    //check for the movies id
+    var movieId = movieArr.id;
+    // if there is a movie id
+    if (movieId) {
     // call the movieInfor function
     movieInfo(movieId);
-  } else {
+    } else {
     invalidMovie();
+    }
   }
 };
 
@@ -104,36 +108,23 @@ var showMovieInfo = function (movieId) {
   if (movieId) {
     // unhide the movie section
     movieSectionEl.classList.remove('hide');
-
-    var movieResults = movieId.results;
-
-    for (var i = 0; i < movieResults.length; i++) {
-      var movieResultsarr = movieResults[i];
-
-      //create image element
+     //create image element
       var movieImage = document.createElement('img');
       // set the source of the image
-      movieImage.setAttribute('src', movieResultsarr.image + '@2x.png');
+      movieImage.setAttribute('src', 'https://image.tmdb.org/t/p/w342' + movieId.poster_path);
       // movieImage.classList.add('movie-image');
       //append image to the movie section
-      movieSectionEl.append(movieImage);
+      movieResultsEl.append(movieImage);
 
-      // make a container for the movie image
-      var movieImageEl = document.createElement('div');
-      // make a span f
       var movieTitle = document.createElement('span');
-      movieTitle.textContent = movieResultsarr.title;
-      movieImageEl.append(movieTitle);
+      movieTitle.textContent = movieId.title;
+      movieResultsEl.append(movieTitle);
 
       var movieDate = document.createElement('span');
-      movieDate.textContent = movieResultsarr.description;
-      movieImageEl.append(movieDate);
-
-      movieSectionEl.append(movieImageEl);
+      movieDate.textContent = movieId.overview;
+      movieResultsEl.append(movieDate);
+      movieSectionEl.append(movieResultsEl);
     }
-  } else {
-    invalidMovie();
-  }
 };
 /* MOVIE SECTION END */
 
@@ -251,7 +242,6 @@ var actorInfo = function (actorId) {
 
 // Function to display the actors information
 var showActorInfo = function (actorId) {
-  console.log(actorId);
   // clear old content
   actorSectionEl.innerHTML = '';
   // clear list item elements
@@ -397,5 +387,6 @@ buttonEL.addEventListener('click', function (event) {
   } else {
     invalidActor();
   }
+  localStorage.clear();
 });
 /* EVENT LISTENERS END */
