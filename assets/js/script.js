@@ -1,6 +1,11 @@
 /* GLOBAL VARIABLES START */
 var inputEl = document.getElementById('search');
 
+// Define the dropdown options
+var actorOption = document.getElementById('actor-option');
+var movieOption = document.getElementById('movie-option');
+var showOption = document.getElementById('tv-show-option');
+
 // Define the movie section
 var movieSectionEl = document.getElementById('movie-section');
 // Declare the movie title
@@ -35,8 +40,12 @@ var buttonEL = document.getElementById('searchBtn');
 /* MOVIE SECTION START */
 // fetch movie from imdb
 var getMovieSearch = function (name) {
-  var movieUrl = 'https://api.themoviedb.org/3/search/movie?api_key=' 
-  + movieDbApi + '&language=en-US&query=' + name + '&page=1&include_adult=false';
+  var movieUrl =
+    'https://api.themoviedb.org/3/search/movie?api_key=' +
+    movieDbApi +
+    '&language=en-US&query=' +
+    name +
+    '&page=1&include_adult=false';
 
   fetch(movieUrl)
     .then(function (response) {
@@ -59,18 +68,18 @@ var getMovieSearch = function (name) {
 //check if there is a movie id
 
 var getMovieId = function (name) {
-  debugger;
-  for (var i = 0; i < 10; i++); {
+  for (var i = 0; i < 10; i++);
+  {
     //movie array
     var movieArr = name.results[i];
     //check for the movies id
     var movieId = movieArr.id;
     // if there is a movie id
     if (movieId) {
-    // call the movieInfor function
-    movieInfo(movieId);
+      // call the movieInfor function
+      movieInfo(movieId);
     } else {
-    invalidMovie();
+      invalidMovie();
     }
   }
 };
@@ -112,23 +121,26 @@ var showMovieInfo = function (movieId) {
   if (movieId) {
     // unhide the movie section
     movieSectionEl.classList.remove('hide');
-     //create image element
-      var movieImage = document.createElement('img');
-      // set the source of the image
-      movieImage.setAttribute('src', 'https://image.tmdb.org/t/p/w342' + movieId.poster_path);
-      // movieImage.classList.add('movie-image');
-      //append image to the movie section
-      movieResultsEl.append(movieImage);
+    //create image element
+    var movieImage = document.createElement('img');
+    // set the source of the image
+    movieImage.setAttribute(
+      'src',
+      'https://image.tmdb.org/t/p/w342' + movieId.poster_path
+    );
+    // movieImage.classList.add('movie-image');
+    //append image to the movie section
+    movieResultsEl.append(movieImage);
 
-      var movieTitle = document.createElement('span');
-      movieTitle.textContent = movieId.title;
-      movieResultsEl.append(movieTitle);
+    var movieTitle = document.createElement('span');
+    movieTitle.textContent = movieId.title;
+    movieResultsEl.append(movieTitle);
 
-      var movieDate = document.createElement('span');
-      movieDate.textContent = movieId.overview;
-      movieResultsEl.append(movieDate);
-      movieSectionEl.append(movieResultsEl);
-    }
+    var movieDate = document.createElement('span');
+    movieDate.textContent = movieId.overview;
+    movieResultsEl.append(movieDate);
+    movieSectionEl.append(movieResultsEl);
+  }
 };
 /* MOVIE SECTION END */
 
@@ -317,7 +329,10 @@ var showActorInfo = function (actorId) {
     // create an image element
     var actorImage = document.createElement('img');
     // set the source of the image
-    actorImage.setAttribute('src', 'https://image.tmdb.org/t/p/original' + actorId.profile_path);
+    actorImage.setAttribute(
+      'src',
+      'https://image.tmdb.org/t/p/original' + actorId.profile_path
+    );
     actorImage.classList.add('actor-image');
     // append image to the image container
     actorImageContainerEl.append(actorImage);
