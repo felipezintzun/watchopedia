@@ -1,103 +1,43 @@
 /* GLOBAL VARIABLES START */
 var inputEl = document.getElementById('search');
-var datalistEl = document.getElementById('watch');
-var actorSectionEl = document.getElementById('actor-section');
-var showSectionEl = document.getElementById('show-section');
+
+// Define the movie section
 var movieSectionEl = document.getElementById('movie-section');
-var actorEl = document.getElementById('actor');
-var actorSubtitleEl = document.getElementById('actor-subtitle');
-var knownForEl = document.getElementById('known-for');
-var errorEl = document.getElementById('error');
-var buttonEL = document.getElementById('searchBtn');
-var movieSectionEl = document.getElementById('movie-section');
+// Declare the movie title
 var movieTitleEl = document.getElementById('movie-title');
 var movieResultsEl = document.getElementById('movie-results');
 // the movie db api key
 var movieDbApi = '40ead071b983da851d42031943eb549a';
 
-/* SHOW SECTION START */
-function searchShow(query) {
-  console.log(query);
-  const url = `https://api.tvmaze.com/search/shows?q=${query}`;
-  fetch(url).then((response) => {
-    if (response.ok) {
-      response.json().then((jsonData) => {
-        // allow the show section and card to be visable
-        showSectionEl.classList.remove('hide');
-        // clear html
-        var htmlCode = '';
-        // clear error
-        errorEl.textContent = '';
+// Define the show section
+var showSectionEl = document.getElementById('show-section');
 
-        // Declare the show title
-        var showTitle = 'Shows';
+// Define the actor section
+var actorSectionEl = document.getElementById('actor-section');
+// Declare the actor subtitle
+var actorTitleEl = document.getElementById('actor-title');
+// Declare the container that holds the actor information
+var actorImageContainerEl = document.getElementById('actor-img-container');
+// Declare the unordered list to list the movies/shows the actor is known for
+var knownForEl = document.getElementById('known-for');
 
-        for (let i = 0; i < jsonData.length; i++) {
-          // jsonData.forEach(element => {
-          let element = jsonData[i];
-          htmlCode += `<div class="card is-flex-column is-justify-content-space-between" id="tvshowsnav"> 
-          <div class="section-title"> ${showTitle} </div>
-        <div class="card-image">
-          <figure class="image is-4by3">
-            <img src="${element.show.image.medium}" alt="placeholder image" />
-          </figure>
-        </div>
-        <div class="card-content">
-          <div class="media">
-            <div class="media-content">
-              <p class="title is-4">${element.show.name}</p>
-              <p class="subtitle is-6">${element.show.rating.average}</p>
-            </div>
-          </div>
-          <div class="content">
-            ${element.show.summary}
-            <a href="${element.show.officialSite}">Offical Site</a>
-            <br />
-            <time>${element.show.schedule.time}</time>
-          </div>
-        </div>
-      </div>`;
-        }
-        document.getElementById('resultsList').innerHTML = htmlCode;
-      });
-    } else {
-      invalidShow();
-    }
-  });
-}
+// Declare movie error messages container
+var movieErrorEl = document.getElementById('movie-error');
+// Declare show error messages container
+var showErrorEl = document.getElementById('show-error');
+// Declare actor error messages container
+var actorErrorEl = document.getElementById('actor-error');
 
-/* SHOW SECTION ENDS */
+// Declare button
+var buttonEL = document.getElementById('searchBtn');
+/* GLOBAL VARIABLES END */
 
-/* ACTOR SECTION START */
-// Imbd API call to get actor id. Note: name parameter is defined as the input value
-// (Original key: k_vc5wkpr4)
-var getNameSearch = function (name) {
-  var apiUrl = 'https://api.themoviedb.org/3/search/person?api_key='
-    + movieDbApi + '&language=en-US&query' + name + '&page=1&include_adult=false';
-
-  fetch(apiUrl)
-    .then(function (response) {
-      // if response is good, run the getActorId function
-      if (response.ok) {
-        response.json().then(function (name) {
-          getActorId(name);
-        });
-      } else {
-        // otherwise run invalid input
-        invalidActor();
-      }
-    })
-    // runs if there is a connection issue
-    .catch(function (error) {
-      connectIssue();
-    });
-};
-
-//fetch movie
+/* MOVIE SECTION START */
+// fetch movie from imdb
 var getMovieSearch = function (name) {
   var movieUrl = 'https://api.themoviedb.org/3/search/movie?api_key=' 
-  + movieDbApi + '&language=en-US&query' + name + '&page=1&include_adult=false';
-
+  + movieDbApi + '&language=en-US&query=' + name + '&page=1&include_adult=false';
+  
   fetch(movieUrl)
     .then(function (response) {
       //if response is good run getMovieId function
@@ -155,12 +95,14 @@ var movieInfo = function (movieId) {
 
 // function to display movie info
 var showMovieInfo = function (movieId) {
-  console.log(movieId);
   //clear old content
   movieSectionEl.innerHTML = '';
   movieResultsEl.innerHTML = '';
+  // clear error content
+  movieErrorEl.textContent = '';
 
   if (movieId) {
+    // unhide the movie section
     movieSectionEl.classList.remove('hide');
 
     var movieResults = movieId.results;
@@ -176,7 +118,9 @@ var showMovieInfo = function (movieId) {
       //append image to the movie section
       movieSectionEl.append(movieImage);
 
+      // make a container for the movie image
       var movieImageEl = document.createElement('div');
+      // make a span f
       var movieTitle = document.createElement('span');
       movieTitle.textContent = movieResultsarr.title;
       movieImageEl.append(movieTitle);
@@ -191,19 +135,86 @@ var showMovieInfo = function (movieId) {
     invalidMovie();
   }
 };
+/* MOVIE SECTION END */
 
-// API CALLS END
+/* SHOW SECTION START */
+function searchShow(query) {
+  const url = `https://api.tvmaze.com/search/shows?q=${query}`;
+  fetch(url).then((response) => {
+    if (response.ok) {
+      response.json().then((jsonData) => {
+        // allow the show section and card to be visable
+        showSectionEl.classList.remove('hide');
+        // clear html
+        var htmlCode = '';
+        // clear error content
+        showErrorEl.textContent = '';
 
-// Function if you are unable to connect
-var connectIssue = function () {
-  errorEl.textContent = 'Unable to connect.';
-  errorEl.style.color = 'red';
+        // Declare the show title
+        var showTitle = 'Shows';
+
+        for (let i = 0; i < jsonData.length; i++) {
+          // jsonData.forEach(element => {
+          let element = jsonData[i];
+          htmlCode += `<div class="card is-flex-column is-justify-content-space-between" id="tvshowsnav"> 
+          <div class="section-title"> ${showTitle} </div>
+        <div class="card-image">
+          <figure class="image is-4by3">
+            <img src="${element.show.image.medium}" alt="placeholder image" />
+          </figure>
+        </div>
+        <div class="card-content">
+          <div class="media">
+            <div class="media-content">
+              <p class="title is-4">${element.show.name}</p>
+              <p class="subtitle is-6">${element.show.rating.average}</p>
+            </div>
+          </div>
+          <div class="content">
+            ${element.show.summary}
+            <a href="${element.show.officialSite}">Offical Site</a>
+            <br />
+            <time>${element.show.schedule.time}</time>
+          </div>
+        </div>
+      </div>`;
+        }
+        document.getElementById('resultsList').innerHTML = htmlCode;
+      });
+    } else {
+      invalidShow();
+    }
+  });
+}
+
+/* SHOW SECTION ENDS */
+
+/* ACTOR SECTION START */
+// the movie DB API call to get actor id. Note: name parameter is defined as the input value
+var getNameSearch = function (name) {
+  var apiUrl = 'https://api.themoviedb.org/3/search/person?api_key='
+    + movieDbApi + '&language=en-US&query=' + name + '&page=1&include_adult=false';
+
+  fetch(apiUrl)
+    .then(function (response) {
+      // if response is good, run the getActorId function
+      if (response.ok) {
+        response.json().then(function (name) {
+          getActorId(name);
+        });
+      } else {
+        // otherwise run invalid input
+        invalidActor();
+      }
+    })
+    // runs if there is a connection issue
+    .catch(function (error) {
+      connectIssue();
+    });
 };
 
-// POPULATING ELEMENTS
-// Function to get the actors id
+// Get the actors id
 var getActorId = function (name) {
-  console.log(name);
   // define the actors array
   var actors = name.results;
   // check for the actors id
@@ -240,14 +251,15 @@ var actorInfo = function (actorId) {
 
 // Function to display the actors information
 var showActorInfo = function (actorId) {
+  console.log(actorId);
   // clear old content
-  actorEl.innerHTML = '';
+  actorSectionEl.innerHTML = '';
   // clear list item elements
   knownForEl.innerHTML = '';
   // clear the actor subtitle section
-  actorSubtitleEl.innerHTML = '';
-  // clear the error message
-  errorEl.textContent = '';
+  actorTitleEl.innerHTML = '';
+  // clear error content
+  actorErrorEl.textContent = '';
 
   // define the actor's name
   var actorName = actorId.name;
@@ -259,9 +271,14 @@ var showActorInfo = function (actorId) {
   if (birthDate) {
     // unhide the actor section
     actorSectionEl.classList.remove('hide');
+    // hide the tv shows section
+    showSectionEl.classList.add('hide');
+    // hide the movie section
+    movieSectionEl.classList.add('hide');
+
     // define div where actor is alive
     var liveDiv =
-      'Top Movie and Shows for ' +
+      'Information for ' +
       actorName +
       ' (Born: ' +
       birthDate +
@@ -271,7 +288,7 @@ var showActorInfo = function (actorId) {
 
     // define div where the actor died
     var deadDiv =
-      'Top Movie and Shows for ' +
+      'Information for ' +
       actorName +
       ' (Born: ' +
       birthDate +
@@ -281,22 +298,24 @@ var showActorInfo = function (actorId) {
 
     // if statement for if the actor has died or not
     if (deathDate === null) {
-      actorSubtitleEl.innerHTML = liveDiv;
+      actorTitleEl.innerHTML = liveDiv;
     } else {
-      actorSubtitleEl = deadDiv;
+      actorTitleEl = deadDiv;
     }
     // style the actor subtitle
-    actorSubtitleEl;
+    actorTitleEl;
     // append title to the actor container
-    actorEl.append(actorSubtitleEl);
+    actorSectionEl.append(actorTitleEl);
 
     // create an image element
     var actorImage = document.createElement('img');
     // set the source of the image
     actorImage.setAttribute('src', actorId.image + '@2x.png');
     actorImage.classList.add('actor-image');
-    // append image to the actor container
-    actorEl.append(actorImage);
+    // append image to the image container
+    actorImageContainerEl.append(actorImage);
+    // append image container to the actor bio section
+    actorSectionEl.append(actorImageContainerEl);
 
     // Make a container to hold the actor information
     var actorBioEl = document.createElement('div');
@@ -320,7 +339,7 @@ var showActorInfo = function (actorId) {
     actorBioEl.append(knownForEl);
 
     // append information to the actor container
-    actorEl.append(actorBioEl);
+    actorSectionEl.append(actorBioEl);
   } else {
     // otherwise run the function to hide the section and display 'actor not found'
     invalidActor();
@@ -329,23 +348,23 @@ var showActorInfo = function (actorId) {
 /* ACTOR SECTION ENDS */
 
 /* ERROR MESSAGES START */
-// Function for invalid or improper inputs for movies
-// var invalidMovie = function () {
-//   errorEl.textContent = 'Movie not found';
-//   errorEl.style.color = 'red';
-// };
+// Function for invalid movies
+var invalidMovie = function () {
+  movieErrorEl.textContent = 'Movie not found';
+  movieErrorEl.style.color = 'red';
+  movieSectionEl.classList.add('hide');
+};
 
-// Function for invalid or improper inputs for shows
 var invalidShow = function () {
-  errorEl.textContent = 'Television show not found';
-  errorEl.style.color = 'red';
+  showErrorEl.textContent = 'Movie not found';
+  showErrorEl.style.color = 'red';
   showSectionEl.classList.add('hide');
 };
 
 // Function for invalid or improper inputs for actors
 var invalidActor = function () {
-  errorEl.textContent = 'Actor not found';
-  errorEl.style.color = 'red';
+  actorErrorEl.textContent = 'Actor not found';
+  actorErrorEl.style.color = 'red';
   actorSectionEl.classList.add('hide');
 };
 
