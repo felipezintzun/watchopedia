@@ -103,9 +103,6 @@ var showMovieInfo = function (movieId) {
   if (movieId) {
     // unhide the movie section
     movieSectionEl.classList.remove('hide');
-    // hide the tv shows section
-    showSectionEl.classList.add('hide');
-
 
     var movieResults = movieId.results;
 
