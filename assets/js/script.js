@@ -26,12 +26,6 @@ var movieTitleEl = document.getElementById('movie-title');
 // Declare the paragraph for movie information
 var movieResultsEl = document.getElementById('movie-results');
 
-<<<<<<< HEAD
-var myImage = document.querySelector('img');
-
-// API CALLS START
-//IMBD API
-=======
 /* SHOW SECTION START */
 function searchShow(query) {
   console.log(query);
@@ -52,7 +46,7 @@ function searchShow(query) {
         for (let i = 0; i < jsonData.length; i++) {
           // jsonData.forEach(element => {
           let element = jsonData[i];
-          htmlCode += `<div class="card is-flex-column is-justify-content-space-between"> 
+          htmlCode += `<div class="card is-flex-column is-justify-content-space-between" id="tvshowsnav"> 
           <div class="section-title"> ${showTitle} </div>
         <div class="card-image">
           <figure class="image is-4by3">
@@ -88,9 +82,8 @@ function searchShow(query) {
 /* ACTOR SECTION START */
 // Imbd API call to get actor id. Note: name parameter is defined as the input value
 // (Original key: k_vc5wkpr4)
->>>>>>> 6f9f461f0f15b71ae7f56e4930489901ac34ed45
 var getNameSearch = function (name) {
-  var apiUrl = 'https://imdb-api.com/en/API/SearchName/k_xqqyxw1f/' + name;
+  var apiUrl = 'https://imdb-api.com/en/API/SearchName/k_fx2tmjk8/' + name;
 
   fetch(apiUrl)
     .then(function (response) {
@@ -112,7 +105,7 @@ var getNameSearch = function (name) {
 
 //fetch movie
 var getMovieSearch = function (name) {
-  var movieUrl = 'https://imdb-api.com/en/API/SearchMovie/k_xqqyxw1f/' + name;
+  var movieUrl = 'https://imdb-api.com/en/API/SearchMovie/k_fx2tmjk8/' + name;
 
   fetch(movieUrl)
     .then(function (response) {
@@ -151,7 +144,7 @@ var getMovieId = function (name) {
 var movieInfo = function (movieId) {
   // call api for movie info
   var movieUrl =
-    'https://imdb-api.com/en/API/SearchMovie/k_xqqyxw1f/' + movieId;
+    'https://imdb-api.com/en/API/SearchMovie/k_0pdwjmyc/' + movieId;
 
   fetch(movieUrl)
     .then(function (response) {
@@ -236,7 +229,7 @@ var getActorId = function (name) {
 // Call a new fetch function to get actor information
 var actorInfo = function (actorId) {
   // Call api for actor information
-  var apiUrl = 'https://imdb-api.com/en/API/Name/k_vc5wkpr4/' + actorId;
+  var apiUrl = 'https://imdb-api.com/en/API/Name/k_fx2tmjk8/' + actorId;
 
   fetch(apiUrl)
     .then(function (response) {
@@ -271,48 +264,6 @@ var showActorInfo = function (actorId) {
   var birthDate = actorId.birthDate;
   // define the actors death date (if applicable)
   var deathDate = actorId.deathDate;
-<<<<<<< HEAD
-  var awards = actorId.awards;
-
-  // set the text content for the title
-  actorTitleEl.innerHTML =
-    'Top Movie and Shows for ' +
-    '<b>' +
-    actorName +
-    '</b>' +
-    '. ' +
-    '(' +
-    birthDate +
-    ' - ' +
-    deathDate +
-    ')';
-  // append title to the actor container
-  actorEl.appendChild(actorTitleEl);
-
-  // create an image element
-  var actorImage = document.createElement('img');
-  // set the source of the image
-  actorImage.setAttribute('src', actorId.image + '@2x.png');
-  actorImage.classList.add('actor-image');
-  // append image to the actor container
-  actorEl.appendChild(actorImage);
-
-  // Make a container to hold the actor information
-  var actorBioEl = document.createElement('div');
-
-  // define the actors known for array
-  var knownFor = actorId.knownFor;
-  // For loop to show all the movies/shows the actor is known for
-  for (var i = 0; i < knownFor.length; i++) {
-    // iterate through the knownFor array
-    knownForArr = knownFor[i];
-    // Make a list item element for the movies/shows the actor is known for
-    var knownforList = document.createElement('li');
-    // set the text content of the list item
-    knownforList.textContent = knownForArr.fullTitle;
-    // append the list item to the unordered list
-    knownForEl.appendChild(knownforList);
-=======
   // if theres a birth date then show the actor information
   if (birthDate) {
     // unhide the actor section
@@ -382,13 +333,8 @@ var showActorInfo = function (actorId) {
   } else {
     // otherwise run the function to hide the section and display 'actor not found'
     invalidActor();
->>>>>>> 6f9f461f0f15b71ae7f56e4930489901ac34ed45
   }
 };
-<<<<<<< HEAD
-// EVENT LISTENERS
-// button to capture name type into input, set to name vaiable and then running the getNameSearch() function
-=======
 /* ACTOR SECTION ENDS */
 
 /* ERROR MESSAGES START */
@@ -422,7 +368,6 @@ var connectIssue = function () {
 
 /* EVENT LISTENERS START */
 // Button to capture name type into input, set to name vaiable and then running the getNameSearch() and searchShow() functions
->>>>>>> 6f9f461f0f15b71ae7f56e4930489901ac34ed45
 buttonEL.addEventListener('click', function (event) {
   // prevent page refresh
   event.preventDefault();
@@ -443,86 +388,4 @@ buttonEL.addEventListener('click', function (event) {
     invalidActor();
   }
 });
-<<<<<<< HEAD
 /* EVENT LISTENERS END */
-=======
-<<<<<<< HEAD
-
-
-// FETCHING SHOW DATA
-function searchShow(query) {
-  const url = `https://api.tvmaze.com/search/shows?q=${query}`;
-  console.log(url)
-  fetch(url)
-    .then(response => {
-      console.log(response)
-     return response.json()})
-    .then((jsonData) => {
-      console.log(jsonData,"Json")
-      var htmlCode = ""
-      for(let i = 0 ; i < jsonData.length;i++){
-      // jsonData.forEach(element => {
-        let element = jsonData [i]
-        console.log(element)
-        htmlCode+=
-        `<div class="card">
-        <div class="card-image">
-          <figure class="image is-4by3">
-            <img src="${element.show.image.medium}" alt="placeholder image" />
-          </figure>
-        </div>
-        <div class="card-content">
-          <div class="media">
-            <div class="media-content">
-              <p class="title is-4">${element.show.name}</p>
-              <p class="subtitle is-6">${element.show.rating.average}</p>
-            </div>
-          </div>
-      
-          <div class="content">
-            ${element.show.summary}
-            <a href="${element.show.officialSite}">Offical Site</a>
-            <br />
-            <time>${element.show.schedule.time}</time>
-          </div>
-        </div>
-      </div>`
-      };
-      console.log(htmlCode)
-      // const list = document.getElementById("resultsList")
-      // list.innerHTML = htmlCode;
-      document.getElementById("resultsList").innerHTML = htmlCode
-      // renderResults(results);
-    })
-};
-
-
-
-
-// MAKES LIST OF SHOWS APPEAR ON SITE
-function renderResults(results) {
-  results.forEach(result => {
-    const element = document.createElement("li");
-    element.innerHTML = result;
-    list.appendChild(element);
-  })
-};
-
-
-
-// SEARCH BOX
-var seeElement = document.getElementById("search-b")
-seeElement.addEventListener("click", function (event) {
-  event.preventDefault()
-  const searchFieldElement = document.getElementById("see");
-  if (searchFieldElement.value.trim().length > 0) {
-    console.log(searchFieldElement.value)
-    searchShow(searchFieldElement.value);
-  }
-  else { alert("search another show") }
-
-});
-=======
-/* EVENT LISTENERS END */
->>>>>>> 6f9f461f0f15b71ae7f56e4930489901ac34ed45
->>>>>>> develop
