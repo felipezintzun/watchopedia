@@ -191,13 +191,6 @@ form .form-group {
   flex: 1;
 }
 
-.watchlist-title {
-  //*color: var(--primary);*//
-  margin-bottom: 5px;
-  margin-top: 0;
-  font-size: 4.5rem;
-}
-
 .watchlist-content {
   flex: 1;
   display: flex;

@@ -405,10 +405,10 @@ var titleFormHandler = function(event) {
   var titleTypeInput = document.querySelector("select[name='title-type']").value;
 
   // check if inputs are empty (validate)
-  if (titleNameInput === "" || titleTypeInput === "") {
-    alert("You need to fill out the title form!");
-    return false;
-  }
+  //if (titleNameInput === "" || titleTypeInput === "") {
+    //alert("You need to fill out the title form!");
+    //return false;
+  //}
   
   // reset form fields for next title to be entered
   document.querySelector("input[name='title-name']").value = "";
