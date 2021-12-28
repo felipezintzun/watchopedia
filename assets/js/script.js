@@ -2,6 +2,7 @@
 // Declare input element
 var inputEl = document.getElementById('search');
 
+// Define the movie section
 var movieSectionEl = document.getElementById('movie-section');
 // Declare the movie title
 var movieTitleEl = document.getElementById('movie-title');
@@ -10,7 +11,6 @@ var movieResultsEl = document.getElementById('movie-results');
 
 // Define the show section
 var showSectionEl = document.getElementById('show-section');
-// Define the movie section
 
 // Define the actor section
 var actorSectionEl = document.getElementById('actor-section');

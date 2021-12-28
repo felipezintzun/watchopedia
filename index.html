@@ -27,24 +27,38 @@
       <!-- HERO START -->
       <div class="hero">
         <h1 class="header-title m-2 p-4 is-size-1 is-size-5-touch"></h1>
-
         <!-- SEARCH BOX START -->
         <div class="search-form m-2 p-4 is-size-6">
-          <form class="align-items-flex-end" id="search-form">
-            <label for="search">
-              Search by movie, television show, or actor
-            </label>
-            <br />
-            <input
-              id="search"
-              list="watch"
-              name="watch"
-              placeholder="actor, movie, or show"
-              autocomplete="on"
-              autofocus
-            />
-            <!-- Dynamically populate the datalist options with APIs-->
-            <datalist id="watch"> </datalist>
+          <form
+            class="
+              is-flex is-justify-content-flex-between is-align-items-flex-start
+            "
+            id="search-form"
+          >
+            <div class="is-flex-direction-column">
+              <label for="search">
+                Search by movie, television show, or actor
+              </label>
+              <input
+                id="search"
+                list="watch"
+                name="watch"
+                placeholder="actor, movie, or show"
+                autocomplete="on"
+                autofocus
+              />
+              <!-- Dynamically populate the datalist options with APIs-->
+              <datalist id="watch"> </datalist>
+            </div>
+            <!-- Add in a dropdown list -->
+            <div class="is-flex-direction-column">
+              <label for="choose-search">Choose a search option</label>
+              <select name="choose-search" id="choose-search">
+                <option value="actor">Actor</option>
+                <option value="movie">Movie</option>
+                <option value="tv-show">TV Show</option>
+              </select>
+            </div>
             <div class="search-button">
               <button id="searchBtn">
                 <h2>SEARCH</h2>
@@ -57,7 +71,6 @@
           </form>
         </div>
         <!-- SEARCH BOX END -->
-
         <!-- HERO END -->
       </div>
     </header>
