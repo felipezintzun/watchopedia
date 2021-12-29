@@ -52,7 +52,7 @@ var getMovieSearch = function (name) {
       //if response is good run getMovieId function
       if (response.ok) {
         response.json().then(function (name) {
-          getMovieId(name);
+          showMovieInfo(name);
         });
       } else {
         // otherwise run invalid input
@@ -65,81 +65,27 @@ var getMovieSearch = function (name) {
     });
 };
 
-//check if there is a movie id
-
-var getMovieId = function (name) {
-  for (var i = 0; i < 10; i++);
-  {
-    //movie array
-    var movieArr = name.results[i];
-    //check for the movies id
-    var movieId = movieArr.id;
-    // if there is a movie id
-    if (movieId) {
-      // call the movieInfor function
-      movieInfo(movieId);
-    } else {
-      invalidMovie();
-    }
-  }
-};
-
-// cal a new fetch function to get movie info
-var movieInfo = function (movieId) {
-  // call api for movie info
-  var movieUrl =
-    'https://api.themoviedb.org/3/movie/' +
-    movieId +
-    '?api_key=' +
-    movieDbApi +
-    '&language=en-US';
-
-  fetch(movieUrl)
-    .then(function (response) {
-      // if there is a valid input
-      if (response.ok) {
-        //conver to json and run showMovieInfo Functions
-        response.json().then(function (movieId) {
-          showMovieInfo(movieId);
-        });
-      }
-    })
-    //runs if ther is a connection issue
-    .catch(function (error) {
-      connectIssue();
-    });
-};
-
 // function to display movie info
-var showMovieInfo = function (movieId) {
-  //clear old content
-  movieSectionEl.innerHTML = '';
-  movieResultsEl.innerHTML = '';
-  // clear error content
-  movieErrorEl.textContent = '';
-
-  if (movieId) {
-    // unhide the movie section
+var showMovieInfo = function (data) {
     movieSectionEl.classList.remove('hide');
-    //create image element
-    var movieImage = document.createElement('img');
-    // set the source of the image
-    movieImage.setAttribute(
-      'src',
-      'https://image.tmdb.org/t/p/w342' + movieId.poster_path
-    );
-    // movieImage.classList.add('movie-image');
-    //append image to the movie section
-    movieResultsEl.append(movieImage);
-
-    var movieTitle = document.createElement('span');
-    movieTitle.textContent = movieId.title;
-    movieResultsEl.append(movieTitle);
-
-    var movieDate = document.createElement('span');
-    movieDate.textContent = movieId.overview;
-    movieResultsEl.append(movieDate);
-    movieSectionEl.append(movieResultsEl);
+  for(let i = 0; i < 10; i++) {
+    let movieInfoDiv = document.createElement('div');
+    movieInfoDiv.setAttribute('id', 'movieDiv');
+    movieInfoDiv.setAttribute('style', 'width: 350px; color: white; text-align: center');
+    movieInfoDiv.setAttribute('class', 'column is-one-fifth is-full-mobile');
+    //generates movie posters
+    let movieImage = document.createElement('img');
+    movieImage.setAttribute('id', data.results[i].title);
+    movieImage.setAttribute('alt', data.results[i].title + ': ' + 'Image Not Available');
+    movieImage.setAttribute('src','https://image.tmdb.org/t/p/original' + data.poster_path);
+    // displays alt message if no poster available
+    if (movieImage.src == 'https://image.tmdb.org/t/p/w342undefined') {
+      movieImage.removeAttribute('src', 'https://image.tmdb.org/t/p/w342undefined');
+      movieImage.setAttribute('style', 'width: 100%; color: red; font-size: 1.25em');
+    }
+  movieInfoDiv.append(movieImage);
+  movieResultsEl.append(movieInfoDiv);
+  movieSectionEl.append(movieResultsEl);
   }
 };
 /* MOVIE SECTION END */
@@ -199,7 +145,6 @@ function searchShow(query) {
 /* ACTOR SECTION START */
 // the movie DB API call to get actor id. Note: name parameter is defined as the input value
 var getNameSearch = function (name) {
-  console.log(name);
   var apiUrl =
     'https://api.themoviedb.org/3/search/person?api_key=' +
     movieDbApi +
