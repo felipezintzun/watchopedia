@@ -64,6 +64,7 @@ function searchShow(query) {
             ${element.show.summary}
             <a href="${element.show.officialSite}">Offical Site</a>
             <br />
+            <button class="btn" id="save-title" type="submit">Add to My Watch Later List</button>
             <time>${element.show.schedule.time}</time>
           </div>
         </div>
@@ -504,7 +505,7 @@ var completeEditTitle = function(titleName, titleType, titleId) {
 
   // remove data attribute from form
   formEl.removeAttribute("data-title-id");
-  // update formEl button to go back to saying "Add Titl" instead of "Edit Title"
+  // update formEl button to go back to saying "Add Title" instead of "Edit Title"
   formEl.querySelector("#save-title").textContent = "Add Title";
 };
 
