@@ -27,26 +27,40 @@
       <!-- HERO START -->
       <div class="hero">
         <h1 class="header-title m-2 p-4 is-size-1 is-size-5-touch"></h1>
-
         <!-- SEARCH BOX START -->
         <div class="search-form m-2 p-4 is-size-6">
-          <form class="align-items-flex-end" id="search-form">
-            <label for="search">
-              Search by movie, television show, or actor
-            </label>
-            <br />
-            <input
-              id="search"
-              list="watch"
-              name="watch"
-              placeholder="actor, movie, or show"
-              autocomplete="on"
-              autofocus
-            />
-            <!-- Dynamically populate the datalist options with APIs-->
-            <datalist id="watch"> </datalist>
+          <form
+            class="
+              is-flex is-justify-content-flex-between is-align-items-flex-start
+            "
+            id="search-form"
+          >
+            <div class="is-flex-direction-column">
+              <label for="search">
+                Search by movie, television show, or actor
+              </label>
+              <input
+                id="search"
+                list="watch"
+                name="watch"
+                placeholder="actor, movie, or show"
+                autocomplete="on"
+                autofocus
+              />
+              <!-- Dynamically populate the datalist options with APIs-->
+              <datalist id="watch"> </datalist>
+            </div>
+            <!-- Add in a dropdown list -->
+            <div class="is-flex-direction-column">
+              <label for="choose-search">Choose a search option</label>
+              <select name="choose-search" id="choose-search" required>
+                <option value="actor" id="actor-option">Actor</option>
+                <option value="movie" id="movie-option">Movie</option>
+                <option value="tv-show" id="tv-show-option">TV Show</option>
+              </select>
+            </div>
             <div class="search-button">
-              <button id="searchBtn">
+              <button onclick="functionSelector()" id="searchBtn">
                 <h2>SEARCH</h2>
               </button>
             </div>
@@ -55,7 +69,6 @@
           </form>
         </div>
         <!-- SEARCH BOX END -->
-
         <!-- HERO END -->
       </div>
     </header>
@@ -72,8 +85,7 @@
         </div>
         <div class="flex-row is-justify-content-space-evenly" id="moviesnav">
           <!-- Shows and movies for an actor populate here -->
-          <ul id="movie-results"></ul>
-        </div>
+          <div id="movie-results"></div>
       </section>
 
       <!-- SHOW SECTION STARTS -->
@@ -85,7 +97,7 @@
       <section class="actor hide" id="actor-section">
         <h2
           class="section-title flex-row is-size-7-mobile has-text-centered"
-          id="actor-subtitle"
+          id="actor-title"
         ></h2>
         <div class="actor-image-container" id="actor-img-container"></div>
         <div>
