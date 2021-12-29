@@ -3,6 +3,7 @@ var inputEl = document.getElementById('search');
 
 // Define the select element
 var chooseSearch = document.getElementById('choose-search');
+
 // Define the dropdown options
 var actorOption = document.getElementById('actor-option');
 var movieOption = document.getElementById('movie-option');
@@ -393,7 +394,8 @@ var connectIssue = function () {
 /* ERROR MESSAGES END */
 
 /* EVENT LISTENERS START */
-// Button to capture name type into input, set to name vaiable and then running the getNameSearch() and searchShow() functions
+
+// Button to prevent default, and check if an input was submitted
 buttonEL.addEventListener('click', function (event) {
   // prevent page refresh
   event.preventDefault();
@@ -403,16 +405,32 @@ buttonEL.addEventListener('click', function (event) {
 
   // If there is a name inputted
   if (name.length > 0) {
-    // run getNameSearch() and searchShow() function
-    getNameSearch(name);
-    searchShow(name);
-    // searchShow(name);
-    getMovieSearch(name);
-    // save item to local storage
-    localStorage.setItem('search-result', JSON.stringify(name));
+    functionSelector(name);
   } else {
     invalidActor();
   }
-  localStorage.clear();
 });
+
+/* EVENT LISTENERS START */
+var functionSelector = function () {
+
+  // set name value
+  var name = inputEl.value.trim();
+  // define select element value
+  var chooseValue = chooseSearch.value;
+  // define option values
+  var actorValue = actorOption.value;
+  var movieValue = movieOption.value;
+  var showValue = showOption.value;
+  
+  if (name.length > 0 && chooseValue === actorValue) {
+    getNameSearch(name);
+  } else if (name.length > 0 && chooseValue === movieValue) {
+    getMovieSearch(name);
+  } else if (name.length > 0 && chooseValue === showValue) {
+    searchShow(name);
+  } else {
+    invalidActor();
+  }
+};
 /* EVENT LISTENERS END */
