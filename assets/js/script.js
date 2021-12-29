@@ -167,7 +167,7 @@ function searchShow(query) {
           <div class="section-title"> ${showTitle} </div>
         <div class="card-image">
           <figure class="image is-4by3">
-            <img src="${element.show.image.medium}" alt="placeholder image" />
+            <img src="${element.show.image.original}" alt="placeholder image" />
           </figure>
         </div>
         <div class="card-content">

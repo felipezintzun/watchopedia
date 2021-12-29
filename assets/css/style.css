@@ -133,6 +133,12 @@ form label {
   padding: 0.5vw 0 5vw 0;
 }
 
+.image.is-4by3{
+  padding-top: 75%;
+  height: 350px;
+  width: 400px;
+}
+
 a:hover,
 a:focus {
   color: var(--primary-red);
