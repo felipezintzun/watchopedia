@@ -49,6 +49,11 @@
               />
               <!-- Dynamically populate the datalist options with APIs-->
               <datalist id="watch"> </datalist>
+              <div class="search-button">
+                <button onclick="functionSelector()" id="searchBtn">
+                  <h2>SEARCH</h2>
+                </button>
+              </div>
             </div>
             <!-- Add in a dropdown list -->
             <div class="is-flex-direction-column">
@@ -58,14 +63,9 @@
                 <option value="movie" id="movie-option">Movie</option>
                 <option value="tv-show" id="tv-show-option">TV Show</option>
               </select>
-            </div>
-            <div class="search-button">
-              <button onclick="functionSelector()" id="searchBtn">
-                <h2>SEARCH</h2>
-              </button>
-            </div>
-            <!-- Place for error messages -->
+              <!-- Place for error messages -->
             <div id="error"></div>
+            </div> 
           </form>
         </div>
         <!-- SEARCH BOX END -->
