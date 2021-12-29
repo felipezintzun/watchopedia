@@ -30,11 +30,7 @@ var actorImageContainerEl = document.getElementById('actor-img-container');
 var knownForEl = document.getElementById('known-for');
 
 // Declare movie error messages container
-var movieErrorEl = document.getElementById('movie-error');
-// Declare show error messages container
-var showErrorEl = document.getElementById('show-error');
-// Declare actor error messages container
-var actorErrorEl = document.getElementById('actor-error');
+var errorEl = document.getElementById('error');
 
 // Declare button
 var buttonEL = document.getElementById('searchBtn');
@@ -60,6 +56,7 @@ var getMovieSearch = function (name) {
       } else {
         // otherwise run invalid input
         invalidMovie();
+        return;
       }
     })
     //runs if there is a connection issues
@@ -75,14 +72,20 @@ var getMovieId = function (name) {
   {
     //movie array
     var movieArr = name.results[i];
-    //check for the movies id
-    var movieId = movieArr.id;
-    // if there is a movie id
-    if (movieId) {
-      // call the movieInfor function
-      movieInfo(movieId);
-    } else {
+    if (movieArr === undefined) {
       invalidMovie();
+      return;
+    } else {
+      //check for the movies id
+      var movieId = movieArr.id;
+      // if there is a movie id
+      if (movieId) {
+        // call the movieInfor function
+        movieInfo(movieId);
+      } else {
+        invalidMovie();
+        return;
+      }
     }
   }
 };
@@ -119,11 +122,13 @@ var showMovieInfo = function (movieId) {
   movieSectionEl.innerHTML = '';
   movieResultsEl.innerHTML = '';
   // clear error content
-  movieErrorEl.textContent = '';
+  errorEl.textContent = '';
 
   if (movieId) {
     // unhide the movie section
     movieSectionEl.classList.remove('hide');
+    showSectionEl.classList.add('hide');
+    actorSectionEl.classList.add('hide');
     //create image element
     var movieImage = document.createElement('img');
     // set the source of the image
@@ -143,6 +148,9 @@ var showMovieInfo = function (movieId) {
     movieDate.textContent = movieId.overview;
     movieResultsEl.append(movieDate);
     movieSectionEl.append(movieResultsEl);
+  } else {
+    invalidMovie();
+    return;
   }
 };
 /* MOVIE SECTION END */
@@ -153,46 +161,53 @@ function searchShow(query) {
   fetch(url).then((response) => {
     if (response.ok) {
       response.json().then((jsonData) => {
-        // allow the show section and card to be visable
-        showSectionEl.classList.remove('hide');
-        // clear html
-        var htmlCode = '';
-        // clear error content
-        showErrorEl.textContent = '';
+        if (jsonData.length === 0) {
+          invalidShow();
+          return;
+        } else {
+          // allow the show section and card to be visable
+          showSectionEl.classList.remove('hide');
+          // hide the movie and actor sections
+          movieSectionEl.classList.add('hide');
+          actorSectionEl.classList.add('hide');
+          // clear html
+          var htmlCode = '';
+          // clear error content
+          errorEl.textContent = '';
+          // Declare the show title
+          var showTitle = 'Shows';
 
-        // Declare the show title
-        var showTitle = 'Shows';
+          for (let i = 0; i < 5; i++) {
+            // jsonData.forEach(element => {
+            let element = jsonData[i];
 
-        for (let i = 0; i < jsonData.length; i++) {
-          // jsonData.forEach(element => {
-          let element = jsonData[i];
-          htmlCode += `<div class="card is-flex-column is-justify-content-space-between" id="tvshowsnav"> 
-          <div class="section-title"> ${showTitle} </div>
-        <div class="card-image">
-          <figure class="image is-4by3">
-            <img src="${element.show.image.medium}" alt="placeholder image" />
-          </figure>
-        </div>
-        <div class="card-content">
-          <div class="media">
-            <div class="media-content">
-              <p class="title is-4">${element.show.name}</p>
-              <p class="subtitle is-6">${element.show.rating.average}</p>
+            htmlCode += `<div class="card is-flex-column is-justify-content-space-between" id="tvshowsnav"> 
+              <div class="section-title"> ${showTitle} </div>
+              <div class="card-image">
+                <figure class="image is-4by3">
+                  <img src="${element.show.image.medium}" alt="placeholder image" />
+              </figure>
             </div>
-          </div>
-          <div class="content">
-            ${element.show.summary}
-            <a href="${element.show.officialSite}">Offical Site</a>
-            <br />
-            <time>${element.show.schedule.time}</time>
-          </div>
-        </div>
-      </div>`;
+            <div class="card-content">
+              <div class="media">
+                <div class="media-content">
+                  <p class="title is-4">${element.show.name}</p>
+                  <p class="subtitle is-6">${element.show.rating.average}</p>
+                </div>
+              </div>
+              <div class="content">
+                ${element.show.summary}
+                <a href="${element.show.officialSite}">Offical Site</a>
+                <br />
+                <time>${element.show.schedule.time}</time>
+              </div>
+            </div>
+            </div>`;
+
+            document.getElementById('resultsList').innerHTML = htmlCode;
+          }
         }
-        document.getElementById('resultsList').innerHTML = htmlCode;
       });
-    } else {
-      invalidShow();
     }
   });
 }
@@ -202,7 +217,6 @@ function searchShow(query) {
 /* ACTOR SECTION START */
 // the movie DB API call to get actor id. Note: name parameter is defined as the input value
 var getNameSearch = function (name) {
-  console.log(name);
   var apiUrl =
     'https://api.themoviedb.org/3/search/person?api_key=' +
     movieDbApi +
@@ -220,6 +234,7 @@ var getNameSearch = function (name) {
       } else {
         // otherwise run invalid input
         invalidActor();
+        return;
       }
     })
     // runs if there is a connection issue
@@ -232,14 +247,20 @@ var getNameSearch = function (name) {
 var getActorId = function (name) {
   // define the actors array
   var actors = name.results;
-  // check for the actors id
-  var actorId = actors[0].id;
-  // if there is an actor id
-  if (actorId) {
-    // call the actorInfo function
-    actorInfo(actorId);
-  } else {
+  if (actors[0] === undefined) {
     invalidActor();
+    return;
+  } else {
+    // check for the actors id
+    var actorId = actors[0].id;
+    // if there is an actor id
+    if (actorId) {
+      // call the actorInfo function
+      actorInfo(actorId);
+    } else {
+      invalidActor();
+      return;
+    }
   }
 };
 
@@ -278,7 +299,7 @@ var showActorInfo = function (actorId) {
   // clear the actor subtitle section
   actorTitleEl.innerHTML = '';
   // clear error content
-  actorErrorEl.textContent = '';
+  errorEl.textContent = '';
 
   // define the actor's name
   var actorName = actorId.name;
@@ -360,6 +381,7 @@ var showActorInfo = function (actorId) {
   } else {
     // otherwise run the function to hide the section and display 'actor not found'
     invalidActor();
+    return;
   }
 };
 /* ACTOR SECTION ENDS */
@@ -367,28 +389,51 @@ var showActorInfo = function (actorId) {
 /* ERROR MESSAGES START */
 // Function for invalid movies
 var invalidMovie = function () {
-  movieErrorEl.textContent = 'Movie not found';
-  movieErrorEl.style.color = 'red';
+  errorEl.textContent = 'Movie not found';
+  errorEl.style.color = 'red';
   movieSectionEl.classList.add('hide');
+  showSectionEl.classList.add('hide');
+  actorSectionEl.classList.add('hide');
+  // stop the function
+  return;
 };
 
 var invalidShow = function () {
-  showErrorEl.textContent = 'Movie not found';
-  showErrorEl.style.color = 'red';
+  errorEl.textContent = 'Show not found';
+  errorEl.style.color = 'red';
+  movieSectionEl.classList.add('hide');
   showSectionEl.classList.add('hide');
+  actorSectionEl.classList.add('hide');
+  // stop the function
+  return;
 };
 
 // Function for invalid or improper inputs for actors
 var invalidActor = function () {
-  actorErrorEl.textContent = 'Actor not found';
-  actorErrorEl.style.color = 'red';
+  errorEl.textContent = 'Actor not found';
+  errorEl.style.color = 'red';
+  movieSectionEl.classList.add('hide');
+  showSectionEl.classList.add('hide');
   actorSectionEl.classList.add('hide');
+  // stop the function
+  return;
+};
+
+var invalidInput = function () {
+  errorEl.textContent = 'Invalid search';
+  errorEl.style.color = 'red';
+  movieSectionEl.classList.add('hide');
+  showSectionEl.classList.add('hide');
+  actorSectionEl.classList.add('hide');
+  // stop the function
+  return;
 };
 
 // Function if you are unable to connect
 var connectIssue = function () {
   errorEl.textContent = 'Unable to connect.';
   errorEl.style.color = 'red';
+  return;
 };
 
 /* ERROR MESSAGES END */
@@ -407,13 +452,13 @@ buttonEL.addEventListener('click', function (event) {
   if (name.length > 0) {
     functionSelector(name);
   } else {
-    invalidActor();
+    invalidInput();
+    return;
   }
 });
 
 /* EVENT LISTENERS START */
 var functionSelector = function () {
-
   // set name value
   var name = inputEl.value.trim();
   // define select element value
@@ -422,15 +467,20 @@ var functionSelector = function () {
   var actorValue = actorOption.value;
   var movieValue = movieOption.value;
   var showValue = showOption.value;
-  
-  if (name.length > 0 && chooseValue === actorValue) {
-    getNameSearch(name);
-  } else if (name.length > 0 && chooseValue === movieValue) {
-    getMovieSearch(name);
-  } else if (name.length > 0 && chooseValue === showValue) {
-    searchShow(name);
+
+  if (name === '') {
+    return;
   } else {
-    invalidActor();
+    if (chooseValue === actorValue) {
+      getNameSearch(name);
+    } else if (chooseValue === movieValue) {
+      getMovieSearch(name);
+    } else if (chooseValue === showValue) {
+      searchShow(name);
+    } else {
+      invalidInput();
+      return;
+    }
   }
 };
 /* EVENT LISTENERS END */
