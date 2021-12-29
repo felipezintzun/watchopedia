@@ -1,6 +1,8 @@
 /* GLOBAL VARIABLES START */
 var inputEl = document.getElementById('search');
 
+// Define the select element
+var chooseSearch = document.getElementById('choose-search');
 // Define the dropdown options
 var actorOption = document.getElementById('actor-option');
 var movieOption = document.getElementById('movie-option');

@@ -53,14 +53,14 @@
             <!-- Add in a dropdown list -->
             <div class="is-flex-direction-column">
               <label for="choose-search">Choose a search option</label>
-              <select name="choose-search" id="choose-search">
+              <select name="choose-search" id="choose-search" required>
                 <option value="actor" id="actor-option">Actor</option>
                 <option value="movie" id="movie-option">Movie</option>
                 <option value="tv-show" id="tv-show-option">TV Show</option>
               </select>
             </div>
             <div class="search-button">
-              <button id="searchBtn">
+              <button onclick="functionSelector()" id="searchBtn">
                 <h2>SEARCH</h2>
               </button>
             </div>
