@@ -17,26 +17,28 @@
   </head>
 
   <body>
-    <header> 
+    <header>
       <!-- NAV BAR START  -->
-          <div class="topnav">
-            <a href="#movies">Movies</a>
-            <a href="#tvshows">TV Shows</a>
-            <a href="#itemNav">Actors</a>
-          </div>
+      <div class="topnav">
+        <a href="#movies">Movies</a>
+        <a href="#tvshows">TV Shows</a>
+        <a href="#itemNav">Actors</a>
+      </div>
       <!-- HERO START -->
       <div class="hero">
-          <h1 class="header-title m-2 p-4 is-size-1 is-size-5-touch">
-        
-          </h1>
-
-          <!-- SEARCH BOX START -->
-          <div class="search-form m-2 p-4 is-size-6">
-            <form class="align-items-flex-end" id="search-form">
+        <h1 class="header-title m-2 p-4 is-size-1 is-size-5-touch"></h1>
+        <!-- SEARCH BOX START -->
+        <div class="search-form m-2 p-4 is-size-6">
+          <form
+            class="
+              is-flex is-justify-content-flex-between is-align-items-flex-start
+            "
+            id="search-form"
+          >
+            <div class="is-flex-direction-column">
               <label for="search">
                 Search by movie, television show, or actor
               </label>
-              <br />
               <input
                 id="search"
                 list="watch"
@@ -47,23 +49,33 @@
               />
               <!-- Dynamically populate the datalist options with APIs-->
               <datalist id="watch"> </datalist>
-              <div class="search-button">
-                <button id="searchBtn">
-                  <h2>SEARCH</h2>
-                </button>
-              </div>
-              <!-- Place for error messages -->
-              <div id="error"></div>
-            </form>
-          </div>
-          <!-- SEARCH BOX END -->
-
+            </div>
+            <!-- Add in a dropdown list -->
+            <div class="is-flex-direction-column">
+              <label for="choose-search">Choose a search option</label>
+              <select name="choose-search" id="choose-search">
+                <option value="actor" id="actor-option">Actor</option>
+                <option value="movie" id="movie-option">Movie</option>
+                <option value="tv-show" id="tv-show-option">TV Show</option>
+              </select>
+            </div>
+            <div class="search-button">
+              <button id="searchBtn">
+                <h2>SEARCH</h2>
+              </button>
+            </div>
+            <!-- Place for error messages -->
+            <div id="movie-error"></div>
+            <div id="show-error"></div>
+            <div id="actor-error"></div>
+          </form>
+        </div>
+        <!-- SEARCH BOX END -->
         <!-- HERO END -->
       </div>
     </header>
 
     <main>
-
       <!-- MOVIE SECTION STARTS -->
       <section class="movie hide" id="movie-section">
         <h2 class="section-title">Movies</h2>
@@ -75,8 +87,7 @@
         </div>
         <div class="flex-row is-justify-content-space-evenly" id="moviesnav">
           <!-- Shows and movies for an actor populate here -->
-          <ul id="movie-results"></ul>
-        </div>
+          <div id="movie-results"></div>
       </section>
 
       <!-- SHOW SECTION STARTS -->
@@ -86,16 +97,22 @@
 
       <!-- ACTOR SECTION -->
       <section class="actor hide" id="actor-section">
-        <h2 class="section-title">Actor Information</h2>
-        <div
-          class="flex-row is-size-4-touch is-size-2-tablet has-text-centered"
-          id="actor"
-        >
-          <h3 class="actor-subtitle" id="actor-subtitle"></h3>
-        </div>
-        <div class="flex-row is-justify-content-space-evenly" id="actorsnav">
+        <h2
+          class="section-title flex-row is-size-7-mobile has-text-centered"
+          id="actor-title"
+        ></h2>
+        <div class="actor-image-container" id="actor-img-container"></div>
+        <div>
           <!-- Shows and movies for an actor populate here -->
-          <ul id="known-for"></ul>
+          <ul
+            class="
+              is-flex
+              is-flex-direction-column
+              is-align-items-center
+              is-justify-content-center
+            "
+            id="known-for"
+          ></ul>
         </div>
       </section>
 
@@ -108,7 +125,6 @@
     </main>
 
     <!-- LINK JAVASCRIPT PAGE -->
-    
 
     <script src="assets/js/script.js"></script>
   </body>

@@ -1,23 +1,22 @@
 \/* GENERAL STYLES */
 html {
-  background-image: linear-gradient(to bottom right, #1b6c86, #281e32); 
+  background-image: linear-gradient(to bottom right, #1b6c86, #281e32);
   background-repeat: no-repeat;
 }
 
 /* Colors */
 :root {
-  --border-black: #131111;
-  --border-section: #7a7a7a;
+  --button-hover: #1b6c86;
   --bg-nav: #222;
-  --bg-card: #eae7dc;
   --bg-oddSection: #d3d3d3;
   --bg-sectionTitle: #9ddadf;
-  --bg-black: #000000;
+  --bg-card: #eae7dc;
   --bg-white: rgb(255, 255, 255, 0.8);
-  --primary-card: #8e8d8a;
   --primary-white: #f1f1f1;
   --primary-red: #ff0066;
-  --primary-black: #000000;
+  --gray: #7a7a7a;
+  --black: #000000;
+  --light-orange: #fe6601;
 }
 
 /* Margin and padding are included in element's width and height */
@@ -37,12 +36,10 @@ html body {
 
 /* Main titles for each section */
 .section-title {
-  font-size: 2vw;
+  font-size: 2.5vw;
   font-weight: bold;
-  text-align: center;
   padding: 1vw;
-  margin-bottom: 1.5vw;
-  border: 2px solid var(--border-section);
+  border: 2px solid var(--gray);
   border-radius: 12px;
   background: var(--bg-sectionTitle);
   color: var(--bg-show);
@@ -51,16 +48,15 @@ html body {
 /* HEADER STYLES START */
 header {
   min-height: 60vh;
-  background-image: url('../images/watchopedia-bg-2.svg'); */
+  background-image: url('../images/watchopedia-bg-2.svg');
   background-size: contain;
   background-position: right;
   background-repeat: no-repeat;
-  
-} 
+}
 
 .header-title {
-  background: url("../images/watchopedia-logo.svg") no-repeat;
-  background-image: url("../images/watchopedia-logo.svg");
+  background: url('../images/watchopedia-logo.svg') no-repeat;
+  background-image: url('../images/watchopedia-logo.svg');
   /* background-size: auto; */
   display: block;
   width: 500px;
@@ -78,23 +74,16 @@ header {
 /* Style the links inside the navigation bar */
 .topnav a {
   float: right;
-  color: #f2f2f2;
-  position: ;
+  color: var(--primary-white);
   text-align: center;
   padding: 20px 50px 0px 0px;
-  /* text-decoration: none;
-  font-size: 17px;
-  display: inline; */
   margin: 0px;
   text-align: center;
-  display:inline-block;
-  /* vertical-align:top; */
 }
 
 /* Change the color of links on hover */
 .topnav a:hover {
-  /* background-color: #ddd; */
-  color: #fe6601;
+  color: var(--light-orange);
 }
 
 /* Form */
@@ -102,15 +91,14 @@ header {
   width: 30%;
   font-weight: 500;
   font-style: italic;
-  text-align: left;
   border-radius: 1rem;
   background-color: var(--bg-white);
-  color: var(--primary-black);
+  color: var(--black);
 }
 
 #searchBtn {
-  background-color: #fe6601;
-  color: white;
+  background-color: var(--light-orange);
+  color: var(--primary-white);
   border-radius: 10px;
   border: none;
   padding: 8px 18px;
@@ -118,8 +106,7 @@ header {
 }
 
 #searchBtn:hover {
-  background-color: #1b6c86
-
+  background-color: var(--button-hover);
 }
 
 form label {
@@ -141,7 +128,7 @@ form label {
 .card {
   max-width: 100%;
   background: var(--bg-card);
-  color: var(--primary-card);
+  color: var(--gray);
   border-radius: 20px;
   padding: 0.5vw 0 5vw 0;
 }
@@ -160,7 +147,7 @@ a:focus {
   position: relative;
   border-radius: 1rem;
   /* background-color: var(--bg-white); */
-  color: var(--primary-black);
+  color: var(--black);
 }
 .menu {
   display: flex;
@@ -180,40 +167,46 @@ a:focus {
 /* Style the actor section */
 .actor {
   background: var(--bg-oddSection);
-  height: 120px;
-  margin: 2vh;
   min-height: 25vw;
+}
+
+/* Actor image container */
+.actor-image-container {
+  max-height: 120px;
 }
 
 /* Actor image */
 .actor-image {
-  max-height: 30vh;
+  max-width: 10%;
   position: absolute;
   left: 10vw;
+  margin-top: 2.4vw;
 }
 
-/* Actor title */
-.actor-subtitle {
-  font-size: 1.5vw;
+/* Actor information container */
+.actorInfoContainer {
+  display: flex;
+  justify-content: flex-end;
+  margin: 1vw;
 }
-
 /* Actor known for styling */
-.known-list {
+.biography {
   font-weight: bold;
-  font-size: 1.4vw;
+  font-size: 1vw;
+  padding: 1vw;
+  text-align: left;
   font-style: italic;
-  margin: 1vw 0.2vw 0.2vw 0.2vw;
+  margin: 0.2vw;
+  width: 50%;
 }
 
 /* FOOTER STYLE START */
 footer {
-  position: fixed;
-  bottom: 0;
   text-align: right;
-  width: 100%;
+  max-width: 100%;
   height: 90px;
   padding: 20px;
-  background-image: linear-gradient(to bottom right, #1b6c86, #281e32); 
+  background-image: linear-gradient(to bottom right, #1b6c86, #281e32);
   background-repeat: no-repeat;
   color: var(--primary-white);
   position: fixed;
