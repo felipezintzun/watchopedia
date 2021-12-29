@@ -1,4 +1,4 @@
-\/* GENERAL STYLES */
+/* GENERAL STYLES */
 html {
   background-image: linear-gradient(to bottom right, #1b6c86, #281e32);
   background-repeat: no-repeat;
@@ -211,4 +211,90 @@ footer {
   color: var(--primary-white);
   position: fixed;
   bottom: 0;
+}
+
+/* WATCH LATER SECTION STYLING */
+
+.watchlist-content {
+  flex: 1;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin: 25px auto;
+  width: 95%;
+}
+
+.title-list-wrapper {
+  flex: 1;
+  margin: 0 20px 20px;
+}
+
+.list-title {
+  /*color: var(--secondary);*/
+  font-size: 2.6rem;
+}
+
+.title-list {
+  list-style: none;
+  padding: 15px;
+  height: calc(100% - 50px);
+  /*background: rgb(196, 196, 196); */
+  border-radius: 12px;
+  border: 2px solid /*var(--grey)*/;
+}
+
+
+.title-item {
+  /*color: var(--grey); */
+  padding: 15px 15px;
+  border: 2px solid /* var(--grey)*/;
+  /*background: var(--tertiary);*/
+  border-radius: 12px;
+  margin-bottom: 20px;
+}
+
+.title-name {
+  margin: 0;
+  /*font-size: 1.8rem; */
+}
+
+.title-type {
+  /*color: var(--secondary);*/
+  font-size: 1.55rem;
+}
+
+.title-actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  margin: 10px 0 5px 0;
+  justify-content: space-between;
+}
+
+.title-actions button,
+.title-actions select {
+  flex: 1;
+}
+
+.btn {
+  outline: none;
+  border: none;
+  display: inline-block;
+  padding: 10px 15px;
+  /*background: var(--primary);*/
+  font-size: 2.2rem;
+  border-radius: 12px;
+  position: relative;
+  top: -3px;
+  box-shadow: 0 3px /*var(--grey)*/;
+}
+
+.btn:hover {
+  box-shadow: 0 2px /*var(--grey)*/;
+  top: -2px;
+}
+
+.btn:active {
+  box-shadow: 0 0px /*var(--grey)*/;
+  top: 0;
 }
