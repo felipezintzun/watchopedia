@@ -191,13 +191,14 @@ a:focus {
 }
 /* Actor known for styling */
 .biography {
-  font-weight: bold;
-  font-size: 1vw;
-  padding: 1vw;
-  text-align: left;
-  font-style: italic;
-  margin: 0.2vw;
+  text-align: center;
   width: 50%;
+  margin: 1vw;
+  padding: 2vw;
+  font-weight: bold;
+  font-style: italic;
+  border-radius: 20px;
+  background: var(--bg-card);
 }
 
 /* FOOTER STYLE START */
