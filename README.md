@@ -1,4 +1,4 @@
-# watchopedia
+# Watchopedia
 
 # Description
 
@@ -28,7 +28,6 @@ _CURRENTLY_
 
 # Future Development
 
-- Have mobile responsiveness
 - Heart favorites
 - Ratings
 - Trending section
