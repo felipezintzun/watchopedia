@@ -403,7 +403,7 @@ var watchlistContentEl = document.querySelector("#watchlist-content");
 var titleFormHandler = function(event) {
   event.preventDefault();
   var titleNameInput = document.querySelector("input[name='title-name']").value;
-  var titleTypeInput = document.querySelector("select[name='title-type']").value;
+ // var titleTypeInput = document.querySelector("select[name='title-type']").value;
 
   // check if inputs are empty (validate)
   //if (titleNameInput === "" || titleTypeInput === "") {
@@ -413,7 +413,7 @@ var titleFormHandler = function(event) {
   
   // reset form fields for next title to be entered
   document.querySelector("input[name='title-name']").value = "";
-  document.querySelector("select[name='title-type']").selectedIndex = 0;
+  //document.querySelector("select[name='title-type']").selectedIndex = 0;
  
   // check if title is new or one being edited by seeing if it has a data-title-id attribute
   var isEdit = formEl.hasAttribute("data-title-id");
@@ -425,7 +425,7 @@ var titleFormHandler = function(event) {
   //package up data as an object
     var titleDataObj = {
       name: titleNameInput,
-      type: titleTypeInput
+      //type: titleTypeInput
     };
   
     createTitleEl(titleDataObj);
@@ -495,13 +495,14 @@ var createTitleActions = function(titleId) {
   return actionContainerEl;
 };
 
-var completeEditTitle = function(titleName, titleType, titleId) {
+var completeEditTitle = function(titleName, titleId) {
+//var completeEditTitle = function(titleName, titleType, titleId) {
   // find title list item with titleId value
   var titleSelected = document.querySelector(".title-item[data-title-id='" + titleId + "']");
 
   // set new values
   titleSelected.querySelector("h3.title-name").textContent = titleName;
-  titleSelected.querySelector("span.title-type").textContent = titleType;
+  //titleSelected.querySelector("span.title-type").textContent = titleType;
 
   // remove data attribute from form
   formEl.removeAttribute("data-title-id");
@@ -554,12 +555,12 @@ var editTitle = function(titleId) {
   var titleName = titleSelected.querySelector("h3.title-name").textContent;
   console.log(titleName);
 
-  var titleType = titleSelected.querySelector("span.title-type").textContent;
-  console.log(titleType);
+  //var titleType = titleSelected.querySelector("span.title-type").textContent;
+  //console.log(titleType);
 
   // write values of titlename and titleType to form to be edited
   document.querySelector("input[name='title-name']").value = titleName;
-  document.querySelector("select[name='title-type']").value = titleType;
+  //document.querySelector("select[name='title-type']").value = titleType;
 
   // set data attribute to the form with a value of the title's id so it knows which one is being edited
   formEl.setAttribute("data-title-id", titleId);
