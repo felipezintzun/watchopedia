@@ -467,23 +467,23 @@ var createTitleActions = function(titleId) {
   actionContainerEl.appendChild(deleteButtonEl);
 
   // create change status dropdown
-  var statusSelectEl = document.createElement("select");
-  statusSelectEl.setAttribute("name", "status-change");
-  statusSelectEl.setAttribute("data-title-id", titleId);
-  statusSelectEl.className = "select-status";
-  actionContainerEl.appendChild(statusSelectEl);
+  //var statusSelectEl = document.createElement("select");
+  //statusSelectEl.setAttribute("name", "status-change");
+  //statusSelectEl.setAttribute("data-title-id", titleId);
+  //statusSelectEl.className = "select-status";
+  //actionContainerEl.appendChild(statusSelectEl);
   // create status options
-  var statusChoices = ["To Watch", "In Progress", "Watched"];
+  //var statusChoices = ["To Watch", "In Progress", "Watched"];
 
-  for (var i = 0; i < statusChoices.length; i++) {
+  //for (var i = 0; i < statusChoices.length; i++) {
     // create option element
-    var statusOptionEl = document.createElement("option");
-    statusOptionEl.setAttribute("value", statusChoices[i]);
-    statusOptionEl.textContent = statusChoices[i];
+    //var statusOptionEl = document.createElement("option");
+    //statusOptionEl.setAttribute("value", statusChoices[i]);
+    //statusOptionEl.textContent = statusChoices[i];
   
     // append to select
-    statusSelectEl.appendChild(statusOptionEl);
-  }
+    //statusSelectEl.appendChild(statusOptionEl);
+  //}
   
   return actionContainerEl;
 };
