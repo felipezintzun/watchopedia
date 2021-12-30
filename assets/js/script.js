@@ -67,7 +67,22 @@ var getMovieSearch = function (name) {
 
 // function to display movie info
 var showMovieInfo = function (name) {
+  //clear out old content
+  movieSectionEl.innerHTML = '';
+  movieResultsEl.innerHTML = '';
+  errorEl.textContent= '';
+  console.log(name);
+  var totalResults = name.total_results;
+  if (totalResults === 0) {
+    invalidMovie();
+    return;
+  } else {
+
+  // hide other sections
     movieSectionEl.classList.remove('hide');
+    showSectionEl.classList.add('hide');
+    actorSectionEl.classList.add('hide');
+  // display results in posters
   for (let i = 0; i < 10; i++) {
     let movieInfoDiv = document.createElement('div');
     movieInfoDiv.setAttribute('id', 'movieDiv');
@@ -83,9 +98,10 @@ var showMovieInfo = function (name) {
       movieImage.removeAttribute('src', 'https://image.tmdb.org/t/p/w342undefined');
       movieImage.setAttribute('style', 'width: 100%; color: red; font-size: 1.25em');
     }
-  movieInfoDiv.append(movieImage);
-  movieResultsEl.append(movieInfoDiv);
-  movieSectionEl.append(movieResultsEl);
+    movieInfoDiv.append(movieImage);
+    movieResultsEl.append(movieInfoDiv);
+    movieSectionEl.append(movieResultsEl);
+    }
   }
 };
 /* MOVIE SECTION END */
