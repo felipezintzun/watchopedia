@@ -298,3 +298,28 @@ footer {
   box-shadow: 0 0px /*var(--grey)*/;
   top: 0;
 }
+
+.watch-list_element {
+	position: relative;
+}
+.watch-list_element span {
+	position: absolute;
+	content: "x";
+	top: 7px;
+	right: 7px;
+	background-color: #ffff;
+	width: 20px;
+	height: 20px;
+	display: block;
+	font-weight: 600;
+	font-size: 12px;
+	padding-left: 5px;
+	border: 1px solid black;
+	border-radius: 50%;
+	cursor: pointer;
+}
+.watch-list_element .watch-list_img {
+	width: 120px;
+	height: 170px;
+	margin: 10px;
+}
