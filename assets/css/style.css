@@ -142,7 +142,7 @@ a:focus {
 /* Style the actor section */
 .actor {
   background: var(--bg-oddSection);
-  min-height: 25vw;
+  min-height: 50vh;
   margin-bottom: 5em;
 }
 
