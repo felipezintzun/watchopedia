@@ -27,7 +27,13 @@ html {
 html body {
   min-height: 100vh;
 }
-
+#page-container{
+  position:relative;
+  min-height:100vh;
+}
+#content-wrap {
+  padding-bottom: 5rem;
+}
 /* UTILITY CLASSES */
 /* Hide each section */
 .hide {
@@ -176,6 +182,8 @@ a:focus {
 /* FOOTER STYLE START */
 footer {
   text-align: right;
+  bottom: 0;
+  position: absolute;
   width: 100%;
   height: 90px;
   padding: 20px;

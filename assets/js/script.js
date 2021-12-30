@@ -33,7 +33,7 @@ var buttonEL = document.getElementById('searchBtn');
 /* GLOBAL VARIABLES END */
 
 /* MOVIE SECTION START */
-// fetch movie from imdb
+// fetch movie from api
 var getMovieSearch = function (name) {
   var movieUrl =
     'https://api.themoviedb.org/3/search/movie?api_key=' +
@@ -42,23 +42,22 @@ var getMovieSearch = function (name) {
     name +
     '&page=1&include_adult=false';
 
-  fetch(movieUrl)
-    .then(function (response) {
-      //if response is good run getMovieId function
-      if (response.ok) {
+  fetch(movieUrl).then(function (response) {
+    //if response is good run getMovieInfo function
+    if (response.ok) {
         response.json().then(function (name) {
           showMovieInfo(name);
         });
-      } else {
+    } else {
         // otherwise run invalid input
         invalidMovie();
         return;
       }
-    })
-    //runs if there is a connection issues
-    .catch(function () {
-      connectIssue();
-    });
+  })
+  //runs if there is a connection issues
+  .catch(function () {
+  connectIssue();
+  });
 };
 
 // function to display movie info
@@ -66,47 +65,32 @@ var showMovieInfo = function (name) {
   //clear out old content
   movieSectionEl.innerHTML = '';
   movieResultsEl.innerHTML = '';
-  errorEl.textContent = '';
-  console.log(name);
+  errorEl.textContent= '';
   var totalResults = name.total_results;
   if (totalResults === 0) {
-    invalidMovie();
-    return;
+  invalidMovie();
+  return;
   } else {
     // hide other sections
     movieSectionEl.classList.remove('hide');
     showSectionEl.classList.add('hide');
     actorSectionEl.classList.add('hide');
     // display results in posters
-    for (let i = 0; i < 10; i++) {
+    var movieArray = name.results;
+    for (let i = 0; i < movieArray.length; i++) {
       let movieInfoDiv = document.createElement('div');
       movieInfoDiv.setAttribute('id', 'movieDiv');
-      movieInfoDiv.setAttribute(
-        'style',
-        'width: 350px; color: white; text-align: center'
-      );
+      movieInfoDiv.setAttribute('style', 'width: 350px; color: white; text-align: center');
       movieInfoDiv.setAttribute('class', 'column is-one-fifth is-full-mobile');
       //generates movie posters
       let movieImage = document.createElement('img');
-      movieImage.setAttribute('id', name.results[i].title);
-      movieImage.setAttribute(
-        'alt',
-        name.results[i].title + ': ' + 'Image Not Available'
-      );
-      movieImage.setAttribute(
-        'src',
-        'https://image.tmdb.org/t/p/original' + name.results[i].poster_path
-      );
+      movieImage.setAttribute('id', movieArray[i].title);
+      movieImage.setAttribute('alt', movieArray[i].title + ': ' + 'Image Not Available');
+      movieImage.setAttribute('src','https://image.tmdb.org/t/p/original' + movieArray[i].poster_path);
       // displays alt message if no poster available
       if (movieImage.src == 'https://image.tmdb.org/t/p/w342undefined') {
-        movieImage.removeAttribute(
-          'src',
-          'https://image.tmdb.org/t/p/w342undefined'
-        );
-        movieImage.setAttribute(
-          'style',
-          'width: 100%; color: red; font-size: 1.25em'
-        );
+      movieImage.removeAttribute('src', 'https://image.tmdb.org/t/p/w342undefined');
+      movieImage.setAttribute('style', 'width: 100%; color: red; font-size: 1.25em');
       }
       movieInfoDiv.append(movieImage);
       movieResultsEl.append(movieInfoDiv);
