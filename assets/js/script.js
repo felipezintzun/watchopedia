@@ -60,24 +60,24 @@ var getMovieSearch = function (name) {
       }
     })
     //runs if there is a connection issues
-    .catch(function (error) {
+    .catch(function () {
       connectIssue();
     });
 };
 
 // function to display movie info
-var showMovieInfo = function (data) {
+var showMovieInfo = function (name) {
     movieSectionEl.classList.remove('hide');
-  for(let i = 0; i < 10; i++) {
+  for (let i = 0; i < 10; i++) {
     let movieInfoDiv = document.createElement('div');
     movieInfoDiv.setAttribute('id', 'movieDiv');
     movieInfoDiv.setAttribute('style', 'width: 350px; color: white; text-align: center');
     movieInfoDiv.setAttribute('class', 'column is-one-fifth is-full-mobile');
     //generates movie posters
     let movieImage = document.createElement('img');
-    movieImage.setAttribute('id', data.results[i].title);
-    movieImage.setAttribute('alt', data.results[i].title + ': ' + 'Image Not Available');
-    movieImage.setAttribute('src','https://image.tmdb.org/t/p/original' + data.poster_path);
+    movieImage.setAttribute('id', name.results[i].title);
+    movieImage.setAttribute('alt', name.results[i].title + ': ' + 'Image Not Available');
+    movieImage.setAttribute('src','https://image.tmdb.org/t/p/original' + name.results[i].poster_path);
     // displays alt message if no poster available
     if (movieImage.src == 'https://image.tmdb.org/t/p/w342undefined') {
       movieImage.removeAttribute('src', 'https://image.tmdb.org/t/p/w342undefined');
