@@ -27,9 +27,9 @@ html {
 html body {
   min-height: 100vh;
 }
-#page-container{
-  position:relative;
-  min-height:100vh;
+#page-container {
+  position: relative;
+  min-height: 100vh;
 }
 #content-wrap {
   padding-bottom: 5rem;
@@ -156,21 +156,21 @@ a:focus {
 .actor-image {
   max-width: 20%;
   position: absolute;
-  left: 10vw;
-  margin-top: 2.4vw;
+  left: 5vw;
   padding: 2vw;
 }
 
 /* Actor information container */
 .actorInfoContainer {
   display: flex;
+  align-items: flex-start;
   justify-content: flex-end;
   margin: 1vw;
 }
 /* Actor biography styling */
 .biography {
   text-align: center;
-  width: 100%;
+  width: 70%;
   margin: 1vw;
   padding: 2vw;
   font-weight: bold;
