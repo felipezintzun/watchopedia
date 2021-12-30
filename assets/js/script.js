@@ -396,8 +396,6 @@ var titleIdCounter = 0;
 
 var formEl = document.querySelector("#title-form");
 var titlesToWatchEl = document.querySelector("#titles-to-watch");
-var titlesInProgressEl = document.querySelector("#titles-in-progress");
-var titlesCompletedEl = document.querySelector("#titles-watched");
 var watchlistContentEl = document.querySelector("#watchlist-content");
 
 var titleFormHandler = function(event) {
@@ -420,7 +418,7 @@ var titleFormHandler = function(event) {
 
   if (isEdit) {
     var titleId = formEl.getAttribute("data-title-id");
-    completeEditTitle(titleNameInput, titleTypeInput, titleId);
+    completeEditTitle(titleNameInput, titleId);
   } else {
   //package up data as an object
     var titleDataObj = {
