@@ -58,28 +58,8 @@ header {
   background: url('../images/watchopedia-logo.svg') no-repeat;
   background-image: url('../images/watchopedia-logo.svg');
   display: block;
-  height: 120px;
-}
-
-/* NAV BAR STYLES */
-
-.topnav {
-  overflow: hidden;
-}
-
-/* Style the links inside the navigation bar */
-.topnav a {
-  float: right;
-  color: var(--primary-white);
-  text-align: center;
-  padding: 20px 50px 0px 0px;
-  margin: 0px;
-  text-align: center;
-}
-
-/* Change the color of links on hover */
-.topnav a:hover {
-  color: var(--light-orange);
+  height: 13vh;
+  width: auto;
 }
 
 /* Form */
@@ -212,6 +192,12 @@ footer {
 
 /* MEDIA QUERIES */
 @media screen and (max-width: 375px) {
+  .header-title {
+    width: 95vw;
+    background-position: center;
+    margin: 0 0.5rem;
+  }
+
   .search-form {
     width: 80%;
   }
@@ -222,7 +208,17 @@ footer {
   }
 }
 
-@media screen and (max-width: 540px) {
+@media screen and (max-width: 700px) {
+  header {
+    background-position: center;
+    background-size: 60vw;
+  }
+
+  .header-title {
+    background-position: center;
+    margin: 0 0.5rem;
+  }
+
   .search-form {
     width: 80%;
   }
@@ -233,6 +229,6 @@ footer {
   }
 
   .actorInfoContainer {
-    flex-direction: row
+    flex-direction: row;
   }
 }

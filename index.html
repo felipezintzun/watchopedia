@@ -18,35 +18,23 @@
 
   <body>
     <header>
-      <!-- NAV BAR START  -->
-      <div class="topnav">
-        <a href="#movies">Movies</a>
-        <a href="#tvshows">TV Shows</a>
-        <a href="#itemNav">Actors</a>
-      </div>
       <h1 class="header-title m-2 p-4"></h1>
       <!-- HERO START -->
       <div class="hero">
-     
         <!-- SEARCH BOX START -->
-          <form
-            class="search-form m-2 p-4
-              is-flex-direction-row is-justify-content-flex-between is-align-items-flex-start
-            "
-            id="search-form"
-          >
-            <!-- Add in a dropdown list -->
-            <div class="is-flex-direction-column is-flex-wrap-wrap">
-              <label for="choose-search">Choose a search option</label>
-              <br>
-              <div class="select is-primary">
-                <select name="choose-search" id="choose-search" required>
-                  <option value="actor" id="actor-option">Actor</option>
-                  <option value="movie" id="movie-option">Movie</option>
-                  <option value="tv-show" id="tv-show-option">TV Show</option>
-                </select>
-              </div>
-             
+        <form class="search-form m-2 p-4" id="search-form">
+          <!-- Add in a dropdown list -->
+          <div class="is-flex-direction-column is-flex-wrap-wrap">
+            <label for="choose-search">Choose a search option</label>
+            <br />
+            <div class="select is-primary">
+              <select name="choose-search" id="choose-search" required>
+                <option value="actor" id="actor-option">Actor</option>
+                <option value="movie" id="movie-option">Movie</option>
+                <option value="tv-show" id="tv-show-option">TV Show</option>
+              </select>
+            </div>
+
             <div class="is-flex-direction-column is-flex-wrap-wrap">
               <label for="search">
                 Search by movie, television show, or actor
@@ -63,17 +51,20 @@
               <!-- Dynamically populate the datalist options with APIs-->
               <datalist id="watch"> </datalist>
               <!-- Search Button -->
-          
-                <button class="searchButton button" id="searchBtn" onclick="functionSelector()">
-                  SEARCH
-                </button>
-                
+
+              <button
+                class="searchButton button"
+                id="searchBtn"
+                onclick="functionSelector()"
+              >
+                SEARCH
+              </button>
+
               <!-- Place for error messages -->
               <div id="error"></div>
             </div>
-
-            </div> 
-          </form>
+          </div>
+        </form>
         <!-- SEARCH BOX END -->
         <!-- HERO END -->
       </div>
@@ -83,11 +74,22 @@
       <!-- MOVIE SECTION STARTS -->
       <section class="movie hide" id="movie-section">
         <h2 class="section-title">Movies</h2>
-        <div class="flex-row is-size-4-touch is-size-2-tablet has-text-centered" id="movie">
+        <div
+          class="flex-row is-size-4-touch is-size-2-tablet has-text-centered"
+          id="movie"
+        >
           <h3 class="movie-title"></h3>
-          <div id="movie-results" class= "is-flex is-flex-direction-row is-justify-content-center is-flex-wrap-wrap" ></div>
+          <div
+            id="movie-results"
+            class="
+              is-flex
+              is-flex-direction-row
+              is-justify-content-center
+              is-flex-wrap-wrap
+            "
+          ></div>
         </div>
-          <!-- Shows and movies for an actor populate here -->
+        <!-- Shows and movies for an actor populate here -->
       </section>
 
       <!-- SHOW SECTION STARTS -->
@@ -115,14 +117,13 @@
           ></ul>
         </div>
       </section>
-
-      <!-- FOOTER STARTS -->
-      <footer>
-        <h2>Made by Watchopedia.</h2>
-        <div>&copy; 2021 Watchopedia, Inc.</div>
-      </footer>
-      <!-- FOOTER ENDS -->
     </main>
+    <!-- FOOTER STARTS -->
+    <footer>
+      <h2>Made by Watchopedia.</h2>
+      <div>&copy; 2021 Watchopedia, Inc.</div>
+    </footer>
+    <!-- FOOTER ENDS -->
 
     <!-- LINK JAVASCRIPT PAGE -->
 
