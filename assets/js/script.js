@@ -256,7 +256,7 @@ var showActorInfo = function (actorId) {
 
     // define div where actor is alive
     var liveDiv =
-      'Information for ' +
+      'Information about ' +
       actorName +
       ' (Born: ' +
       birthDate +
