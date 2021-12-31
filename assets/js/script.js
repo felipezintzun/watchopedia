@@ -1,6 +1,9 @@
 /* GLOBAL VARIABLES START */
 var inputEl = document.getElementById('search');
 
+// Define the select element
+var chooseSearch = document.getElementById('choose-search');
+
 // Define the dropdown options
 var actorOption = document.getElementById('actor-option');
 var movieOption = document.getElementById('movie-option');
@@ -21,24 +24,16 @@ var showSectionEl = document.getElementById('show-section');
 var actorSectionEl = document.getElementById('actor-section');
 // Declare the actor subtitle
 var actorTitleEl = document.getElementById('actor-title');
-// Declare the container that holds the actor information
-var actorImageContainerEl = document.getElementById('actor-img-container');
-// Declare the unordered list to list the movies/shows the actor is known for
-var knownForEl = document.getElementById('known-for');
 
 // Declare movie error messages container
-var movieErrorEl = document.getElementById('movie-error');
-// Declare show error messages container
-var showErrorEl = document.getElementById('show-error');
-// Declare actor error messages container
-var actorErrorEl = document.getElementById('actor-error');
+var errorEl = document.getElementById('error');
 
 // Declare button
 var buttonEL = document.getElementById('searchBtn');
 /* GLOBAL VARIABLES END */
 
 /* MOVIE SECTION START */
-// fetch movie from imdb
+// fetch movie from api
 var getMovieSearch = function (name) {
   var movieUrl =
     'https://api.themoviedb.org/3/search/movie?api_key=' +
@@ -49,97 +44,74 @@ var getMovieSearch = function (name) {
 
   fetch(movieUrl)
     .then(function (response) {
-      //if response is good run getMovieId function
+      //if response is good run getMovieInfo function
       if (response.ok) {
         response.json().then(function (name) {
-          getMovieId(name);
+          showMovieInfo(name);
         });
       } else {
         // otherwise run invalid input
         invalidMovie();
+        return;
       }
     })
     //runs if there is a connection issues
-    .catch(function (error) {
-      connectIssue();
-    });
-};
-
-//check if there is a movie id
-
-var getMovieId = function (name) {
-  for (var i = 0; i < 10; i++);
-  {
-    //movie array
-    var movieArr = name.results[i];
-    //check for the movies id
-    var movieId = movieArr.id;
-    // if there is a movie id
-    if (movieId) {
-      // call the movieInfor function
-      movieInfo(movieId);
-    } else {
-      invalidMovie();
-    }
-  }
-};
-
-// cal a new fetch function to get movie info
-var movieInfo = function (movieId) {
-  // call api for movie info
-  var movieUrl =
-    'https://api.themoviedb.org/3/movie/' +
-    movieId +
-    '?api_key=' +
-    movieDbApi +
-    '&language=en-US';
-
-  fetch(movieUrl)
-    .then(function (response) {
-      // if there is a valid input
-      if (response.ok) {
-        //conver to json and run showMovieInfo Functions
-        response.json().then(function (movieId) {
-          showMovieInfo(movieId);
-        });
-      }
-    })
-    //runs if ther is a connection issue
-    .catch(function (error) {
+    .catch(function () {
       connectIssue();
     });
 };
 
 // function to display movie info
-var showMovieInfo = function (movieId) {
-  //clear old content
+var showMovieInfo = function (name) {
+  //clear out old content
   movieSectionEl.innerHTML = '';
   movieResultsEl.innerHTML = '';
-  // clear error content
-  movieErrorEl.textContent = '';
-
-  if (movieId) {
-    // unhide the movie section
+  errorEl.textContent = '';
+  var totalResults = name.total_results;
+  if (totalResults === 0) {
+    invalidMovie();
+    return;
+  } else {
+    // hide other sections
     movieSectionEl.classList.remove('hide');
-    //create image element
-    var movieImage = document.createElement('img');
-    // set the source of the image
-    movieImage.setAttribute(
-      'src',
-      'https://image.tmdb.org/t/p/w342' + movieId.poster_path
-    );
-    // movieImage.classList.add('movie-image');
-    //append image to the movie section
-    movieResultsEl.append(movieImage);
-
-    var movieTitle = document.createElement('span');
-    movieTitle.textContent = movieId.title;
-    movieResultsEl.append(movieTitle);
-
-    var movieDate = document.createElement('span');
-    movieDate.textContent = movieId.overview;
-    movieResultsEl.append(movieDate);
-    movieSectionEl.append(movieResultsEl);
+    showSectionEl.classList.add('hide');
+    actorSectionEl.classList.add('hide');
+    // display results in posters
+    var movieArray = name.results;
+    for (let i = 0; i < movieArray.length; i++) {
+      let movieInfoDiv = document.createElement('div');
+      movieInfoDiv.setAttribute('id', 'movieDiv');
+      movieInfoDiv.setAttribute(
+        'style',
+        'width: 350px; color: white; text-align: center'
+      );
+      movieInfoDiv.setAttribute('class', 'column is-one-fifth is-full-mobile');
+      //generates movie posters
+      let movieImage = document.createElement('img');
+      movieImage.setAttribute('id', movieArray[i].title);
+      movieImage.setAttribute(
+        'alt',
+        movieArray[i].title + ': ' + 'Image Not Available'
+      );
+      movieImage.setAttribute(
+        'src',
+        'https://image.tmdb.org/t/p/original' + movieArray[i].poster_path
+      );
+      // displays alt message if no poster available
+      if (movieImage.src == 'https://image.tmdb.org/t/p/w342undefined') {
+        movieImage.removeAttribute(
+          'src',
+          'https://image.tmdb.org/t/p/w342undefined'
+        );
+        movieImage.setAttribute(
+          'style',
+          'width: 100%; color: red; font-size: 1.25em'
+        );
+      }
+      movieInfoDiv.append(movieImage);
+      movieResultsEl.append(movieInfoDiv);
+      movieSectionEl.append(movieResultsEl);
+    }
   }
 };
 /* MOVIE SECTION END */
@@ -150,46 +122,53 @@ function searchShow(query) {
   fetch(url).then((response) => {
     if (response.ok) {
       response.json().then((jsonData) => {
-        // allow the show section and card to be visable
-        showSectionEl.classList.remove('hide');
-        // clear html
-        var htmlCode = '';
-        // clear error content
-        showErrorEl.textContent = '';
+        if (jsonData.length === 0) {
+          invalidShow();
+          return;
+        } else {
+          // allow the show section and card to be visable
+          showSectionEl.classList.remove('hide');
+          // hide the movie and actor sections
+          movieSectionEl.classList.add('hide');
+          actorSectionEl.classList.add('hide');
+          // clear html
+          var htmlCode = '';
+          // clear error content
+          errorEl.textContent = '';
+          // Declare the show title
+          var showTitle = 'Shows';
 
-        // Declare the show title
-        var showTitle = 'Shows';
+          for (let i = 0; i < 5; i++) {
+            // jsonData.forEach(element => {
+            let element = jsonData[i];
 
-        for (let i = 0; i < jsonData.length; i++) {
-          // jsonData.forEach(element => {
-          let element = jsonData[i];
-          htmlCode += `<div class="card is-flex-column is-justify-content-space-between" id="tvshowsnav"> 
-          <div class="section-title"> ${showTitle} </div>
-        <div class="card-image">
-          <figure class="image is-4by3">
-            <img src="${element.show.image.medium}" alt="placeholder image" />
-          </figure>
-        </div>
-        <div class="card-content">
-          <div class="media">
-            <div class="media-content">
-              <p class="title is-4">${element.show.name}</p>
-              <p class="subtitle is-6">${element.show.rating.average}</p>
+            htmlCode += `<div class="card is-flex-column is-justify-content-space-between" id="tvshowsnav"> 
+              <div class="section-title"> ${showTitle} </div>
+              <div class="card-image">
+                <figure class="image is-4by3">
+                  <img src="${element.show.image.medium}" alt="placeholder image" />
+              </figure>
             </div>
-          </div>
-          <div class="content">
-            ${element.show.summary}
-            <a href="${element.show.officialSite}">Offical Site</a>
-            <br />
-            <time>${element.show.schedule.time}</time>
-          </div>
-        </div>
-      </div>`;
+            <div class="card-content">
+              <div class="media">
+                <div class="media-content">
+                  <p class="title is-4">${element.show.name}</p>
+                  <p class="subtitle is-6">${element.show.rating.average}</p>
+                </div>
+              </div>
+              <div class="content">
+                ${element.show.summary}
+                <a href="${element.show.officialSite}">Offical Site</a>
+                <br />
+                <time>${element.show.schedule.time}</time>
+              </div>
+            </div>
+            </div>`;
+
+            document.getElementById('resultsList').innerHTML = htmlCode;
+          }
         }
-        document.getElementById('resultsList').innerHTML = htmlCode;
       });
-    } else {
-      invalidShow();
     }
   });
 }
@@ -199,7 +178,6 @@ function searchShow(query) {
 /* ACTOR SECTION START */
 // the movie DB API call to get actor id. Note: name parameter is defined as the input value
 var getNameSearch = function (name) {
-  console.log(name);
   var apiUrl =
     'https://api.themoviedb.org/3/search/person?api_key=' +
     movieDbApi +
@@ -217,6 +195,7 @@ var getNameSearch = function (name) {
       } else {
         // otherwise run invalid input
         invalidActor();
+        return;
       }
     })
     // runs if there is a connection issue
@@ -229,14 +208,20 @@ var getNameSearch = function (name) {
 var getActorId = function (name) {
   // define the actors array
   var actors = name.results;
-  // check for the actors id
-  var actorId = actors[0].id;
-  // if there is an actor id
-  if (actorId) {
-    // call the actorInfo function
-    actorInfo(actorId);
-  } else {
+  if (actors[0] === undefined) {
     invalidActor();
+    return;
+  } else {
+    // check for the actors id
+    var actorId = actors[0].id;
+    // if there is an actor id
+    if (actorId) {
+      // call the actorInfo function
+      actorInfo(actorId);
+    } else {
+      invalidActor();
+      return;
+    }
   }
 };
 
@@ -270,12 +255,10 @@ var actorInfo = function (actorId) {
 var showActorInfo = function (actorId) {
   // clear old content
   actorSectionEl.innerHTML = '';
-  // clear list item elements
-  knownForEl.innerHTML = '';
   // clear the actor subtitle section
   actorTitleEl.innerHTML = '';
   // clear error content
-  actorErrorEl.textContent = '';
+  errorEl.textContent = '';
 
   // define the actor's name
   var actorName = actorId.name;
@@ -297,7 +280,7 @@ var showActorInfo = function (actorId) {
 
     // define div where actor is alive
     var liveDiv =
-      'Information for ' +
+      'Information about ' +
       actorName +
       ' (Born: ' +
       birthDate +
@@ -326,6 +309,10 @@ var showActorInfo = function (actorId) {
     // append title to the actor container
     actorSectionEl.append(actorTitleEl);
 
+    // Make a container to hold the actor information
+    var actorInfoEl = document.createElement('div');
+    actorInfoEl.classList.add('actorInfoContainer');
+
     // create an image element
     var actorImage = document.createElement('img');
     // set the source of the image
@@ -335,15 +322,12 @@ var showActorInfo = function (actorId) {
     );
     actorImage.classList.add('actor-image');
     // append image to the image container
-    actorImageContainerEl.append(actorImage);
+    actorInfoEl.append(actorImage);
     // append image container to the actor bio section
-    actorSectionEl.append(actorImageContainerEl);
+    actorSectionEl.append(actorInfoEl);
 
-    // Make a container to hold the actor information
-    var actorInfoEl = document.createElement('div');
-    actorInfoEl.classList.add('actorInfoContainer');
     // Make a paragraph element for the actor's biography
-    var actorBio = document.createElement('p');
+    var actorBio = document.createElement('span');
     // set the text content of the list item
     actorBio.textContent = actorBiography;
     // style the biography
@@ -357,6 +341,7 @@ var showActorInfo = function (actorId) {
   } else {
     // otherwise run the function to hide the section and display 'actor not found'
     invalidActor();
+    return;
   }
 };
 /* ACTOR SECTION ENDS */
@@ -364,34 +349,58 @@ var showActorInfo = function (actorId) {
 /* ERROR MESSAGES START */
 // Function for invalid movies
 var invalidMovie = function () {
-  movieErrorEl.textContent = 'Movie not found';
-  movieErrorEl.style.color = 'red';
+  errorEl.textContent = 'Movie not found';
+  errorEl.style.color = 'red';
   movieSectionEl.classList.add('hide');
+  showSectionEl.classList.add('hide');
+  actorSectionEl.classList.add('hide');
+  // stop the function
+  return;
 };
 
 var invalidShow = function () {
-  showErrorEl.textContent = 'Movie not found';
-  showErrorEl.style.color = 'red';
+  errorEl.textContent = 'Show not found';
+  errorEl.style.color = 'red';
+  movieSectionEl.classList.add('hide');
   showSectionEl.classList.add('hide');
+  actorSectionEl.classList.add('hide');
+  // stop the function
+  return;
 };
 
 // Function for invalid or improper inputs for actors
 var invalidActor = function () {
-  actorErrorEl.textContent = 'Actor not found';
-  actorErrorEl.style.color = 'red';
+  errorEl.textContent = 'Actor not found';
+  errorEl.style.color = 'red';
+  movieSectionEl.classList.add('hide');
+  showSectionEl.classList.add('hide');
   actorSectionEl.classList.add('hide');
+  // stop the function
+  return;
+};
+
+var invalidInput = function () {
+  errorEl.textContent = 'Invalid search';
+  errorEl.style.color = 'red';
+  movieSectionEl.classList.add('hide');
+  showSectionEl.classList.add('hide');
+  actorSectionEl.classList.add('hide');
+  // stop the function
+  return;
 };
 
 // Function if you are unable to connect
 var connectIssue = function () {
   errorEl.textContent = 'Unable to connect.';
   errorEl.style.color = 'red';
+  return;
 };
 
 /* ERROR MESSAGES END */
 
 /* EVENT LISTENERS START */
-// Button to capture name type into input, set to name vaiable and then running the getNameSearch() and searchShow() functions
+
+// Button to prevent default, and check if an input was submitted
 buttonEL.addEventListener('click', function (event) {
   // prevent page refresh
   event.preventDefault();
@@ -401,16 +410,37 @@ buttonEL.addEventListener('click', function (event) {
 
   // If there is a name inputted
   if (name.length > 0) {
-    // run getNameSearch() and searchShow() function
-    getNameSearch(name);
-    searchShow(name);
-    // searchShow(name);
-    getMovieSearch(name);
-    // save item to local storage
-    localStorage.setItem('search-result', JSON.stringify(name));
+    functionSelector(name);
   } else {
-    invalidActor();
+    invalidInput();
+    return;
   }
-  localStorage.clear();
 });
+
+/* EVENT LISTENERS START */
+var functionSelector = function () {
+  // set name value
+  var name = inputEl.value.trim();
+  // define select element value
+  var chooseValue = chooseSearch.value;
+  // define option values
+  var actorValue = actorOption.value;
+  var movieValue = movieOption.value;
+  var showValue = showOption.value;
+
+  if (name === '') {
+    return;
+  } else {
+    if (chooseValue === actorValue) {
+      getNameSearch(name);
+    } else if (chooseValue === movieValue) {
+      getMovieSearch(name);
+    } else if (chooseValue === showValue) {
+      searchShow(name);
+    } else {
+      invalidInput();
+      return;
+    }
+  }
+};
 /* EVENT LISTENERS END */
