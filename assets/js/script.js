@@ -17,6 +17,9 @@ var movieResultsEl = document.getElementById('movie-results');
 // the movie db api key
 var movieDbApi = '40ead071b983da851d42031943eb549a';
 
+// Define the show section
+var showSectionEl = document.getElementById('show-section');
+
 // Define the actor section
 var actorSectionEl = document.getElementById('actor-section');
 // Declare the actor subtitle
@@ -24,16 +27,6 @@ var actorTitleEl = document.getElementById('actor-title');
 
 // Declare movie error messages container
 var errorEl = document.getElementById('error');
-
-// DEFINE SHOW SECTION
-var showSectionEl = document.getElementById('show-section');
-
-// ADD TO WATCH LATER LIST
-var modalButtonEl = document.querySelector("#modal-button");
-var watchListEl = document.querySelector("#watch-list");
-var movieFavhEl = document.getElementById('movies-to-watch')
-var showFavEl = document.getElementById('shows-to-watch')
-
 
 // Declare button
 var buttonEL = document.getElementById('searchBtn');
@@ -93,6 +86,7 @@ var showMovieInfo = function (name) {
         'width: 350px; color: white; text-align: center'
       );
       movieInfoDiv.setAttribute('class', 'column is-one-fifth is-full-mobile');
+      
       //generates movie posters
       let movieImage = document.createElement('img');
       movieImage.setAttribute('id', movieArray[i].title);
@@ -146,14 +140,13 @@ function searchShow(query) {
           var htmlCode = '';
           // clear error content
           errorEl.textContent = '';
-          // Declare the show title
-          var showTitle = 'Shows';
 
           for (let i = 0; i < 5; i++) {
             // jsonData.forEach(element => {
             let element = jsonData[i];
 
-            htmlCode += `<div class="card is-flex-column is-justify-content-space-between" id="tvshowsnav"> 
+            htmlCode += `
+            <div class="card is-flex-column is-justify-content-space-between" id="tvshowsnav"> 
          
             <div class="card-image">
               <figure class="image is-4by3">
@@ -170,7 +163,6 @@ function searchShow(query) {
               <div class="content">
                 ${element.show.summary}
                 <a href="${element.show.officialSite}">Offical Site</a>
-                <button class="modal-button" id="save-title" type="submit">Add to My Watch Later List</button>
               </div>
             </div>
           </div>`;
@@ -356,21 +348,6 @@ var showActorInfo = function (actorId) {
 };
 /* ACTOR SECTION ENDS */
 
-/* FAVORITES SECTION STARTS */
-var favoriteSection = function () {
-
-  var chooseValue = chooseSearch.value;
-
-  // define option values
-  var actorValue = actorOption.value;
-  var movieValue = movieOption.value;
-  var showValue = showOption.value;
-  
-  var favList = document.createElement("li");
-  favList.innerHTML = 
-
-}
-
 /* ERROR MESSAGES START */
 // Function for invalid movies
 var invalidMovie = function () {
@@ -468,206 +445,4 @@ var functionSelector = function () {
     }
   }
 };
-
-modalButtonEl.addEventListener('click' function(event) {
-  event.preventDefault();
-
-  var name = inputEl.value.trim();
-
-  if (name.length > 0) {
-    functionSelector(name);
-  } else {
-    invalidInput();
-    return;
-  }
-});
 /* EVENT LISTENERS END */
-
-
-//FUNCTION TO ADD TITLES TO A WATCH LATER LIST
-var titleIdCounter = 0;
-
-var formEl = document.querySelector("#title-form");
-var titlesToWatchEl = document.querySelector("#titles-to-watch");
-var titlesInProgressEl = document.querySelector("#titles-in-progress");
-var titlesCompletedEl = document.querySelector("#titles-watched");
-var watchlistContentEl = document.querySelector("#watchlist-content");
-
-var titleFormHandler = function(event) {
-  event.preventDefault();
-  var titleNameInput = document.querySelector("input[name='title-name']").value;
- // var titleTypeInput = document.querySelector("select[name='title-type']").value;
-
-  // check if inputs are empty (validate)
-  //if (titleNameInput === "" || titleTypeInput === "") {
-    //alert("You need to fill out the title form!");
-    //return false;
-  //}
-  
-  // reset form fields for next title to be entered
-  document.querySelector("input[name='title-name']").value = "";
-  //document.querySelector("select[name='title-type']").selectedIndex = 0;
- 
-  // check if title is new or one being edited by seeing if it has a data-title-id attribute
-  var isEdit = formEl.hasAttribute("data-title-id");
-
-  if (isEdit) {
-    var titleId = formEl.getAttribute("data-title-id");
-    completeEditTitle(titleNameInput, titleTypeInput, titleId);
-  } else {
-  //package up data as an object
-    var titleDataObj = {
-      name: titleNameInput,
-      //type: titleTypeInput
-    };
-  
-    createTitleEl(titleDataObj);
-  }
-};
-
-var createTitleEl = function (titleDataObj) {
-  // create list item
-  var listItemEl = document.createElement("li");
-  listItemEl.className = "title-item";
-  listItemEl.setAttribute("data-title-id", titleIdCounter);
-
-  // create div to hold title info and add to list item
-  var titleInfoEl = document.createElement("div");
-  titleInfoEl.className = "title-info";
-  titleInfoEl.innerHTML = "<h3 class='title-name'>" + titleDataObj.name + "</h3><span class='title-type'>" + titleDataObj.type + "</span>";
-  listItemEl.appendChild(titleInfoEl);
-
-  // create list actions (buttons and select) for title
-  var titleActionsEl = createTitleActions(titleIdCounter);
-  listItemEl.appendChild(titleActionsEl);
-  titlesToWatchEl.appendChild(listItemEl);
-
-  // increase title counter for next unique id
-  titleIdCounter++;
-
-};
-
-var createTitleActions = function(titleId) {
-  // create container to hold elements
-  var actionContainerEl = document.createElement("div");
-  actionContainerEl.className = "title-actions";
-
-  // create delete button
-  var deleteButtonEl = document.createElement("button");
-  deleteButtonEl.textContent = "Delete";
-  deleteButtonEl.className = "btn delete-btn";
-  deleteButtonEl.setAttribute("data-title-id", titleId);
-  actionContainerEl.appendChild(deleteButtonEl);
-
-  // create change status dropdown
-  //var statusSelectEl = document.createElement("select");
-  //statusSelectEl.setAttribute("name", "status-change");
-  //statusSelectEl.setAttribute("data-title-id", titleId);
-  //statusSelectEl.className = "select-status";
-  //actionContainerEl.appendChild(statusSelectEl);
-  // create status options
-  //var statusChoices = ["To Watch", "In Progress", "Watched"];
-
-  //for (var i = 0; i < statusChoices.length; i++) {
-    // create option element
-    //var statusOptionEl = document.createElement("option");
-    //statusOptionEl.setAttribute("value", statusChoices[i]);
-    //statusOptionEl.textContent = statusChoices[i];
-  
-    // append to select
-    //statusSelectEl.appendChild(statusOptionEl);
-  //}
-  
-  return actionContainerEl;
-};
-
-var completeEditTitle = function(titleName, titleId) {
-//var completeEditTitle = function(titleName, titleType, titleId) {
-  // find title list item with titleId value
-  var titleSelected = document.querySelector(".title-item[data-title-id='" + titleId + "']");
-
-  // set new values
-  titleSelected.querySelector("h3.title-name").textContent = titleName;
-  //titleSelected.querySelector("span.title-type").textContent = titleType;
-
-  // remove data attribute from form
-  formEl.removeAttribute("data-title-id");
-  // update formEl button to go back to saying "Add Title" instead of "Edit Title"
-  formEl.querySelector("#save-title").textContent = "Add Title";
-};
-
-var titleButtonHandler = function(event) {
-  // get target element from event
-  var targetEl = event.target;
-
-  if (targetEl.matches(".edit-btn")) {
-    console.log("edit", targetEl);
-    var titleId = targetEl.getAttribute("data-title-id");
-    editTitle(titleId);
-  } else if (targetEl.matches(".delete-btn")) {
-    console.log("delete", targetEl);
-    var titleId = targetEl.getAttribute("data-title-id");
-    deleteTitle(titleId);
-  }
-};
-
-var titleStatusChangeHandler = function(event) {
-  console.log(event.target.value);
-
-  // find title list item based on event.target's data-title-id attribute
-  var titleId = event.target.getAttribute("data-title-id");
-
-  var titleSelected = document.querySelector(".title-item[data-title-id='" + titleId + "']");
-
-  // convert value to lower case
-  var statusValue = event.target.value.toLowerCase();
-
-  if (statusValue === "to watch") {
-    titlesToWatchEl.appendChild(titleSelected);
-  } else if (statusValue === "in progress") {
-    titlesInProgressEl.appendChild(titleSelected);
-  } else if (statusValue === "watched") {
-    titlesCompletedEl.appendChild(titleSelected);
-  }
-};
-
-var editTitle = function(titleId) {
-  console.log(titleId);
-
-  // get title list item element
-  var titleSelected = document.querySelector(".title-item[data-title-id='" + titleId + "']");
-
-  // get content from title name and type
-  var titleName = titleSelected.querySelector("h3.title-name").textContent;
-  console.log(titleName);
-
-  //var titleType = titleSelected.querySelector("span.title-type").textContent;
-  //console.log(titleType);
-
-  // write values of titlename and titleType to form to be edited
-  document.querySelector("input[name='title-name']").value = titleName;
-  //document.querySelector("select[name='title-type']").value = titleType;
-
-  // set data attribute to the form with a value of the title's id so it knows which one is being edited
-  formEl.setAttribute("data-title-id", titleId);
-  // update form's button to reflect editing a title rather than creating a new one
-  formEl.querySelector("#save-title").textContent = "Save Title";
-};
-
-
-var deleteTitle = function(titleId) {
-  console.log(titleId);
-  // find title list element with titleId value and remove it
-  var titleSelected = document.querySelector(".title-item[data-title-id='" + titleId + "']");
-  titleSelected.remove();
-};
-  
-// Add a new title
-formEl.addEventListener("submit", titleFormHandler);
-  
-// for edit and delete buttons
-watchlistContentEl.addEventListener("click", titleButtonHandler);
-  
-// for changing the status
-watchlistContentEl.addEventListener("change", titleStatusChangeHandler);
-//WATCH LATER LIST END
