@@ -164,10 +164,10 @@ function searchShow(query) {
           // jsonData.forEach(element => {
           let element = jsonData[i];
           htmlCode += `<div class="card is-flex-column is-justify-content-space-between" id="tvshowsnav"> 
-          <div class="section-title"> ${showTitle} </div>
+         
         <div class="card-image">
           <figure class="image is-4by3">
-            <img src="${element.show.image.medium}" alt="placeholder image" />
+            <img src="${element.show.image.original}" alt="placeholder image" />
           </figure>
         </div>
         <div class="card-content">
@@ -180,8 +180,6 @@ function searchShow(query) {
           <div class="content">
             ${element.show.summary}
             <a href="${element.show.officialSite}">Offical Site</a>
-            <br />
-            <time>${element.show.schedule.time}</time>
           </div>
         </div>
       </div>`;
