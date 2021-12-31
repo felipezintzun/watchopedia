@@ -28,12 +28,13 @@ var actorTitleEl = document.getElementById('actor-title');
 // Declare movie error messages container
 var errorEl = document.getElementById('error');
 
-var movieFavhEl = document.getElementById('movies-to-watch')
-var showFavEl = document.getElementById('shows-to-watch')
+var favoritesListEl = document.getElementById('watch-section');
+var movieFavEl = document.getElementById('movies-to-watch');
+var showFavEl = document.getElementById('shows-to-watch');
 
 // Declare button
 var buttonEL = document.getElementById('searchBtn');
-var favoritesButtonEl = document.getElementById('save-title')
+var favoritesButtonEl = document.getElementById('save-title');
 /* GLOBAL VARIABLES END */
 
 /* MOVIE SECTION START */
@@ -121,6 +122,8 @@ var showMovieInfo = function (name) {
       movieResultsEl.append(movieInfoDiv);
       movieSectionEl.append(movieResultsEl);
     }
+    // set the movie poster to local storage
+    localStorage.setItem('name', JSON.stringify(name));
   }
 };
 /* MOVIE SECTION END */
@@ -174,6 +177,8 @@ function searchShow(query) {
 
             document.getElementById('resultsList').innerHTML = htmlCode;
           }
+          // set the movie poster to local storage
+          localStorage.setItem('name', JSON.stringify(jsonData));
         }
       });
     }
@@ -353,10 +358,41 @@ var showActorInfo = function (actorId) {
 };
 /* ACTOR SECTION ENDS */
 
-/* populate favorites */
-var populateFavorites = function() {
-  
-}
+/* POPULATE FAVORITES */
+var populateFavorites = function () {
+  // set name value
+  var name = inputEl.value.trim();
+  // define select element value
+  var chooseValue = chooseSearch.value;
+  // define option values
+  var movieValue = movieOption.value;
+  var showValue = showOption.value;
+
+  if (name === '') {
+    return;
+  } else {
+    var saveShow = [];
+    // run a function that populates the favorites section
+    saveShow = JSON.parse(localStorage.getItem('name'));
+
+    console.log(saveShow);
+
+    if (chooseValue === showValue) {
+      var showFavList = document.createElement('li');
+      showFavList.textContent = saveShow.show.image.original;
+      showFavEl.appendChild(showFavList);
+      favoritesListEl.appendChild(showFavEl);
+    } else if (chooseValue === movieValue) {
+      var movieFavList = document.createElement('li');
+      movieFavList.textContent = name;
+      movieFavEl.appendChild(showFavList);
+      favoritesListEl.appendChild(movieFavEl);
+    } else {
+      invalidInput();
+      return;
+    }
+  }
+};
 
 /* ERROR MESSAGES START */
 // Function for invalid movies
@@ -456,13 +492,7 @@ var functionSelector = function () {
   }
 };
 
-favoritesButtonEl.addEventListener('click', function() {
-   
-   var name = inputEl.value.trim();
-// run a function that populates the favorites section
-// set the movie poster to local storage
-   localStorage.setItem('name', JSON.stringify(name))
-})
+favoritesButtonEl.addEventListener('click', function () {
+  populateFavorites();
+});
 /* EVENT LISTENERS END */
-
-
