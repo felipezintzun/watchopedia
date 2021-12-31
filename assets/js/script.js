@@ -163,11 +163,15 @@ function searchShow(query) {
                 <time>${element.show.schedule.time}</time>
               </div>
             </div>
-            </div>`;
-
-            document.getElementById('resultsList').innerHTML = htmlCode;
-          }
+          </div>
+          <div class="content">
+            ${element.show.summary}
+            <a href="${element.show.officialSite}">Offical Site</a>
+          </div>
+        </div>
+      </div>`;
         }
+      }
       });
     }
   });
