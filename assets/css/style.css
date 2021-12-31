@@ -163,7 +163,6 @@ a:focus {
 /* Actor information container */
 .actorInfoContainer {
   display: flex;
-  align-items: flex-start;
   justify-content: flex-end;
   margin: 1vw;
 }
