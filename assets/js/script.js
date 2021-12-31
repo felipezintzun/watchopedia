@@ -180,8 +180,6 @@ function searchShow(query) {
           <div class="content">
             ${element.show.summary}
             <a href="${element.show.officialSite}">Offical Site</a>
-            <br />
-            <time>${element.show.schedule.time}</time>
           </div>
         </div>
       </div>`;
