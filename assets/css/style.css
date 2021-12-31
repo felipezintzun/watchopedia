@@ -137,6 +137,7 @@ a:focus {
   display: block;
   position: relative;
   border-radius: 1rem;
+  /* background-color: var(--bg-white); */
   color: var(--black);
 }
 .menu {
