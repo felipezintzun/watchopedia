@@ -28,8 +28,12 @@ var actorTitleEl = document.getElementById('actor-title');
 // Declare movie error messages container
 var errorEl = document.getElementById('error');
 
+var movieFavhEl = document.getElementById('movies-to-watch')
+var showFavEl = document.getElementById('shows-to-watch')
+
 // Declare button
 var buttonEL = document.getElementById('searchBtn');
+var favoritesButtonEl = document.getElementById('save-title')
 /* GLOBAL VARIABLES END */
 
 /* MOVIE SECTION START */
@@ -349,6 +353,11 @@ var showActorInfo = function (actorId) {
 };
 /* ACTOR SECTION ENDS */
 
+/* populate favorites */
+var populateFavorites = function() {
+  
+}
+
 /* ERROR MESSAGES START */
 // Function for invalid movies
 var invalidMovie = function () {
@@ -446,4 +455,14 @@ var functionSelector = function () {
     }
   }
 };
+
+favoritesButtonEl.addEventListener('click', function() {
+   
+   var name = inputEl.value.trim();
+// run a function that populates the favorites section
+// set the movie poster to local storage
+   localStorage.setItem('name', JSON.stringify(name))
+})
 /* EVENT LISTENERS END */
+
+
