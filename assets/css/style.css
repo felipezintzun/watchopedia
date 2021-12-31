@@ -222,6 +222,7 @@ footer {
   justify-content: center;
   margin: 25px auto;
   width: 95%;
+  color:white;
 }
 
 .title-list-wrapper {
@@ -241,6 +242,7 @@ footer {
   /*background: rgb(196, 196, 196); */
   border-radius: 12px;
   border: 2px solid /*var(--grey)*/;
+  color:white;
 }
 
 
@@ -314,9 +316,10 @@ footer {
 	font-weight: 600;
 	font-size: 12px;
 	padding-left: 5px;
-	border: 1px solid black;
+	border: 1px solid white;
 	border-radius: 50%;
 	cursor: pointer;
+  color:white;
 }
 .watch-list_element .watch-list_img {
 	width: 120px;
