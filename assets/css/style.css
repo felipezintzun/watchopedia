@@ -196,7 +196,11 @@ a:focus {
 
 /* WATCH LATER SECTION STYLING */
 
-#watch-section {
+/* #watch-section {
+  padding: 80px 20px;
+} */
+
+.watch-list {
   padding: 80px 20px;
 }
 
@@ -208,6 +212,7 @@ a:focus {
   margin: 25px auto;
   width: 95%;
   color:white;
+  padding: 80px 20px;
 }
 
 .title-list-wrapper {
