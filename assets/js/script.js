@@ -86,7 +86,7 @@ var showMovieInfo = function (name) {
         'width: 350px; color: white; text-align: center'
       );
       movieInfoDiv.setAttribute('class', 'column is-one-fifth is-full-mobile');
-      
+
       //generates movie posters
       let movieImage = document.createElement('img');
       movieImage.setAttribute('id', movieArray[i].title);
@@ -163,6 +163,7 @@ function searchShow(query) {
               <div class="content">
                 ${element.show.summary}
                 <a href="${element.show.officialSite}">Offical Site</a>
+                <button class="modal-button" id="save-title" type="submit">Add to My Watch Later List</button>
               </div>
             </div>
           </div>`;
