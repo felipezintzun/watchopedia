@@ -171,6 +171,7 @@ function searchShow(query) {
         </div>
       </div>`;
         }
+      }
       });
     }
   });
