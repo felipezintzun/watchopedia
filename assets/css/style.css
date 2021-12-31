@@ -1,14 +1,22 @@
 /* GENERAL STYLES */
+html {
+  background-image: linear-gradient(to bottom right, #1b6c86, #281e32);
+  background-repeat: no-repeat;
+}
+
 /* Colors */
 :root {
-  --border-black: #131111;
-  --bg-black: #000000;
-  --bg-white: rgb(255, 255, 255, 0.8);
-  --bg-show: #7a7a7a;
+  --button-hover: #1b6c86;
   --bg-nav: #222;
+  --bg-oddSection: #d3d3d3;
+  --bg-sectionTitle: #9ddadf;
+  --bg-card: #eae7dc;
+  --bg-white: rgb(255, 255, 255, 0.8);
   --primary-white: #f1f1f1;
   --primary-red: #ff0066;
-  --primary-black: #000000;
+  --gray: #7a7a7a;
+  --black: #000000;
+  --light-orange: #fe6601;
 }
 
 /* Margin and padding are included in element's width and height */
@@ -16,30 +24,48 @@
   box-sizing: border-box;
 }
 
+html body {
+  min-height: 100vh;
+}
+#page-container {
+  position: relative;
+  min-height: 100vh;
+}
+#content-wrap {
+  padding-bottom: 5rem;
+}
+/* UTILITY CLASSES */
+/* Hide each section */
+.hide {
+  display: none;
+}
+
+/* Main titles for each section */
+.section-title {
+  font-size: 2.5vw;
+  font-weight: bold;
+  padding: 1vw;
+  border: 2px solid var(--gray);
+  border-radius: 12px;
+  background: var(--bg-sectionTitle);
+  color: var(--bg-show);
+}
+
 /* HEADER STYLES START */
 header {
-  min-height: 30vh;
-  background-image: url('../images/receiver-pile.jpg');
+  min-height: 60vh;
+  background-image: url('../images/watchopedia-bg-2.svg');
   background-size: contain;
-  background-position: center;
+  background-position: right;
+  background-repeat: no-repeat;
 }
 
 .header-title {
-  font-weight: bolder;
-  border-radius: 1rem;
-  background-color: var(--bg-white);
-  color: var(--primary-black);
-}
-
-/* Nav Bar*/
-nav {
-  padding: 0 15px;
-}
-
-a {
-  color: var(--primary-white);
-  text-decoration: none;
-  cursor: pointer;
+  background: url('../images/watchopedia-logo.svg') no-repeat;
+  background-image: url('../images/watchopedia-logo.svg');
+  display: block;
+  height: 13vh;
+  width: auto;
 }
 
 /* Form */
@@ -47,57 +73,56 @@ a {
   width: 30%;
   font-weight: 500;
   font-style: italic;
-  text-align: left;
   border-radius: 1rem;
   background-color: var(--bg-white);
-  color: var(--primary-black);
+  color: var(--black);
+}
+
+.searchButton {
+  background-color: var(--light-orange);
+  color: var(--primary-white);
+  border-radius: 10px;
+  border: none;
+  padding: 8px 18px;
+  margin: 10px 0px 12px 0px;
+}
+
+.searchButton:hover {
+  background-color: var(--button-hover);
 }
 
 form label {
   font-weight: bold;
 }
+
 /* HEADER STYLES END */
 
-/* MOIVE SECTION STYLES START */
+/* MOVIE SECTION STYLES START */
 .movie {
-  background: #d3d3d3;
-  height: 120px;
-
+  background: var(--bg-oddSection);
 }
 /* SHOW SECTION STYLES START */
-
-article{
-    display: flex;
-}
-
 .show {
-  background: #9ddadf;
-  height: 120px;
-}
-
-.section-title {
-  font-weight: bold;
-  font-size: 22px;
+  margin: 2vh;
+  min-height: 25vw;
 }
 
 .card {
-    width: 100%;
-    margin: 20px;
-    /* display: flex; */
-    /* flex: 1; */
-    /* flex-wrap: wrap; */
-    justify-content: space-between;
-    flex-direction: row;
-    background: #eae7dc;
-    color: #8e8d8a;
-    border-radius: 20px;
+  max-width: 100%;
+  background: var(--bg-card);
+  color: var(--gray);
+  border-radius: 20px;
+  flex: 0 1 24%;
+  box-sizing: border-box;
+  margin: 1rem .25em;
 }
 
-.show-section {
-  display: flex;
-  flex-direction:row;
+.image.is-4by3{
+  padding-top: 100%;
+  height: 350px;
+  width: 400px;
+  padding-left: 100%;
 }
-
 
 a:hover,
 a:focus {
@@ -111,6 +136,9 @@ a:focus {
   width: auto;
   display: block;
   position: relative;
+  border-radius: 1rem;
+  /* background-color: var(--bg-white); */
+  color: var(--black);
 }
 .menu {
   display: flex;
@@ -124,23 +152,94 @@ a:focus {
   display: block;
   padding: 15px 5px;
 }
+/* SHOW SECTION END */
 
 /* ACTOR SECTION STARTS */
+/* Style the actor section */
+.actor {
+  background: var(--bg-oddSection);
+  min-height: 50vh;
+  margin-bottom: 5em;
+}
+
 /* Actor image */
 .actor-image {
-  max-width: 50%;
-  max-height: 30vh;
+  max-width: 20%;
+  position: absolute;
+  left: 5vw;
+  padding: 2vw;
+}
+
+/* Actor information container */
+.actorInfoContainer {
+  display: flex;
+  justify-content: flex-end;
+  margin: 1vw;
+}
+/* Actor biography styling */
+.biography {
+  text-align: center;
+  width: 70%;
+  margin: 1vw;
+  padding: 2vw;
+  font-weight: bold;
+  font-style: italic;
+  border-radius: 20px;
+  background: var(--bg-card);
 }
 
 /* FOOTER STYLE START */
 footer {
-  position: fixed;bottom:0;
   text-align: right;
+  bottom: 0;
+  position: absolute;
   width: 100%;
   height: 90px;
-  bottom: 0;
   padding: 20px;
-  background: var(--bg-black);
+  background-image: linear-gradient(to bottom right, #1b6c86, #281e32);
+  background-repeat: no-repeat;
   color: var(--primary-white);
 }
-/* FOOTER STYLE END */
+
+/* MEDIA QUERIES */
+@media screen and (max-width: 375px) {
+  .header-title {
+    width: 95vw;
+    background-position: center;
+    margin: 0 0.5rem;
+  }
+
+  .search-form {
+    width: 80%;
+  }
+
+  .hero {
+    flex-wrap: wrap;
+    align-content: center;
+  }
+}
+
+@media screen and (max-width: 700px) {
+  header {
+    background-position: center;
+    background-size: 60vw;
+  }
+
+  .header-title {
+    background-position: center;
+    margin: 0 0.5rem;
+  }
+
+  .search-form {
+    width: 80%;
+  }
+
+  .hero {
+    flex-wrap: wrap;
+    align-content: center;
+  }
+
+  .actorInfoContainer {
+    flex-direction: row;
+  }
+}

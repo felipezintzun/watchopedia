@@ -1,26 +1,43 @@
-# watchopedia
+# Watchopedia
 
-I am a movie & tv show lover but I do not know what I want to watch. I open watchopedia and search by (genre, actor, ratings).
-The website populates some recommendations. I can save some of those titles to favorites. If I have no idea what I feel like watching the 
-website has a featured section at the homepage.
+# Description
 
-Issues:
+I am a movie & tv show lover but I do not know what I want to watch. I open watchopedia and search by (actor, tv show, or movie). The website populates results of the search. I can save some of those titles to favorites. If I have no idea what I feel like watching the website has a featured section at the homepage.
 
-MVP 
-- Create search card
-- Link the two API to the website
-    https://rapidapi.com/blog/top-free-music-data-apis/
-    https://tastedive.com/read/api
-    https://trakt.docs.apiary.io/
-    https://developer.movieglu.com/
+# Technologies Used
 
-- Determine how many recommendations it will populate after search
-- Save to local storage
-- Create buttons dynamically for genres, actors, ratings
-- Create a favorites section
-- Stylize using other CSS framework (SASS)
+- HTML, CSS, JS, Bulma, API's (TVMaze, IMBD)
+- https://imdb-api.com/api
+- https://www.tvmaze.com/api
 
-WISH LIST
-- Create future watching list
-- Users can comments add ratings
-- Show local movie times 
+# Functionality
+
+_CURRENTLY_
+
+- search for any TV Show or Actor name.
+- Data from TV Maze & The Movie Database will populate depending on the users input.
+- Actor: Name, image, birthdate/deathdate, and summary.
+- TV Shows: Name, image, rating, summary, and link to website.
+- Error messages if an actor/show/movie can't be found, or if the input was left blank
+
+# Challenges
+
+- Search limitations
+- Merge/branch conflicts
+- Switching API's for TV Shows
+
+# Future Development
+
+- Heart favorites
+- Ratings
+- Trending section
+- Upcoming movies and local showtimes
+
+# Link
+
+https://felipezintzun.github.io/watchopedia/
+
+# Screenshots
+
+If you click on the link above and you see the image below, you're good to go!
+![Watchopedia Homepage](https://user-images.githubusercontent.com/88728912/147701550-57e2cafb-0c9e-4dc5-934c-5ef8e2baea5f.png)

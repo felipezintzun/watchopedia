@@ -4,126 +4,127 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
     <title>Watchopedia</title>
+
     <!-- Link Bulma CSS -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css">
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css"
+    />
     <!-- Link CSS Stylesheet -->
     <link href="assets/css/style.css" rel="stylesheet" />
   </head>
 
   <body>
+    <div id ="page-container">
+      <div id = "content-wrap">
     <header>
+      <h1 class="header-title m-2 p-4"></h1>
       <!-- HERO START -->
       <div class="hero">
-        <section
-          class="is-flex is-justify-content-space-between is-align-items-flex-start"
-        >
-          <h1 class="header-title m-2 p-4 is-size-1 is-size-5-touch">
-            Watchopedia
-          </h1>
-          <!-- NAV BAR START  -->
-          <nav>
-            <ul class="menu">
-              <li class="item"><a href="#">Movies</a></li>
-              <li class="item"><a href="#">TVShows</a></li>
-              <li class="item"><a href="#">Actors</a></li>
-            </ul>
-          </nav>
-          <!-- NAV BAR END -->
-          <!-- SEARCH ACTOR BOX START -->
-          <div class="search-form m-2 p-4 is-size-6">
-            <form class="align-items-flex-end" id="search-form">
+        <!-- SEARCH BOX START -->
+        <form class="search-form m-2 p-4" id="search-form">
+          <!-- Add in a dropdown list -->
+          <div class="is-flex-direction-column is-flex-wrap-wrap">
+            <label for="choose-search">Choose a search option</label>
+            <br />
+            <div class="select is-primary">
+              <select name="choose-search" id="choose-search" required>
+                <option value="actor" id="actor-option">Actor</option>
+                <option value="movie" id="movie-option">Movie</option>
+                <option value="tv-show" id="tv-show-option">TV Show</option>
+              </select>
+            </div>
+
+            <div class="is-flex-direction-column is-flex-wrap-wrap">
               <label for="search">
                 Search by movie, television show, or actor
               </label>
-              <br />
               <input
+                class="input is-primary"
                 id="search"
                 list="watch"
                 name="watch"
-                placeholder="Tom Hanks"
+                placeholder="actor, movie, or show"
                 autocomplete="on"
                 autofocus
               />
               <!-- Dynamically populate the datalist options with APIs-->
               <datalist id="watch"> </datalist>
-              <div class="search-button">
-                <button id="searchBtn">
-                  <h2>SEARCH</h2>
-                </button>
-              </div>
+              <!-- Search Button -->
+
+              <button
+                class="searchButton button"
+                id="searchBtn"
+                onclick="functionSelector()"
+              >
+                SEARCH
+              </button>
+
               <!-- Place for error messages -->
               <div id="error"></div>
-            </form>
-          </div>
-
-          
-          <!-- SEARCH SHOW BOX START -->
-          <div class="search-form m-2 p-4 is-size-6">
-            <form>
-              <label for="search-here">
-                Search by movie, television show, or actor
-              </label>
-              <br />
-              <input type= "text" id="search-show" placeholder="Show Name"/>
-              <!-- Dynamically populate the datalist options with APIs-->
-              <datalist id="watch">
-                <option value="test"></option>
-              </datalist>
-              <div class="search-button">
-                <button id="search-b">
-                  <h2>SEARCH</h2>
-                </button>
-              </div>
-            </form>
             </div>
-          <!-- SEARCH BOX END -->
-        </section>
+          </div>
+        </form>
+        <!-- SEARCH BOX END -->
         <!-- HERO END -->
       </div>
     </header>
 
     <main>
       <!-- MOVIE SECTION STARTS -->
-      <section class="movie" id="movie-section">
-        <div class="flex-row">
-          <h2 class="section-title">Movies</h2>
-        </div>
-        <div class="flex-row">
-          <p>Movie Recommendations Go Here</p>
-        </div>
-      </section>
-      <!-- SHOW SECTION STARTS -->
-      <section id="show-section" >
-        <h2>Shows Populates below</h2>
-        <div class="card">
-          <article id="resultsList"></article>
-        </div>
-        
-      </section>
-      <!-- ACTOR SECTION -->
-      <section class="actor" id="actor-section">
+      <section class="movie hide" id="movie-section">
+        <h2 class="section-title">Movies</h2>
         <div
           class="flex-row is-size-4-touch is-size-2-tablet has-text-centered"
+          id="movie"
         >
-          <h2>Actor Information</h2>
-          <h3 class="actor-title" id="actor-title"></h3>
+          <h3 class="movie-title"></h3>
+          <div
+            id="movie-results"
+            class="
+              is-flex
+              is-flex-direction-row
+              is-justify-content-center
+              is-flex-wrap-wrap
+            "
+          ></div>
         </div>
-        <div class="flex-row is-justify-content-space-evenly">
-          <!-- Shows and movies for an actor populate here -->
-          <p id="actor-results"></p>
-          <ul id="known-for"></ul>
-        </div>
+        <!-- Shows and movies for an actor populate here -->
       </section>
+
+       <!-- SHOW SECTION STARTS -->
+       <section class="section hide" id="show-section">
+        <article 
+        class=
+        "is-flex
+        is-flex-wrap-wrap 
+        is-justify-content-space-between" 
+        id="resultsList">
+      </article>
+      </section>
+
+      <!-- ACTOR SECTION STARTS -->
+      <section class="actor hide" id="actor-section">
+        <h2
+          class="section-title flex-row is-size-7-mobile has-text-centered"
+          id="actor-title"
+        ></h2>
+      </section>
+      <!-- ACTOR SECTION ENDS -->
+    </div>
       <!-- FOOTER STARTS -->
       <footer>
         <h2>Made by Watchopedia.</h2>
         <div>&copy; 2021 Watchopedia, Inc.</div>
-      </footer> 
+      </footer>
       <!-- FOOTER ENDS -->
+  </div>
     </main>
 
     <!-- LINK JAVASCRIPT PAGE -->
+
     <script src="assets/js/script.js"></script>
   </body>
 </html>
