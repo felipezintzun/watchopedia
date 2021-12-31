@@ -97,7 +97,11 @@ var showMovieInfo = function (name) {
       movieImage.removeAttribute('src', 'https://image.tmdb.org/t/p/w342undefined');
       movieImage.setAttribute('style', 'width: 100%; color: red; font-size: 1.25em');
       }
+      let movieDescription = document.createElement('div');
+      movieDescription.setAttribute('style', 'font-color: black');
+      movieDescription.textContent = movieArray[i].overview;
       movieInfoDiv.append(movieImage);
+      movieInfoDiv.append(movieDescription);
       movieResultsEl.append(movieInfoDiv);
       movieSectionEl.append(movieResultsEl);
     }
