@@ -27,9 +27,9 @@ html {
 html body {
   min-height: 100vh;
 }
-#page-container{
-  position:relative;
-  min-height:100vh;
+#page-container {
+  position: relative;
+  min-height: 100vh;
 }
 #content-wrap {
   padding-bottom: 5rem;
@@ -64,28 +64,8 @@ header {
   background: url('../images/watchopedia-logo.svg') no-repeat;
   background-image: url('../images/watchopedia-logo.svg');
   display: block;
-  height: 120px;
-}
-
-/* NAV BAR STYLES */
-
-.topnav {
-  overflow: hidden;
-}
-
-/* Style the links inside the navigation bar */
-.topnav a {
-  float: right;
-  color: var(--primary-white);
-  text-align: center;
-  padding: 20px 50px 0px 0px;
-  margin: 0px;
-  text-align: center;
-}
-
-/* Change the color of links on hover */
-.topnav a:hover {
-  color: var(--light-orange);
+  height: 13vh;
+  width: auto;
 }
 
 /* Form */
@@ -132,7 +112,16 @@ form label {
   background: var(--bg-card);
   color: var(--gray);
   border-radius: 20px;
-  padding: 0.5vw 0 5vw 0;
+  flex: 0 1 24%;
+  box-sizing: border-box;
+  margin: 1rem .25em;
+}
+
+.image.is-4by3{
+  padding-top: 100%;
+  height: 350px;
+  width: 400px;
+  padding-left: 100%;
 }
 
 a:hover,
@@ -168,21 +157,16 @@ a:focus {
 /* Style the actor section */
 .actor {
   background: var(--bg-oddSection);
-  min-height: 25vw;
+  min-height: 50vh;
   margin-bottom: 5em;
-}
-
-/* Actor image container */
-.actor-image-container {
-  max-height: 120px;
 }
 
 /* Actor image */
 .actor-image {
-  max-width: 10%;
+  max-width: 20%;
   position: absolute;
-  left: 10vw;
-  margin-top: 2.4vw;
+  left: 5vw;
+  padding: 2vw;
 }
 
 /* Actor information container */
@@ -191,10 +175,10 @@ a:focus {
   justify-content: flex-end;
   margin: 1vw;
 }
-/* Actor known for styling */
+/* Actor biography styling */
 .biography {
   text-align: center;
-  width: 50%;
+  width: 70%;
   margin: 1vw;
   padding: 2vw;
   font-weight: bold;
@@ -218,6 +202,12 @@ footer {
 
 /* MEDIA QUERIES */
 @media screen and (max-width: 375px) {
+  .header-title {
+    width: 95vw;
+    background-position: center;
+    margin: 0 0.5rem;
+  }
+
   .search-form {
     width: 80%;
   }
@@ -228,7 +218,17 @@ footer {
   }
 }
 
-@media screen and (max-width: 540px) {
+@media screen and (max-width: 700px) {
+  header {
+    background-position: center;
+    background-size: 60vw;
+  }
+
+  .header-title {
+    background-position: center;
+    margin: 0 0.5rem;
+  }
+
   .search-form {
     width: 80%;
   }
@@ -239,6 +239,6 @@ footer {
   }
 
   .actorInfoContainer {
-    flex-direction: row
+    flex-direction: row;
   }
 }

@@ -24,10 +24,6 @@ var showSectionEl = document.getElementById('show-section');
 var actorSectionEl = document.getElementById('actor-section');
 // Declare the actor subtitle
 var actorTitleEl = document.getElementById('actor-title');
-// Declare the container that holds the actor information
-var actorImageContainerEl = document.getElementById('actor-img-container');
-// Declare the unordered list to list the movies/shows the actor is known for
-var knownForEl = document.getElementById('known-for');
 
 // Declare movie error messages container
 var errorEl = document.getElementById('error');
@@ -46,22 +42,23 @@ var getMovieSearch = function (name) {
     name +
     '&page=1&include_adult=false';
 
-  fetch(movieUrl).then(function (response) {
-    //if response is good run getMovieInfo function
-    if (response.ok) {
+  fetch(movieUrl)
+    .then(function (response) {
+      //if response is good run getMovieInfo function
+      if (response.ok) {
         response.json().then(function (name) {
           showMovieInfo(name);
         });
-    } else {
+      } else {
         // otherwise run invalid input
         invalidMovie();
         return;
       }
-  })
-  //runs if there is a connection issues
-  .catch(function () {
-  connectIssue();
-  });
+    })
+    //runs if there is a connection issues
+    .catch(function () {
+      connectIssue();
+    });
 };
 
 // function to display movie info
@@ -69,13 +66,12 @@ var showMovieInfo = function (name) {
   //clear out old content
   movieSectionEl.innerHTML = '';
   movieResultsEl.innerHTML = '';
-  errorEl.textContent= '';
+  errorEl.textContent = '';
   var totalResults = name.total_results;
   if (totalResults === 0) {
-  invalidMovie();
-  return;
+    invalidMovie();
+    return;
   } else {
-
     // hide other sections
     movieSectionEl.classList.remove('hide');
     showSectionEl.classList.add('hide');
@@ -85,17 +81,32 @@ var showMovieInfo = function (name) {
     for (let i = 0; i < movieArray.length; i++) {
       let movieInfoDiv = document.createElement('div');
       movieInfoDiv.setAttribute('id', 'movieDiv');
-      movieInfoDiv.setAttribute('style', 'width: 350px; color: white; text-align: center');
+      movieInfoDiv.setAttribute(
+        'style',
+        'width: 350px; color: white; text-align: center'
+      );
       movieInfoDiv.setAttribute('class', 'column is-one-fifth is-full-mobile');
       //generates movie posters
       let movieImage = document.createElement('img');
       movieImage.setAttribute('id', movieArray[i].title);
-      movieImage.setAttribute('alt', movieArray[i].title + ': ' + 'Image Not Available');
-      movieImage.setAttribute('src','https://image.tmdb.org/t/p/original' + movieArray[i].poster_path);
+      movieImage.setAttribute(
+        'alt',
+        movieArray[i].title + ': ' + 'Image Not Available'
+      );
+      movieImage.setAttribute(
+        'src',
+        'https://image.tmdb.org/t/p/original' + movieArray[i].poster_path
+      );
       // displays alt message if no poster available
       if (movieImage.src == 'https://image.tmdb.org/t/p/w342undefined') {
-      movieImage.removeAttribute('src', 'https://image.tmdb.org/t/p/w342undefined');
-      movieImage.setAttribute('style', 'width: 100%; color: red; font-size: 1.25em');
+        movieImage.removeAttribute(
+          'src',
+          'https://image.tmdb.org/t/p/w342undefined'
+        );
+        movieImage.setAttribute(
+          'style',
+          'width: 100%; color: red; font-size: 1.25em'
+        );
       }
       let movieDescription = document.createElement('div');
       movieDescription.setAttribute('style', 'font-color: black');
@@ -156,11 +167,15 @@ function searchShow(query) {
                 <time>${element.show.schedule.time}</time>
               </div>
             </div>
-            </div>`;
-
-            document.getElementById('resultsList').innerHTML = htmlCode;
-          }
+          </div>
+          <div class="content">
+            ${element.show.summary}
+            <a href="${element.show.officialSite}">Offical Site</a>
+          </div>
+        </div>
+      </div>`;
         }
+      }
       });
     }
   });
@@ -248,8 +263,6 @@ var actorInfo = function (actorId) {
 var showActorInfo = function (actorId) {
   // clear old content
   actorSectionEl.innerHTML = '';
-  // clear list item elements
-  knownForEl.innerHTML = '';
   // clear the actor subtitle section
   actorTitleEl.innerHTML = '';
   // clear error content
@@ -304,6 +317,10 @@ var showActorInfo = function (actorId) {
     // append title to the actor container
     actorSectionEl.append(actorTitleEl);
 
+    // Make a container to hold the actor information
+    var actorInfoEl = document.createElement('div');
+    actorInfoEl.classList.add('actorInfoContainer');
+
     // create an image element
     var actorImage = document.createElement('img');
     // set the source of the image
@@ -313,15 +330,12 @@ var showActorInfo = function (actorId) {
     );
     actorImage.classList.add('actor-image');
     // append image to the image container
-    actorImageContainerEl.append(actorImage);
+    actorInfoEl.append(actorImage);
     // append image container to the actor bio section
-    actorSectionEl.append(actorImageContainerEl);
+    actorSectionEl.append(actorInfoEl);
 
-    // Make a container to hold the actor information
-    var actorInfoEl = document.createElement('div');
-    actorInfoEl.classList.add('actorInfoContainer');
     // Make a paragraph element for the actor's biography
-    var actorBio = document.createElement('p');
+    var actorBio = document.createElement('span');
     // set the text content of the list item
     actorBio.textContent = actorBiography;
     // style the biography
