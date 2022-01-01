@@ -28,8 +28,13 @@ var actorTitleEl = document.getElementById('actor-title');
 // Declare movie error messages container
 var errorEl = document.getElementById('error');
 
+var favoritesListEl = document.getElementById('watch-section');
+var movieFavEl = document.getElementById('movies-to-watch');
+var showFavEl = document.getElementById('shows-to-watch');
+
 // Declare button
 var buttonEL = document.getElementById('searchBtn');
+var favoritesButtonEl = document.getElementById('save-title');
 /* GLOBAL VARIABLES END */
 
 /* MOVIE SECTION START */
@@ -86,6 +91,7 @@ var showMovieInfo = function (name) {
         'width: 350px; color: white; text-align: center'
       );
       movieInfoDiv.setAttribute('class', 'column is-one-fifth is-full-mobile');
+
       //generates movie posters
       let movieImage = document.createElement('img');
       movieImage.setAttribute('id', movieArray[i].title);
@@ -116,6 +122,8 @@ var showMovieInfo = function (name) {
       movieResultsEl.append(movieInfoDiv);
       movieSectionEl.append(movieResultsEl);
     }
+    // set the movie poster to local storage
+    localStorage.setItem('name', JSON.stringify(name));
   }
 };
 /* MOVIE SECTION END */
@@ -139,14 +147,13 @@ function searchShow(query) {
           var htmlCode = '';
           // clear error content
           errorEl.textContent = '';
-          // Declare the show title
-          var showTitle = 'Shows';
 
           for (let i = 0; i < 5; i++) {
             // jsonData.forEach(element => {
             let element = jsonData[i];
 
-            htmlCode += `<div class="card is-flex-column is-justify-content-space-between" id="tvshowsnav"> 
+            htmlCode += `
+            <div class="card is-flex-column is-justify-content-space-between" id="tvshowsnav"> 
          
             <div class="card-image">
               <figure class="image is-4by3">
@@ -163,12 +170,15 @@ function searchShow(query) {
               <div class="content">
                 ${element.show.summary}
                 <a href="${element.show.officialSite}">Offical Site</a>
+                <button class="modal-button" id="save-title" type="submit">Add to My Watch Later List</button>
               </div>
             </div>
           </div>`;
 
             document.getElementById('resultsList').innerHTML = htmlCode;
           }
+          // set the movie poster to local storage
+          localStorage.setItem('name', JSON.stringify(jsonData));
         }
       });
     }
@@ -348,6 +358,42 @@ var showActorInfo = function (actorId) {
 };
 /* ACTOR SECTION ENDS */
 
+/* POPULATE FAVORITES */
+var populateFavorites = function () {
+  // set name value
+  var name = inputEl.value.trim();
+  // define select element value
+  var chooseValue = chooseSearch.value;
+  // define option values
+  var movieValue = movieOption.value;
+  var showValue = showOption.value;
+
+  if (name === '') {
+    return;
+  } else {
+    var saveShow = [];
+    // run a function that populates the favorites section
+    saveShow = JSON.parse(localStorage.getItem('name'));
+
+    console.log(saveShow);
+
+    if (chooseValue === showValue) {
+      var showFavList = document.createElement('li');
+      showFavList.textContent = saveShow.show.image.original;
+      showFavEl.appendChild(showFavList);
+      favoritesListEl.appendChild(showFavEl);
+    } else if (chooseValue === movieValue) {
+      var movieFavList = document.createElement('li');
+      movieFavList.textContent = name;
+      movieFavEl.appendChild(showFavList);
+      favoritesListEl.appendChild(movieFavEl);
+    } else {
+      invalidInput();
+      return;
+    }
+  }
+};
+
 /* ERROR MESSAGES START */
 // Function for invalid movies
 var invalidMovie = function () {
@@ -445,4 +491,8 @@ var functionSelector = function () {
     }
   }
 };
+
+favoritesButtonEl.addEventListener('click', function () {
+  populateFavorites();
+});
 /* EVENT LISTENERS END */
