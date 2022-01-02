@@ -17,27 +17,32 @@
   </head>
 
   <body>
-    <header> 
-      <!-- NAV BAR START  -->
-          <div class="topnav">
-            <a href="#movies">Movies</a>
-            <a href="#tvshows">TV Shows</a>
-            <a href="#itemNav">Actors</a>
-          </div>
+    <div id ="page-container">
+      <div id = "content-wrap">
+    <header>
+      <h1 class="header-title m-2 p-4"></h1>
       <!-- HERO START -->
       <div class="hero">
-          <h1 class="header-title m-2 p-4 is-size-1 is-size-5-touch">
-        
-          </h1>
+        <!-- SEARCH BOX START -->
+        <form class="search-form m-2 p-4" id="search-form">
+          <!-- Add in a dropdown list -->
+          <div class="is-flex-direction-column is-flex-wrap-wrap">
+            <label for="choose-search">Choose a search option</label>
+            <br />
+            <div class="select is-primary">
+              <select name="choose-search" id="choose-search" required>
+                <option value="actor" id="actor-option">Actor</option>
+                <option value="movie" id="movie-option">Movie</option>
+                <option value="tv-show" id="tv-show-option">TV Show</option>
+              </select>
+            </div>
 
-          <!-- SEARCH BOX START -->
-          <div class="search-form m-2 p-4 is-size-6">
-            <form class="align-items-flex-end" id="search-form">
+            <div class="is-flex-direction-column is-flex-wrap-wrap">
               <label for="search">
                 Search by movie, television show, or actor
               </label>
-              <br />
               <input
+                class="input is-primary"
                 id="search"
                 list="watch"
                 name="watch"
@@ -47,68 +52,105 @@
               />
               <!-- Dynamically populate the datalist options with APIs-->
               <datalist id="watch"> </datalist>
-              <div class="search-button">
-                <button id="searchBtn">
-                  <h2>SEARCH</h2>
-                </button>
-              </div>
+              <!-- Search Button -->
+
+              <button
+                class="searchButton button"
+                id="searchBtn"
+                onclick="functionSelector()"
+              >
+                SEARCH
+              </button>
+
               <!-- Place for error messages -->
               <div id="error"></div>
-            </form>
+            </div>
           </div>
-          <!-- SEARCH BOX END -->
-
+        </form>
+        <!-- SEARCH BOX END -->
         <!-- HERO END -->
       </div>
     </header>
 
     <main>
-
       <!-- MOVIE SECTION STARTS -->
       <section class="movie hide" id="movie-section">
         <h2 class="section-title">Movies</h2>
         <div
-          class="flex-row is-size-4-touch is-size-2-tablet has-text-centered"
+          class="movie-style flex-row is-size-4-touch is-size-2-tablet has-text-centered"
           id="movie"
         >
           <h3 class="movie-title"></h3>
+          <div
+            id="movie-results"
+            class="
+              movie-style
+              is-flex
+              is-flex-direction-row
+              is-justify-content-center
+              is-flex-wrap-wrap
+            "
+          ></div>
         </div>
-        <div class="flex-row is-justify-content-space-evenly" id="moviesnav">
-          <!-- Shows and movies for an actor populate here -->
-          <ul id="movie-results"></ul>
-        </div>
+        <!-- Shows and movies for an actor populate here -->
       </section>
 
-      <!-- SHOW SECTION STARTS -->
-      <section class="section hide" id="show-section">
-        <article class="is-flex" id="resultsList"></article>
+       <!-- SHOW SECTION STARTS -->
+       <section class="section hide" id="show-section">
+        <article 
+        class=
+        "is-flex
+        is-flex-wrap-wrap 
+        is-justify-content-space-between" 
+        id="resultsList">
+      </article>
       </section>
 
-      <!-- ACTOR SECTION -->
+      <!-- ACTOR SECTION STARTS -->
       <section class="actor hide" id="actor-section">
-        <h2 class="section-title">Actor Information</h2>
-        <div
-          class="flex-row is-size-4-touch is-size-2-tablet has-text-centered"
-          id="actor"
-        >
-          <h3 class="actor-subtitle" id="actor-subtitle"></h3>
-        </div>
-        <div class="flex-row is-justify-content-space-evenly" id="actorsnav">
-          <!-- Shows and movies for an actor populate here -->
-          <ul id="known-for"></ul>
-        </div>
+        <h2
+          class="section-title flex-row is-size-7-mobile has-text-centered"
+          id="actor-title"
+        ></h2>
       </section>
+      <!-- ACTOR SECTION ENDS -->
+    </div>
 
+    <!-- WATCH LATER SECTION STARTS -->
+    <!-- <section id="watch-section" class="watch-list"> -->
+      <!-- <h2 class="section-title">My Watch Later List</h2> -->
+      <!-- <form id="title-form">
+        <div class="form-group">
+           <input type="text" name="title-name" placeholder="Enter Title Name" />
+        </div>
+    
+        <div class="form-group">
+          <button class="modal-button" id="save-title" type="submit">Add to My Watch Later List</button>
+        </div>
+      </form>
+   
+    <main class="watchlist-content" id="watchlist-content"> -->
+
+    <!-- Titles To Watch -->
+    <!-- <section class="title-list-wrapper">
+      <h2 class="list-title">Favorites</h2>
+      <h3 id="favorite-movies"></h3>
+      <ul class="title-list" id="movies-to-watch"></ul> -->
+      <!-- <h3 id="favorite-shows">Shows</h3>
+      <ul class="title-list" id="shows-to-watch"></ul> -->
+    <!-- </section> -->
+    <!-- </section> -->
+  
       <!-- FOOTER STARTS -->
       <footer>
         <h2>Made by Watchopedia.</h2>
-        <div>&copy; 2021 Watchopedia, Inc.</div>
+        <div>&copy; 2022 Watchopedia, Inc.</div>
       </footer>
       <!-- FOOTER ENDS -->
+  </div>
     </main>
 
     <!-- LINK JAVASCRIPT PAGE -->
-    
 
     <script src="assets/js/script.js"></script>
   </body>
