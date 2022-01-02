@@ -44,7 +44,7 @@ var getMovieSearch = function (name) {
     'https://api.themoviedb.org/3/search/movie?api_key=' +
     movieDbApi +
     '&language=en-US&query=' +
-    localStorage.getItem('movieSearch') +
+    name +
     '&page=1&include_adult=false';
 
   fetch(movieUrl)
@@ -123,7 +123,8 @@ var showMovieInfo = function (name) {
       movieSectionEl.append(movieResultsEl);
     }
     // set the movie poster to local storage
-    localStorage.setItem('name', JSON.stringify(name));
+    localStorage.setItem('movie-name', JSON.stringify(name));
+    populateFavorites(name);
   }
 };
 /* MOVIE SECTION END */
@@ -170,6 +171,7 @@ function searchShow(query) {
               <div class="content">
                 ${element.show.summary}
                 <a href="${element.show.officialSite}">Offical Site</a>
+                <button class="modal-button" id="save-title" type="submit">Add to My Watch Later List</button>
               </div>
             </div>
           </div>`;
@@ -177,7 +179,8 @@ function searchShow(query) {
             document.getElementById('resultsList').innerHTML = htmlCode;
           }
           // set the movie poster to local storage
-          localStorage.setItem('name', JSON.stringify(jsonData));
+          localStorage.setItem('show-name', JSON.stringify(jsonData));
+          populateFavorites(jsonData);
         }
       });
     }
@@ -193,7 +196,7 @@ var getNameSearch = function (name) {
     'https://api.themoviedb.org/3/search/person?api_key=' +
     movieDbApi +
     '&language=en-US&query=' +
-    localStorage.getItem('actorSearch') +
+    name +
     '&page=1&include_adult=false';
 
   fetch(apiUrl)
@@ -358,29 +361,39 @@ var showActorInfo = function (actorId) {
 /* ACTOR SECTION ENDS */
 
 /* POPULATE FAVORITES */
-var populateFavorites = function () {
-  // set name value
-  var name = inputEl.value.trim();
+var populateFavorites = function (jsonData, name) {
   // define select element value
   var chooseValue = chooseSearch.value;
   // define option values
   var movieValue = movieOption.value;
   var showValue = showOption.value;
+  var taskIdCounter = 0;
 
   if (name === '') {
     return;
   } else {
-    var saveShow = [];
-    // run a function that populates the favorites section
-    saveShow = JSON.parse(localStorage.getItem('name'));
-    console.log(saveShow);
-
     if (chooseValue === showValue) {
-      var showFavList = document.createElement('li');
-      showFavList.textContent = saveShow.show.image.original;
-      showFavEl.appendChild(showFavList);
-      favoritesListEl.appendChild(showFavEl);
+      // var saveShow = [];
+      // run a function that populates the favorites section
+      var getShow = JSON.parse(localStorage.getItem('show-name'));
+      // saveShow.innerHTML = getShow;
+      console.log(getShow);
+      for (i = 0; i < getShow.length; i++) {
+        var shows = getShow[i];
+        var movieName = getShow[i].show.name;
+        var showFavList = document.createElement('li');
+        showFavList.setAttribute('data-task-id', taskIdCounter);
+        showFavList.textContent = movieName;
+        shows.innerHTML = taskIdCounter++;
+        favoritesButtonEl.innerHTML = getShow[i].innerHTML;
+        console.log(favoritesButtonEl);
+        showFavEl.appendChild(showFavList);
+        favoritesListEl.appendChild(showFavEl);
+      }
     } else if (chooseValue === movieValue) {
+      var saveMovie = [];
+      // run a function that populates the favorites section
+      saveMovie = JSON.parse(localStorage.getItem('movie-name'));
       var movieFavList = document.createElement('li');
       movieFavList.textContent = name;
       movieFavEl.appendChild(showFavList);
@@ -478,13 +491,10 @@ var functionSelector = function () {
     return;
   } else {
     if (chooseValue === actorValue) {
-      localStorage.setItem('actorSearch', inputEl.value);
       getNameSearch(name);
     } else if (chooseValue === movieValue) {
-      localStorage.setItem('movieSearch', inputEl.value);
       getMovieSearch(name);
     } else if (chooseValue === showValue) {
-      // localStorage.setItem('showSearch', inputEl.value);
       searchShow(name);
     } else {
       invalidInput();
