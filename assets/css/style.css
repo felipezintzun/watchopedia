@@ -51,9 +51,9 @@ html body {
   font-size: 2.5vw;
   font-weight: bold;
   padding: 1vw;
-  border: 2px solid var(--gray);
-  border-radius: 12px;
-  background: var(--bg-sectionTitle);
+  /* border: 2px solid var(--gray); */
+  /* border-radius: 12px; */
+  /* background: var(--bg-sectionTitle); */
   color: var(--bg-show);
 }
 
@@ -170,10 +170,16 @@ a:focus {
 
 /* Actor image */
 .actor-image {
-  max-width: 20%;
-  position: absolute;
-  left: 5vw;
-  padding: 2vw;
+  max-width: 75vh;
+  /* height: auto; */
+  display: flex;
+  flex-wrap: wrap;
+  
+  /* width: 100%;
+  height: auto; */
+  /* position: absolute; */
+  /* left: 5vw;
+  padding: 2vw; */
 }
 
 /* Actor information container */
@@ -184,14 +190,14 @@ a:focus {
 }
 /* Actor biography styling */
 .biography {
-  text-align: center;
+  text-align: left;
   width: 70%;
   margin: 1vw;
   padding: 2vw;
-  font-weight: bold;
-  font-style: italic;
+  /* font-weight: bold; */
+  /* font-style: italic; */
   border-radius: 20px;
-  background: var(--bg-card);
+  /* background: var(--bg-card); */
 }
 
 /* WATCH LATER SECTION STYLING */
