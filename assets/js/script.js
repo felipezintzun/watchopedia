@@ -167,7 +167,6 @@ function searchShow(query) {
               <div class="content">
                 ${element.show.summary}
                 <a href="${element.show.officialSite}">Offical Site</a>
-                <button class="modal-button" id="save-title" type="submit">Add to My Watch Later List</button>
               </div>
             </div>
           </div>`;
