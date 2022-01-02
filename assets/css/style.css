@@ -78,12 +78,7 @@ header {
   color: #f2f2f2;
   text-align: center;
   padding: 20px 50px 0px 0px;
-  /* text-decoration: none;
-  font-size: 17px;
-  display: inline; */
   margin: 0px;
-  text-align: center;
-  /* vertical-align:top; */
 }
 
 /* Change the color of links on hover */
@@ -234,7 +229,6 @@ a:focus {
 }
 
 .list-title {
-  /*color: var(--secondary);*/
   font-size: 2.6rem;
 }
 
@@ -248,21 +242,19 @@ a:focus {
 }
 
 .title-item {
-  /*color: var(--grey); */
+  color: var(--gray);
   padding: 15px 15px;
-  border: 2px solid /* var(--grey)*/;
-  /*background: var(--tertiary);*/
+  border: 2px solid var(--gray);
   border-radius: 12px;
   margin-bottom: 20px;
 }
 
 .title-name {
   margin: 0;
-  /*font-size: 1.8rem; */
 }
 
 .title-type {
-  /*color: var(--secondary);*/
+
   font-size: 1.55rem;
 }
 
@@ -284,16 +276,15 @@ a:focus {
   border: none;
   display: inline-block;
   padding: 10px 15px;
-  /*background: var(--primary);*/
   font-size: 2.2rem;
   border-radius: 12px;
   position: relative;
   top: -3px;
-  box-shadow: 0 3px /*var(--grey)*/;
+  box-shadow: 0 3px var(--gray);
 }
 
 .btn:hover {
-  box-shadow: 0 2px /*var(--grey)*/;
+  box-shadow: 0 2px var(--gray);
   top: -2px;
 }
 
@@ -306,7 +297,6 @@ a:focus {
   position: relative;
 }
 .watch-list_element span {
-  /* position: absolute; */
   content: 'x';
   top: 7px;
   right: 7px;

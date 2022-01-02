@@ -374,7 +374,6 @@ var populateFavorites = function () {
     var saveShow = [];
     // run a function that populates the favorites section
     saveShow = JSON.parse(localStorage.getItem('name'));
-
     console.log(saveShow);
 
     if (chooseValue === showValue) {
