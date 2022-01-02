@@ -50,7 +50,11 @@ html body {
 .section-title {
   font-size: 2.5vw;
   font-weight: bold;
-  padding: 1vw;
+  /* padding: 1vw; */
+  text-align: center;
+  padding-top: 10px;
+  margin: 0 auto 15px auto; 
+  width: 65%;
   /* border: 2px solid var(--gray); */
   /* border-radius: 12px; */
   /* background: var(--bg-sectionTitle); */
@@ -170,33 +174,46 @@ a:focus {
 
 /* Actor image */
 .actor-image {
-  max-width: 75vh;
+  max-width: 50vh;
+  align-items: center;
+  /* display: inline-block; */
   /* height: auto; */
+  flex: 1 12%;
+  margin-right: 20px;
   display: flex;
   flex-wrap: wrap;
-  
+  float:left;
+  margin: auto;
+  border-radius: .5rem;
   /* width: 100%;
   height: auto; */
   /* position: absolute; */
-  /* left: 5vw;
-  padding: 2vw; */
+  /* left: 5vw; */
+  /* padding: 2vw; */
 }
 
 /* Actor information container */
 .actorInfoContainer {
-  display: flex;
-  justify-content: flex-end;
+  /* display: flex;
+  justify-content: flex-end; */
   margin: 1vw;
+  display: inline-block;
+  /* vertical-align: top; */
+  padding: 0 0 0 5px;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
 }
 /* Actor biography styling */
 .biography {
   text-align: left;
   width: 70%;
-  margin: 1vw;
+  margin: auto;
   padding: 2vw;
+  float: right;
   /* font-weight: bold; */
   /* font-style: italic; */
-  border-radius: 20px;
+  /* border-radius: 20px; */
   /* background: var(--bg-card); */
 }
 
@@ -385,5 +402,11 @@ footer {
   .actorInfoContainer {
     flex-direction: row;
   }
+
+  .actor-image {
+    flex: 0 32%;
+    margin-right: 0;
+    margin-top: 15px;
+    margin-bottom: 15px;
 }
 
