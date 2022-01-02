@@ -19,7 +19,10 @@
   <body>
     <div id ="page-container">
       <div id = "content-wrap">
-    <header>
+    <header id="home">
+      <nav class="topnav">
+        <a href="#favorites">Favorite Movies and TV Shows</a>
+      </nav>
       <h1 class="header-title m-2 p-4"></h1>
       <!-- HERO START -->
       <div class="hero">
@@ -131,7 +134,7 @@
     <main class="watchlist-content" id="watchlist-content">
     <!-- Titles To Watch -->
     <section class="title-list-wrapper">
-      <h2 class="list-title">Favorites</h2>
+      <h2 class="list-title" id="favorites">Favorites</h2>
       <h3 id="favorite-movies">Movies</h3>
       <ul class="title-list" id="movies-to-watch"></ul>
       <h3 id="favorite-shows">Shows</h3>
@@ -140,12 +143,17 @@
     </section>
   
       <!-- FOOTER STARTS -->
-      <footer>
-        <h2>Made by Watchopedia.</h2>
-        <div>&copy; 2022 Watchopedia, Inc.</div>
+      <footer class="is-flex is-align-items-center is-justify-content-space-between">
+        <nav class="bottom-nav">
+          <a href="#home">Search</a>
+        </nav>
+        <div>
+          <h2>Made by Watchopedia.</h2>
+          &copy; 2022 Watchopedia, Inc.
+        </div>
       </footer>
       <!-- FOOTER ENDS -->
-  </div>
+ 
     </main>
 
     <!-- LINK JAVASCRIPT PAGE -->
