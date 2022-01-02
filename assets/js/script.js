@@ -34,6 +34,7 @@ var showFavEl = document.getElementById('shows-to-watch');
 
 // Declare button
 var buttonEL = document.getElementById('searchBtn');
+var movieWatchButtonEl = document.getElementById('save-movie');
 var favoritesButtonEl = document.getElementById('save-title');
 /* GLOBAL VARIABLES END */
 
@@ -114,16 +115,27 @@ var showMovieInfo = function (name) {
           'width: 100%; color: red; font-size: 1.25em'
         );
       }
+      // movie descriptions
       let movieDescription = document.createElement('div');
       movieDescription.setAttribute('style', 'font-color: black');
       movieDescription.textContent = movieArray[i].overview;
+      // favorites button
+      let movieFavBtn = document.createElement('button');
+      movieFavBtn.innerHTML = "Add to My Watch Later List";
+      movieFavBtn.setAttribute('class', 'modal-button');
+      movieFavBtn.setAttribute('onclick', populateFavorites());
+      movieFavBtn.setAttribute('id', 'save-movie');
+      movieFavBtn.setAttribute('type', 'submit');
+
+      // display each movie cards
       movieInfoDiv.append(movieImage);
       movieInfoDiv.append(movieDescription);
+      movieInfoDiv.append(movieFavBtn);
       movieResultsEl.append(movieInfoDiv);
       movieSectionEl.append(movieResultsEl);
+      localStorage.setItem('movieTitle', movieArray[i].title);
+      //
     }
-    // set the movie poster to local storage
-    localStorage.setItem('name', JSON.stringify(name));
   }
 };
 /* MOVIE SECTION END */
@@ -177,8 +189,6 @@ function searchShow(query) {
 
             document.getElementById('resultsList').innerHTML = htmlCode;
           }
-          // set the movie poster to local storage
-          localStorage.setItem('name', JSON.stringify(jsonData));
         }
       });
     }
@@ -358,42 +368,6 @@ var showActorInfo = function (actorId) {
 };
 /* ACTOR SECTION ENDS */
 
-/* POPULATE FAVORITES */
-var populateFavorites = function () {
-  // set name value
-  var name = inputEl.value.trim();
-  // define select element value
-  var chooseValue = chooseSearch.value;
-  // define option values
-  var movieValue = movieOption.value;
-  var showValue = showOption.value;
-
-  if (name === '') {
-    return;
-  } else {
-    var saveShow = [];
-    // run a function that populates the favorites section
-    saveShow = JSON.parse(localStorage.getItem('name'));
-
-    console.log(saveShow);
-
-    if (chooseValue === showValue) {
-      var showFavList = document.createElement('li');
-      showFavList.textContent = saveShow.show.image.original;
-      showFavEl.appendChild(showFavList);
-      favoritesListEl.appendChild(showFavEl);
-    } else if (chooseValue === movieValue) {
-      var movieFavList = document.createElement('li');
-      movieFavList.textContent = name;
-      movieFavEl.appendChild(showFavList);
-      favoritesListEl.appendChild(movieFavEl);
-    } else {
-      invalidInput();
-      return;
-    }
-  }
-};
-
 /* ERROR MESSAGES START */
 // Function for invalid movies
 var invalidMovie = function () {
@@ -492,7 +466,47 @@ var functionSelector = function () {
   }
 };
 
-favoritesButtonEl.addEventListener('click', function () {
+favoritesButtonEl.addEventListener('click', function (event) {
+  event.preventDefault();
+  console.log("this was clicked!");
   populateFavorites();
 });
 /* EVENT LISTENERS END */
+
+/* POPULATE FAVORITES */
+var populateFavorites = function () {
+  // set name value
+  var name = inputEl.value.trim();
+  // define select element value
+  var chooseValue = chooseSearch.value;
+  // define option values
+  var movieValue = movieOption.value;
+  var showValue = showOption.value;
+
+  if (name === '') {
+    return;
+  } else {
+    var saveShow = [];
+    // run a function that populates the favorites section
+    saveShow = JSON.parse(localStorage.getItem('name'));
+
+    console.log(saveShow);
+
+    if (chooseValue === showValue) {
+      var showFavList = document.createElement('li');
+      showFavList.textContent = saveShow.show.image.original;
+      showFavEl.appendChild(showFavList);
+      favoritesListEl.appendChild(showFavEl);
+    } else if (chooseValue === movieValue) {
+
+        var movieFavList = document.createElement('li');
+        movieFavList.textContent = localStorage.getItem('movieTitle');
+        console.log(movieFavList);
+        movieFavEl.appendChild(movieFavList);
+        favoritesListEl.appendChild(movieFavEl);
+    } else {
+      invalidInput();
+      return;
+    }
+  }
+};
