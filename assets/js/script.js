@@ -25,6 +25,9 @@ var actorSectionEl = document.getElementById('actor-section');
 // Declare the actor subtitle
 var actorTitleEl = document.getElementById('actor-title');
 
+// movie ID Counter 
+var movieIdCounter = 0
+
 // Declare movie error messages container
 var errorEl = document.getElementById('error');
 
@@ -34,7 +37,6 @@ var showFavEl = document.getElementById('shows-to-watch');
 
 // Declare button
 var buttonEL = document.getElementById('searchBtn');
-var movieWatchButtonEl = document.getElementById('save-movie');
 var favoritesButtonEl = document.getElementById('save-title');
 /* GLOBAL VARIABLES END */
 
@@ -123,17 +125,17 @@ var showMovieInfo = function (name) {
       let movieFavBtn = document.createElement('button');
       movieFavBtn.innerHTML = "Add to My Watch Later List";
       movieFavBtn.setAttribute('class', 'modal-button');
-      movieFavBtn.setAttribute('onclick', populateFavorites());
-      movieFavBtn.setAttribute('id', 'save-movie');
+      movieFavBtn.setAttribute('onclick', populateFavorites(movieArray[i], movieIdCounter));
+      // movieFavBtn.setAttribute('id', 'save-movie');
       movieFavBtn.setAttribute('type', 'submit');
 
       // display each movie cards
+      localStorage.setItem('movieTitle', movieArray[i].title);
       movieInfoDiv.append(movieImage);
       movieInfoDiv.append(movieDescription);
       movieInfoDiv.append(movieFavBtn);
       movieResultsEl.append(movieInfoDiv);
       movieSectionEl.append(movieResultsEl);
-      localStorage.setItem('movieTitle', movieArray[i].title);
       //
     }
   }
@@ -474,10 +476,9 @@ favoritesButtonEl.addEventListener('click', function (event) {
 /* EVENT LISTENERS END */
 
 /* POPULATE FAVORITES */
-var populateFavorites = function () {
-  // set name value
-  var name = inputEl.value.trim();
-  // define select element value
+var populateFavorites = function (name, movieIdCounter) {
+  console.log(movieIdCounter);
+    // define select element value
   var chooseValue = chooseSearch.value;
   // define option values
   var movieValue = movieOption.value;
@@ -486,21 +487,15 @@ var populateFavorites = function () {
   if (name === '') {
     return;
   } else {
-    var saveShow = [];
-    // run a function that populates the favorites section
-    saveShow = JSON.parse(localStorage.getItem('name'));
-
-    console.log(saveShow);
-
     if (chooseValue === showValue) {
       var showFavList = document.createElement('li');
       showFavList.textContent = saveShow.show.image.original;
       showFavEl.appendChild(showFavList);
       favoritesListEl.appendChild(showFavEl);
     } else if (chooseValue === movieValue) {
-
         var movieFavList = document.createElement('li');
-        movieFavList.textContent = localStorage.getItem('movieTitle');
+        movieFavList.innerHTML = localStorage.getItem('movieTitle');
+        movieIdCounter++;
         console.log(movieFavList);
         movieFavEl.appendChild(movieFavList);
         favoritesListEl.appendChild(movieFavEl);
