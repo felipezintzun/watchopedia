@@ -109,8 +109,15 @@ form label {
 
 /* MOVIE SECTION STYLES START */
 .movie {
-  background: var(--bg-oddSection);
+  background-color: rgb(255, 255, 255, 0.8);
+  color: black;
 }
+
+.movie-style {
+  color: #4a4a4a;
+  /* background-color: red; */
+}
+
 /* SHOW SECTION STYLES START */
 .show {
   margin: 2vh;
@@ -211,6 +218,7 @@ a:focus {
   margin: auto;
   padding: 2vw;
   float: right;
+  flex: 100%;
   /* font-weight: bold; */
   /* font-style: italic; */
   /* border-radius: 20px; */
