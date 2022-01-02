@@ -58,7 +58,7 @@ var getMovieSearch = function (name) {
         // otherwise run invalid input
         invalidMovie();
         return;
-      }
+      };
     })
     //runs if there is a connection issues
     .catch(function () {
@@ -113,7 +113,7 @@ var showMovieInfo = function (name) {
           'style',
           'width: 100%; color: red; font-size: 1.25em'
         );
-      }
+      };
       let movieDescription = document.createElement('div');
       movieDescription.setAttribute('style', 'font-color: black');
       movieDescription.textContent = movieArray[i].overview;
@@ -121,10 +121,10 @@ var showMovieInfo = function (name) {
       movieInfoDiv.append(movieDescription);
       movieResultsEl.append(movieInfoDiv);
       movieSectionEl.append(movieResultsEl);
-    }
+    };
     // set the movie poster to local storage
     localStorage.setItem('name', JSON.stringify(name));
-  }
+  };
 };
 /* MOVIE SECTION END */
 
@@ -153,7 +153,7 @@ function searchShow(query) {
             let element = jsonData[i];
 
             htmlCode += `
-            <div class="card is-flex-column is-justify-content-space-between" id="tvshowsnav"> 
+            <div class="card is-flex-column is-justify-content-space-between"> 
          
             <div class="card-image">
               <figure class="image is-4by3">
@@ -176,14 +176,14 @@ function searchShow(query) {
           </div>`;
 
             document.getElementById('resultsList').innerHTML = htmlCode;
-          }
+          };
           // set the movie poster to local storage
           localStorage.setItem('name', JSON.stringify(jsonData));
-        }
+        };
       });
-    }
+    };
   });
-}
+};
 
 /* SHOW SECTION ENDS */
 
@@ -208,7 +208,7 @@ var getNameSearch = function (name) {
         // otherwise run invalid input
         invalidActor();
         return;
-      }
+      };
     })
     // runs if there is a connection issue
     .catch(function (error) {
@@ -233,8 +233,8 @@ var getActorId = function (name) {
     } else {
       invalidActor();
       return;
-    }
-  }
+    };
+  };
 };
 
 // Call a new fetch function to get actor information
@@ -255,7 +255,7 @@ var actorInfo = function (actorId) {
         response.json().then(function (actorId) {
           showActorInfo(actorId);
         });
-      }
+      };
     })
     // Runs if there is a connection issue
     .catch(function (error) {
@@ -354,7 +354,7 @@ var showActorInfo = function (actorId) {
     // otherwise run the function to hide the section and display 'actor not found'
     invalidActor();
     return;
-  }
+  };
 };
 /* ACTOR SECTION ENDS */
 
@@ -389,8 +389,8 @@ var populateFavorites = function () {
     } else {
       invalidInput();
       return;
-    }
-  }
+    };
+  };
 };
 
 /* ERROR MESSAGES START */
@@ -461,7 +461,7 @@ buttonEL.addEventListener('click', function (event) {
   } else {
     invalidInput();
     return;
-  }
+  };
 });
 
 /* EVENT LISTENERS START */
@@ -487,8 +487,8 @@ var functionSelector = function () {
     } else {
       invalidInput();
       return;
-    }
-  }
+    };
+  };
 };
 
 favoritesButtonEl.addEventListener('click', function () {

@@ -65,8 +65,7 @@ header {
   width: auto;
 }
 
-/* NAV BAR STYLES */
-
+/* NAV BAR STYLES START */
 .topnav {
   /* background-color: #333; */
   overflow: hidden;
@@ -86,6 +85,20 @@ header {
   /* background-color: #ddd; */
   color: #fe6601;
 }
+
+/* Bottom Nav */
+
+.bottom-nav a {
+  float: left;
+  color: #f2f2f2;
+  text-align: center;
+  margin-left: 2vw;
+}
+
+.bottom-nav a:hover {
+  color: var(--button-hover);
+}
+/* NAV BAR STYLES END */
 
 /* Form */
 .search-form {
@@ -116,10 +129,46 @@ form label {
 
 /* HEADER STYLES END */
 
+/* ACTOR SECTION STARTS */
+.actor {
+  background: var(--bg-oddSection);
+  min-height: 50vh;
+  margin-bottom: 5em;
+}
+
+/* Actor image */
+.actor-image {
+  max-width: 20%;
+  position: absolute;
+  left: 5vw;
+  padding: 2vw;
+}
+
+/* Actor information container */
+.actorInfoContainer {
+  display: flex;
+  justify-content: flex-end;
+  margin: 1vw;
+}
+/* Actor biography styling */
+.biography {
+  text-align: center;
+  width: 70%;
+  margin: 1vw;
+  padding: 2vw;
+  font-weight: bold;
+  font-style: italic;
+  border-radius: 20px;
+  background: var(--bg-card);
+}
+/* ACTOR SECTION ENDS */
+
 /* MOVIE SECTION STYLES START */
 .movie {
   background: var(--bg-oddSection);
 }
+/* MOVIE SECTION STYLES END */
+
 /* SHOW SECTION STYLES START */
 .show {
   margin: 2vh;
@@ -173,42 +222,7 @@ a:focus {
 }
 /* SHOW SECTION END */
 
-/* ACTOR SECTION STARTS */
-/* Style the actor section */
-.actor {
-  background: var(--bg-oddSection);
-  min-height: 50vh;
-  margin-bottom: 5em;
-}
-
-/* Actor image */
-.actor-image {
-  max-width: 20%;
-  position: absolute;
-  left: 5vw;
-  padding: 2vw;
-}
-
-/* Actor information container */
-.actorInfoContainer {
-  display: flex;
-  justify-content: flex-end;
-  margin: 1vw;
-}
-/* Actor biography styling */
-.biography {
-  text-align: center;
-  width: 70%;
-  margin: 1vw;
-  padding: 2vw;
-  font-weight: bold;
-  font-style: italic;
-  border-radius: 20px;
-  background: var(--bg-card);
-}
-
-/* WATCH LATER SECTION STYLING */
-
+/* WATCH LATER SECTION STYLING START */
 #watch-section {
   padding: 80px 20px;
 }
@@ -289,7 +303,7 @@ a:focus {
 }
 
 .btn:active {
-  box-shadow: 0 0px /*var(--grey)*/;
+  box-shadow: 0 0px;
   top: 0;
 }
 
@@ -317,6 +331,7 @@ a:focus {
   height: 170px;
   margin: 10px;
 }
+/* WATCH LATER SECTION STYLING END */
 
 /* FOOTER STYLE START */
 footer {
@@ -328,19 +343,6 @@ footer {
   padding-right: 2em;
   background-color: #fe6601;
   color: var(--primary-white);
-}
-
-/* Bottom Nav */
-
-.bottom-nav a {
-  float: left;
-  color: #f2f2f2;
-  text-align: center;
-  margin-left: 2vw;
-}
-
-.bottom-nav a:hover {
-  color: var(--button-hover);
 }
 
 /* MEDIA QUERIES */
