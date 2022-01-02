@@ -43,7 +43,7 @@ var getMovieSearch = function (name) {
     'https://api.themoviedb.org/3/search/movie?api_key=' +
     movieDbApi +
     '&language=en-US&query=' +
-    name +
+    localStorage.getItem('movieSearch') +
     '&page=1&include_adult=false';
 
   fetch(movieUrl)
@@ -189,7 +189,7 @@ var getNameSearch = function (name) {
     'https://api.themoviedb.org/3/search/person?api_key=' +
     movieDbApi +
     '&language=en-US&query=' +
-    name +
+    localStorage.getItem('actorSearch') +
     '&page=1&include_adult=false';
 
   fetch(apiUrl)
@@ -444,10 +444,13 @@ var functionSelector = function () {
     return;
   } else {
     if (chooseValue === actorValue) {
+      localStorage.setItem('actorSearch', inputEl.value);
       getNameSearch(name);
     } else if (chooseValue === movieValue) {
+      localStorage.setItem('movieSearch', inputEl.value);
       getMovieSearch(name);
     } else if (chooseValue === showValue) {
+      // localStorage.setItem('showSearch', inputEl.value);
       searchShow(name);
     } else {
       invalidInput();
