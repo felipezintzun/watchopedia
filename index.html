@@ -77,13 +77,14 @@
       <section class="movie hide" id="movie-section">
         <h2 class="section-title">Movies</h2>
         <div
-          class="flex-row is-size-4-touch is-size-2-tablet has-text-centered"
+          class="movie-style flex-row is-size-4-touch is-size-2-tablet has-text-centered"
           id="movie"
         >
           <h3 class="movie-title"></h3>
           <div
             id="movie-results"
             class="
+              movie-style
               is-flex
               is-flex-direction-row
               is-justify-content-center
@@ -94,9 +95,15 @@
         <!-- Shows and movies for an actor populate here -->
       </section>
 
-      <!-- SHOW SECTION STARTS -->
-      <section class="section hide" id="show-section">
-        <article class="is-flex" id="resultsList"></article>
+       <!-- SHOW SECTION STARTS -->
+       <section class="section hide" id="show-section">
+        <article 
+        class=
+        "is-flex
+        is-flex-wrap-wrap 
+        is-justify-content-space-between" 
+        id="resultsList">
+      </article>
       </section>
 
       <!-- ACTOR SECTION STARTS -->
@@ -108,10 +115,36 @@
       </section>
       <!-- ACTOR SECTION ENDS -->
     </div>
+
+    <!-- WATCH LATER SECTION STARTS -->
+    <!-- <section id="watch-section" class="watch-list"> -->
+      <!-- <h2 class="section-title">My Watch Later List</h2> -->
+      <!-- <form id="title-form">
+        <div class="form-group">
+           <input type="text" name="title-name" placeholder="Enter Title Name" />
+        </div>
+    
+        <div class="form-group">
+          <button class="modal-button" id="save-title" type="submit">Add to My Watch Later List</button>
+        </div>
+      </form>
+   
+    <main class="watchlist-content" id="watchlist-content"> -->
+
+    <!-- Titles To Watch -->
+    <!-- <section class="title-list-wrapper">
+      <h2 class="list-title">Favorites</h2>
+      <h3 id="favorite-movies"></h3>
+      <ul class="title-list" id="movies-to-watch"></ul> -->
+      <!-- <h3 id="favorite-shows">Shows</h3>
+      <ul class="title-list" id="shows-to-watch"></ul> -->
+    <!-- </section> -->
+    <!-- </section> -->
+  
       <!-- FOOTER STARTS -->
       <footer>
         <h2>Made by Watchopedia.</h2>
-        <div>&copy; 2021 Watchopedia, Inc.</div>
+        <div>&copy; 2022 Watchopedia, Inc.</div>
       </footer>
       <!-- FOOTER ENDS -->
   </div>

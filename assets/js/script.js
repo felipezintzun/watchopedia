@@ -28,8 +28,12 @@ var actorTitleEl = document.getElementById('actor-title');
 // Declare movie error messages container
 var errorEl = document.getElementById('error');
 
+var movieFavhEl = document.getElementById('movies-to-watch')
+var showFavEl = document.getElementById('shows-to-watch')
+
 // Declare button
 var buttonEL = document.getElementById('searchBtn');
+var favoritesButtonEl = document.getElementById('save-title')
 /* GLOBAL VARIABLES END */
 
 /* MOVIE SECTION START */
@@ -39,7 +43,7 @@ var getMovieSearch = function (name) {
     'https://api.themoviedb.org/3/search/movie?api_key=' +
     movieDbApi +
     '&language=en-US&query=' +
-    name +
+    localStorage.getItem('movieSearch') +
     '&page=1&include_adult=false';
 
   fetch(movieUrl)
@@ -86,6 +90,7 @@ var showMovieInfo = function (name) {
         'width: 350px; color: white; text-align: center'
       );
       movieInfoDiv.setAttribute('class', 'column is-one-fifth is-full-mobile');
+
       //generates movie posters
       let movieImage = document.createElement('img');
       movieImage.setAttribute('id', movieArray[i].title);
@@ -108,7 +113,11 @@ var showMovieInfo = function (name) {
           'width: 100%; color: red; font-size: 1.25em'
         );
       }
+      let movieDescription = document.createElement('div');
+      movieDescription.setAttribute('style', 'font-color: black');
+      movieDescription.textContent = movieArray[i].overview;
       movieInfoDiv.append(movieImage);
+      movieInfoDiv.append(movieDescription);
       movieResultsEl.append(movieInfoDiv);
       movieSectionEl.append(movieResultsEl);
     }
@@ -135,18 +144,17 @@ function searchShow(query) {
           var htmlCode = '';
           // clear error content
           errorEl.textContent = '';
-          // Declare the show title
-          var showTitle = 'Shows';
 
           for (let i = 0; i < 5; i++) {
             // jsonData.forEach(element => {
             let element = jsonData[i];
 
-            htmlCode += `<div class="card is-flex-column is-justify-content-space-between" id="tvshowsnav"> 
-              <div class="section-title"> ${showTitle} </div>
-              <div class="card-image">
-                <figure class="image is-4by3">
-                  <img src="${element.show.image.medium}" alt="placeholder image" />
+            htmlCode += `
+            <div class="card is-flex-column is-justify-content-space-between" id="tvshowsnav"> 
+         
+            <div class="card-image">
+              <figure class="image is-4by3">
+                <img src="${element.show.image.original}" alt="placeholder image" />
               </figure>
             </div>
             <div class="card-content">
@@ -159,19 +167,14 @@ function searchShow(query) {
               <div class="content">
                 ${element.show.summary}
                 <a href="${element.show.officialSite}">Offical Site</a>
-                <br />
-                <time>${element.show.schedule.time}</time>
+                <button class="modal-button" id="save-title" type="submit">Add to My Watch Later List</button>
               </div>
             </div>
-          </div>
-          <div class="content">
-            ${element.show.summary}
-            <a href="${element.show.officialSite}">Offical Site</a>
-          </div>
-        </div>
-      </div>`;
+          </div>`;
+
+            document.getElementById('resultsList').innerHTML = htmlCode;
+          }
         }
-      }
       });
     }
   });
@@ -186,7 +189,7 @@ var getNameSearch = function (name) {
     'https://api.themoviedb.org/3/search/person?api_key=' +
     movieDbApi +
     '&language=en-US&query=' +
-    name +
+    localStorage.getItem('actorSearch') +
     '&page=1&include_adult=false';
 
   fetch(apiUrl)
@@ -350,6 +353,11 @@ var showActorInfo = function (actorId) {
 };
 /* ACTOR SECTION ENDS */
 
+/* populate favorites */
+var populateFavorites = function() {
+  
+}
+
 /* ERROR MESSAGES START */
 // Function for invalid movies
 var invalidMovie = function () {
@@ -436,10 +444,13 @@ var functionSelector = function () {
     return;
   } else {
     if (chooseValue === actorValue) {
+      localStorage.setItem('actorSearch', inputEl.value);
       getNameSearch(name);
     } else if (chooseValue === movieValue) {
+      localStorage.setItem('movieSearch', inputEl.value);
       getMovieSearch(name);
     } else if (chooseValue === showValue) {
+      // localStorage.setItem('showSearch', inputEl.value);
       searchShow(name);
     } else {
       invalidInput();
@@ -447,4 +458,14 @@ var functionSelector = function () {
     }
   }
 };
+
+favoritesButtonEl.addEventListener('click', function() {
+   
+   var name = inputEl.value.trim();
+// run a function that populates the favorites section
+// set the movie poster to local storage
+   localStorage.setItem('name', JSON.stringify(name))
+})
 /* EVENT LISTENERS END */
+
+
