@@ -385,7 +385,8 @@ var populateFavorites = function (jsonData, name) {
         showFavList.setAttribute('data-task-id', taskIdCounter);
         showFavList.textContent = movieName;
         shows.innerHTML = taskIdCounter++;
-        favoritesButtonEl.innerHTML = getShow[i].innerHTML;
+        console.log(shows);
+        favoritesButtonEl.textContent = getShow[i].innerHTML[i];
         console.log(favoritesButtonEl);
         showFavEl.appendChild(showFavList);
         favoritesListEl.appendChild(showFavEl);
