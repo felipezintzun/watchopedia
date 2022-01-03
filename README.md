@@ -40,4 +40,4 @@ https://felipezintzun.github.io/watchopedia/
 # Screenshots
 
 If you click on the link above and you see the image below, you're good to go!
-![Watchopedia Homepage](https://user-images.githubusercontent.com/88728912/147701550-57e2cafb-0c9e-4dc5-934c-5ef8e2baea5f.png)
+![Watchopedia Homepage](https://user-images.githubusercontent.com/93062449/147896797-2bb9b505-ea09-4cc1-a824-1750494c0370.png)
