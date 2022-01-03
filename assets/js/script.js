@@ -16,6 +16,8 @@ var movieTitleEl = document.getElementById('movie-title');
 var movieResultsEl = document.getElementById('movie-results');
 // the movie db api key
 var movieDbApi = '40ead071b983da851d42031943eb549a';
+// MOVIE ADD TO FAVORITES BUTTO
+var modalButtonEl = document.querySelector("#modal-button");
 
 // Define the show section
 var showSectionEl = document.getElementById('show-section');
@@ -28,8 +30,14 @@ var actorTitleEl = document.getElementById('actor-title');
 // Declare movie error messages container
 var errorEl = document.getElementById('error');
 
-var movieFavhEl = document.getElementById('movies-to-watch')
+var movieFavhEl = document.getElementById('movies-to- ')
 var showFavEl = document.getElementById('shows-to-watch')
+var watchSection = document.getElementById('watch-section')
+
+var saveLocal = JSON.parse(localStorage.getItem('watchopedia')) || []
+
+var savedShow = document.getElementById('saved-show');
+// var favoritesSectionEl = getElementById()
 
 // Declare button
 var buttonEL = document.getElementById('searchBtn');
@@ -87,7 +95,7 @@ var showMovieInfo = function (name) {
       movieInfoDiv.setAttribute('id', 'movieDiv');
       movieInfoDiv.setAttribute(
         'style',
-        'width: 350px; color: white; text-align: center'
+        'width: 350px; color: black; text-align: center'
       );
       movieInfoDiv.setAttribute('class', 'column is-one-fifth is-full-mobile');
 
@@ -121,7 +129,7 @@ var showMovieInfo = function (name) {
       movieResultsEl.append(movieInfoDiv);
       movieSectionEl.append(movieResultsEl);
     }
-  }
+  } 
 };
 /* MOVIE SECTION END */
 
@@ -145,10 +153,10 @@ function searchShow(query) {
           // clear error content
           errorEl.textContent = '';
 
-          for (let i = 0; i < 5; i++) {
+          for (let i = 0; i < jsonData.length; i++) {
             // jsonData.forEach(element => {
             let element = jsonData[i];
-
+            console.log(element)
             htmlCode += `
             <div class="card is-flex-column is-justify-content-space-between" id="tvshowsnav"> 
          
@@ -167,6 +175,7 @@ function searchShow(query) {
               <div class="content">
                 ${element.show.summary}
                 <a href="${element.show.officialSite}">Offical Site</a>
+                <button class="modal-button add-favorites" data-src="${element.show.image.original}" data-title="${element.show.name}" onclick="addFavoriteShow(this)" id="save-title" type="submit">Add to My Watch Later List</button>
               </div>
             </div>
           </div>`;
@@ -352,10 +361,50 @@ var showActorInfo = function (actorId) {
 };
 /* ACTOR SECTION ENDS */
 
-/* populate favorites */
-var populateFavorites = function() {
-  
-}
+/* POPULATE FAVORITES SECTION  */
+// var populateFavorites = function (jsonData, name) {
+//   // define select element value
+//   var chooseValue = chooseSearch.value;
+//   // define option values
+//   var movieValue = movieOption.value;
+//   var showValue = showOption.value;
+//   var taskIdCounter = 0;
+
+//   if (name === '') {
+//     return;
+//   } else {
+//     if (chooseValue === showValue) {
+//       // var saveShow = [];
+//       // run a function that populates the favorites section
+//       var getShow = JSON.parse(localStorage.getItem('show-name'));
+//       // saveShow.innerHTML = getShow;
+//       console.log(getShow);
+//       for (i = 0; i < getShow.length; i++) {
+//         var shows = getShow[i];
+//         var movieName = getShow[i].show.name;
+//         var showFavList = document.createElement('li');
+//         showFavList.setAttribute('data-task-id', taskIdCounter);
+//         showFavList.textContent = movieName;
+//         shows.innerHTML = taskIdCounter++;
+//         favoritesButtonEl.innerHTML = getShow[i].innerHTML;
+//         console.log(favoritesButtonEl);
+//         showFavEl.appendChild(showFavList);
+//         favoritesListEl.appendChild(showFavEl);
+//       }
+//     } else if (chooseValue === movieValue) {
+//       var saveMovie = [];
+//       // run a function that populates the favorites section
+//       saveMovie = JSON.parse(localStorage.getItem('movie-name'));
+//       var movieFavList = document.createElement('li');
+//       movieFavList.textContent = name;
+//       movieFavEl.appendChild(showFavList);
+//       favoritesListEl.appendChild(movieFavEl);
+//     } else {
+//       invalidInput();
+//       return;
+//     }
+//   }
+// };
 
 /* ERROR MESSAGES START */
 // Function for invalid movies
@@ -458,13 +507,49 @@ var functionSelector = function () {
   }
 };
 
-favoritesButtonEl.addEventListener('click', function() {
-   
-   var name = inputEl.value.trim();
-// run a function that populates the favorites section
-// set the movie poster to local storage
-   localStorage.setItem('name', JSON.stringify(name))
-})
+// favoritesButtonEl.addEventListener('click', function() {
+
+//    var name = inputEl.value.trim();
+// // run a function that populates the favorites section
+// // set the movie poster to local storage
+//    localStorage.setItem('name', JSON.stringify(name))
+// })
+
+function addFavoriteShow(event) {
+  console.log(event.getAttribute("data-src"))
+  console.log(event.getAttribute("data-title"))
+  var newShow = {
+    src: event.getAttribute("data-src"), 
+    title: event.getAttribute("data-title")
+  }
+
+  saveLocal.push (newShow)
+  localStorage.setItem ('watchopedia', JSON.stringify(saveLocal))
+  displayLocal()
+}
 /* EVENT LISTENERS END */
+
+function displayLocal() {
+  var saveLocal = JSON.parse(localStorage.getItem('watchopedia')) || []
+  var previousFav =''
+  for (let i = 0 ; i <saveLocal.length;i++){
+     previousFav += `<li id="saved-show"><img src="${saveLocal[i].src}" /><br /><h6>${saveLocal[i].title}</h6></li>`
+  }
+
+    document.getElementById('shows-to-watch').innerHTML = previousFav
+}
+
+function deleteFavoriteShow() {
+
+  var  deleteBtn = document.createElement('button')
+  document.setAttribute('class', "delete")
+  watchSection.append(deleteBtn)
+  deleteShowBtn.addEventListener("click", function(){
+    showFavEl.parentNode.removeChild(savedShow)
+  })
+}
+
+displayLocal()
+
 
 
