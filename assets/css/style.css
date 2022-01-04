@@ -42,10 +42,14 @@ html body {
 .section-title {
   font-size: 2.5vw;
   font-weight: bold;
-  padding: 1vw;
-  border: 2px solid var(--gray);
-  border-radius: 12px;
-  background: var(--bg-sectionTitle);
+  /* padding: 1vw; */
+  text-align: center;
+  padding-top: 10px;
+  margin: 0 auto 15px auto; 
+  width: 65%;
+  /* border: 2px solid var(--gray); */
+  /* border-radius: 12px; */
+  /* background: var(--bg-sectionTitle); */
   color: var(--bg-show);
 }
 
@@ -118,8 +122,15 @@ form label {
 
 /* MOVIE SECTION STYLES START */
 .movie {
-  background: var(--bg-oddSection);
+  background-color: rgb(255, 255, 255, 0.8);
+  color: black;
 }
+
+.movie-style {
+  color: #4a4a4a;
+  /* background-color: red; */
+}
+
 /* SHOW SECTION STYLES START */
 .show {
   margin: 2vh;
@@ -183,33 +194,57 @@ a:focus {
 
 /* Actor image */
 .actor-image {
-  max-width: 20%;
-  position: absolute;
-  left: 5vw;
-  padding: 2vw;
+  max-width: 50vh;
+  align-items: center;
+  /* display: inline-block; */
+  /* height: auto; */
+  flex: 1 12%;
+  margin-right: 20px;
+  display: flex;
+  flex-wrap: wrap;
+  float:left;
+  margin: auto;
+  border-radius: .5rem;
+  /* width: 100%;
+  height: auto; */
+  /* position: absolute; */
+  /* left: 5vw; */
+  /* padding: 2vw; */
 }
 
 /* Actor information container */
 .actorInfoContainer {
-  display: flex;
-  justify-content: flex-end;
+  /* display: flex;
+  justify-content: flex-end; */
   margin: 1vw;
+  display: inline-block;
+  /* vertical-align: top; */
+  padding: 0 0 0 5px;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
 }
 /* Actor biography styling */
 .biography {
-  text-align: center;
+  text-align: left;
   width: 70%;
-  margin: 1vw;
+  margin: auto;
   padding: 2vw;
-  font-weight: bold;
-  font-style: italic;
-  border-radius: 20px;
-  background: var(--bg-card);
+  float: right;
+  flex: 100%;
+  /* font-weight: bold; */
+  /* font-style: italic; */
+  /* border-radius: 20px; */
+  /* background: var(--bg-card); */
 }
 
 /* WATCH LATER SECTION STYLING */
 
-#watch-section {
+/* #watch-section {
+  padding: 80px 20px;
+} */
+
+.watch-list {
   padding: 80px 20px;
 }
 
@@ -220,7 +255,12 @@ a:focus {
   justify-content: center;
   margin: 25px auto;
   width: 95%;
+<<<<<<< HEAD
   color: white;
+=======
+  color:white;
+  padding: 80px 20px;
+>>>>>>> 1bd5443e17f8103367a64ec8fc64082c660ffe45
 }
 
 .title-list-wrapper {
@@ -230,6 +270,7 @@ a:focus {
 
 .list-title {
   font-size: 2.6rem;
+  color: white;
 }
 
 .title-list {
@@ -395,4 +436,15 @@ footer {
   .actorInfoContainer {
     flex-direction: row;
   }
+<<<<<<< HEAD
 }
+=======
+
+  .actor-image {
+    flex: 0 32%;
+    margin-right: 0;
+    margin-top: 15px;
+    margin-bottom: 15px;
+  }
+}
+>>>>>>> 1bd5443e17f8103367a64ec8fc64082c660ffe45
