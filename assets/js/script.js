@@ -38,6 +38,11 @@ var showFavEl = document.getElementById('shows-to-watch');
 // Declare button
 var buttonEL = document.getElementById('searchBtn');
 var favoritesButtonEl = document.getElementById('save-title');
+
+// Local Storage for favorites
+var myFavoritesList = localStorage.getItem('myFavorites') || '[]';
+var myFavoritesArray = JSON.parse(myFavoritesList);
+
 /* GLOBAL VARIABLES END */
 
 /* MOVIE SECTION START */
@@ -125,12 +130,12 @@ var showMovieInfo = function (name) {
       let movieFavBtn = document.createElement('button');
       movieFavBtn.innerHTML = "Add to My Watch Later List";
       movieFavBtn.setAttribute('class', 'modal-button');
-      movieFavBtn.setAttribute('onclick', populateFavorites(movieArray[i], movieIdCounter));
-      // movieFavBtn.setAttribute('id', 'save-movie');
+      // movieFavBtn.setAttribute('onclick', populateFavorites);
+      movieFavBtn.setAttribute('id', movieArray[i].id);
+      movieFavBtn.setAttribute('movieTitle', movieArray[i].title);
       movieFavBtn.setAttribute('type', 'submit');
-
+      movieFavBtn.addEventListener('click', populateFavorites);
       // display each movie cards
-      localStorage.setItem('movieTitle', movieArray[i].title);
       movieInfoDiv.append(movieImage);
       movieInfoDiv.append(movieDescription);
       movieInfoDiv.append(movieFavBtn);
@@ -474,38 +479,50 @@ var functionSelector = function () {
 
 favoritesButtonEl.addEventListener('click', function (event) {
   event.preventDefault();
-  console.log("this was clicked!");
   populateFavorites();
 });
 /* EVENT LISTENERS END */
 
 /* POPULATE FAVORITES */
-var populateFavorites = function (name, movieIdCounter) {
-  console.log(movieIdCounter);
+var populateFavorites = function (event) {
+  event.preventDefault();
+  var eventTargetId = event.target.id;
+  myFavoritesArray.push(eventTargetId);
+        localStorage.setItem('myFavorites', JSON.stringify(myFavoritesArray));
+        var movieFavList = document.createElement('li');
+        movieFavList.innerHTML = event.target.movieTitle; 
+        // custom data attributes (convention, data-something)
+        console.log(eventTargetId.movieTitle);
+        console.log('testing');
+        movieFavEl.appendChild(movieFavList);
+        favoritesListEl.appendChild(movieFavEl);
     // define select element value
   var chooseValue = chooseSearch.value;
   // define option values
   var movieValue = movieOption.value;
   var showValue = showOption.value;
 
-  if (name === '') {
-    return;
-  } else {
-    if (chooseValue === showValue) {
-      var showFavList = document.createElement('li');
-      showFavList.textContent = saveShow.show.image.original;
-      showFavEl.appendChild(showFavList);
-      favoritesListEl.appendChild(showFavEl);
-    } else if (chooseValue === movieValue) {
-        var movieFavList = document.createElement('li');
-        movieFavList.innerHTML = localStorage.getItem('movieTitle');
-        movieIdCounter++;
-        console.log(movieFavList);
-        movieFavEl.appendChild(movieFavList);
-        favoritesListEl.appendChild(movieFavEl);
-    } else {
-      invalidInput();
-      return;
-    }
-  }
+  // if (name === '') {
+  //   return;
+  // } else {
+  //   if (chooseValue === showValue) {
+  //     var showFavList = document.createElement('li');
+  //     showFavList.textContent = saveShow.show.image.original;
+  //     showFavEl.appendChild(showFavList);
+  //     favoritesListEl.appendChild(showFavEl);
+  //   } else if (chooseValue === movieValue) {
+  //     myFavoritesArray.push(eventTargetId);
+  //       localStorage.setItem('myFavorites', JSON.stringify(myFavoritesArray));
+  //       var movieFavList = document.createElement('li');
+  //       movieFavList.innerHTML = event.target.movieTitle; 
+  //       // custom data attributes (convention, data-something)
+  //       console.log(event.target.movieTitle);
+  //       console.log('testing');
+  //       movieFavEl.appendChild(movieFavList);
+  //       favoritesListEl.appendChild(movieFavEl);
+  //   } else {
+  //     invalidInput();
+  //     return;
+  //   }
+  // }
 };
