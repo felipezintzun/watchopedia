@@ -93,7 +93,6 @@ var showMovieInfo = function (name) {
     var movieArray = name.results;
     for (let i = 0; i < movieArray.length; i++) {
       let movieInfoDiv = document.createElement('div');
-      movieInfoDiv.setAttribute('id', 'movieDiv');
       movieInfoDiv.setAttribute(
         'style',
         'width: 350px; color: white; text-align: center'
@@ -112,10 +111,10 @@ var showMovieInfo = function (name) {
         'https://image.tmdb.org/t/p/original' + movieArray[i].poster_path
       );
       // displays alt message if no poster available
-      if (movieImage.src == 'https://image.tmdb.org/t/p/w342undefined') {
+      if (movieImage.src == 'https://image.tmdb.org/t/p/originalnull') {
         movieImage.removeAttribute(
           'src',
-          'https://image.tmdb.org/t/p/w342undefined'
+          'https://image.tmdb.org/t/p/originalnull'
         );
         movieImage.setAttribute(
           'style',
@@ -130,7 +129,6 @@ var showMovieInfo = function (name) {
       let movieFavBtn = document.createElement('button');
       movieFavBtn.innerHTML = "Add to My Watch Later List";
       movieFavBtn.setAttribute('class', 'modal-button');
-      // movieFavBtn.setAttribute('onclick', populateFavorites);
       movieFavBtn.setAttribute('id', movieArray[i].id);
       movieFavBtn.setAttribute('movieTitle', movieArray[i].title);
       movieFavBtn.setAttribute('type', 'submit');
@@ -487,12 +485,13 @@ favoritesButtonEl.addEventListener('click', function (event) {
 var populateFavorites = function (event) {
   event.preventDefault();
   var eventTargetId = event.target.id;
+  console.log(eventTargetId);
   myFavoritesArray.push(eventTargetId);
         localStorage.setItem('myFavorites', JSON.stringify(myFavoritesArray));
         var movieFavList = document.createElement('li');
-        movieFavList.innerHTML = event.target.movieTitle; 
+        movieFavList.innerHTML = myFavoritesArray.movieTitle; 
         // custom data attributes (convention, data-something)
-        console.log(eventTargetId.movieTitle);
+        console.log(myFavoritesArray.movieTitle);
         console.log('testing');
         movieFavEl.appendChild(movieFavList);
         favoritesListEl.appendChild(movieFavEl);
