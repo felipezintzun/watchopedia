@@ -551,13 +551,13 @@ function displayLocal() {
 function deleteFavoriteShow() {
 
   var  deleteBtn = document.createElement('button')
-  document.setAttribute('class', "delete")
+  document.setAttribute('class', 'delete')
   watchSection.append(deleteBtn)
   deleteShowBtn.addEventListener("click", function(){
     showFavEl.parentNode.removeChild(savedShow)
   })
 }
-
+deleteFavoriteShow()
 displayLocal()
 
 
