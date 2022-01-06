@@ -182,7 +182,7 @@ function searchShow(query) {
               <div class="content">
                 ${element.show.summary}
                 <a href="${element.show.officialSite}">Offical Site</a>
-                <button class="modal-button add-favorites" data-src="${element.show.image.original}" data-title="${element.show.name}" onclick="addFavoriteShow(this)" id="save-title" type="submit">Add to My Watch Later List</button>
+                <button class="modal-button add-favorites" data-src="${element.show.image.original}" data-title="${element.show.name}" data-movieId=${element.show.id} onclick="addFavoriteShow(this)" id="save-title" type="submit">Add to My Watch Later List</button>
               </div>
             </div>
           </div>`;
@@ -525,13 +525,13 @@ var functionSelector = function () {
 // })
 
 function addFavoriteShow(event) {
-  console.log(event.getAttribute("data-src"))
-  console.log(event.getAttribute("data-title"))
+ 
   var newShow = {
     src: event.getAttribute("data-src"), 
-    title: event.getAttribute("data-title")
+    title: event.getAttribute("data-title"), 
+    id: event.getAttribute("data-movieId")
   }
-
+console.log(newShow);
   saveLocal.push (newShow)
   localStorage.setItem ('watchopedia', JSON.stringify(saveLocal))
   displayLocal()
@@ -540,25 +540,23 @@ function addFavoriteShow(event) {
 
 function displayLocal() {
   var saveLocal = JSON.parse(localStorage.getItem('watchopedia')) || []
+
   var previousFav =''
   for (let i = 0 ; i <saveLocal.length;i++){
-     previousFav += `<li id="saved-show"><img src="${saveLocal[i].src}" /><br /><h6>${saveLocal[i].title}</h6></li>`
+     previousFav += `<li id="saved-show"><img src="${saveLocal[i].src}" /><br /><h6>${saveLocal[i].title}</h6></li><button class="deleteBtn" data-Id="${saveLocal[i].id}" onclick="deleteFavoriteShow(this)">Delete</button>`
   }
 
     document.getElementById('shows-to-watch').innerHTML = previousFav
 }
 
-function deleteFavoriteShow() {
-
-  var  deleteBtn = document.createElement('button')
-  document.setAttribute('class', 'delete')
-  watchSection.append(deleteBtn)
-  deleteShowBtn.addEventListener("click", function(){
-    showFavEl.parentNode.removeChild(savedShow)
-  })
-}
-deleteFavoriteShow()
+function deleteFavoriteShow(event) {
+  var deleteList = JSON.parse(localStorage.getItem('watchopedia')) || []
+console.log(deleteList);
+ const newarr = deleteList.filter(movieObject => movieObject.id !== event.getAttribute("data-Id"))
+localStorage.setItem('watchopedia', JSON.stringify(newarr))
 displayLocal()
+}
+// deleteFavoriteShow()
 
 
 
