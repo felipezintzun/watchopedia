@@ -556,6 +556,7 @@ console.log(deleteList);
 localStorage.setItem('watchopedia', JSON.stringify(newarr))
 displayLocal()
 }
+displayLocal()
 // deleteFavoriteShow()
 
 
