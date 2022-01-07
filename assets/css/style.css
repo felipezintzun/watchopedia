@@ -368,6 +368,8 @@ footer {
   /* background-image: linear-gradient(to bottom right, #1b6c86, #281e32); */
   background-repeat: no-repeat;
   color: var(--primary-white);
+  position: fixed;
+  bottom: 0;
 }
 
 /* MEDIA QUERIES */
